@@ -24,14 +24,12 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="main-title">
         <span class="flyer-style yellow-text">חופשה חלומית</span>
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
-
     <div class="video-wrapper">
         <iframe id="bunny-video" 
             src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
@@ -39,7 +37,6 @@
             allowfullscreen>
         </iframe>
     </div>
-    
     <div class="subtle-note-box">
         <div class="note-flyer">
             <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
@@ -50,10 +47,9 @@
 </div>
 
 <script>
-    // ה-Webhook המעודכן מהקוד האחרון שלך
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
-    const phone = urlParams.get('phone') || "ללא טלפון";
+    const phone = urlParams.get('phone') || "972504746464";
     
     let sent = { '25%': false, '75%': false, '95%': false };
 
@@ -70,7 +66,6 @@
 
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
-        
         let data;
         try {
             data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
@@ -80,7 +75,7 @@
             const percent = Math.floor((data.value / data.duration) * 100);
             
             // לוג חדש כדי לוודא שאתה על הגרסה הנכונה
-            if (percent % 5 === 0) console.log("--- בדיקת אחוזים: " + percent + "% ---");
+            if (percent % 5 === 0) console.log(">>> אחוז צפייה נוכחי: " + percent + "% <<<");
 
             if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
             if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
