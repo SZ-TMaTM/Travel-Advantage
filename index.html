@@ -35,14 +35,14 @@
 <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 
 <script>
-    // 1. חילוץ מזהה הסוכן מהכתובת
+    // 1. חילוץ מזהה הסוכן (Lead ID) מהכתובת
     const pathParts = window.location.pathname.split('/').filter(part => part !== "");
     const leadId = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'General_Visitor';
     
-    // 2. כתובת ה-Webhook שלך מ-Make
+    // 2. כתובת ה-Webhook המדויקת שלך
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy"; 
 
-    // 3. פונקציית הדיווח המתוקנת שעוקפת חסימות אבטחה
+    // 3. פונקציית הדיווח ששולחת את הנתונים ל-Make
     function reportToMake(status) {
         const payload = JSON.stringify({ 
             lead_id: leadId, 
@@ -51,36 +51,41 @@
             timestamp: new Date().toISOString()
         });
         
-        // שימוש ב-sendBeacon כדי לוודא שהמידע נשלח גם אם הדפדפן חוסם
+        // שימוש ב-sendBeacon מבטיח שהנתונים יישלחו גם אם יש חסימות אבטחה בדפדפן
         navigator.sendBeacon(webhookUrl, payload);
     }
 
-    // 4. אתחול הנגן והגדרת אירועים
+    // 4. הפעלת הנגן של Bunny
     const player = new BJLPlayer('bunny-video');
     
     let reported12Min = false;
     let reported75 = false;
     let reported95 = false;
 
+    // דיווח על תחילת צפייה
     player.on('play', function() { 
         reportToMake('Started_Viewing_HE'); 
     });
 
+    // מעקב אחרי התקדמות בסרטון
     player.on('timeupdate', function(data) {
         const currentTime = data.currentTime; 
         const duration = data.duration;
         const percentage = (currentTime / duration) * 100;
 
+        // דיווח אחרי 12 דקות (720 שניות)
         if (currentTime >= 720 && !reported12Min) {
             reportToMake('Viewed_Over_12_Minutes_HE');
             reported12Min = true;
         }
 
+        // דיווח ב-75% צפייה
         if (percentage >= 75 && !reported75) {
             reportToMake('Viewed_75_Percent_HE');
             reported75 = true;
         }
 
+        // דיווח ב-95% צפייה
         if (percentage >= 95 && !reported95) {
             reportToMake('Viewed_95_Percent_HE');
             reported95 = true;
