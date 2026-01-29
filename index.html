@@ -34,27 +34,25 @@
 </div>
 
 <script>
-    // ה-Webhook שלך מהקוד שעבד
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "ללא טלפון";
-    
-    // שיניתי את המעקב לאחוזים
-    let sent = { '25%': false, '75%': false, '95%': false };
+    let sent = { '12': false, '20': false, '25': false };
 
     function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'no-cors', // פותר את בעיית ה-CORS שרואים בתמונה
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
         });
-        console.log("נשלח למייק:", status);
+        console.log("Sent to Make:", status);
     }
 
-    // שליחה בטעינה
+    // שליחה מיד עם הטעינה
     report("Page_Loaded");
 
+    // הקשבה לנגן
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
         
@@ -64,15 +62,10 @@
         } catch (e) { return; }
 
         if (data.event === 'timeupdate') {
-            const percent = Math.floor((data.value / data.duration) * 100);
-            
-            // לוג שיעזור לך לראות בקונסול שהאחוזים רצים
-            if (percent % 5 === 0) console.log("התקדמות:", percent + "%");
-
-            // שליחת הסטטוס המדויק שהראוטר ב-Make מחפש
-            if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-            if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-            if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            const time = data.value;
+            if (time >= 720 && !sent['12']) { report("Watched_Over_12_Min"); sent['12'] = true; }
+            if (time >= 1200 && !sent['20']) { report("Watched_Over_20_Min"); sent['20'] = true; }
+            if (time >= 1500 && !sent['25']) { report("Watched_Over_25_Min"); sent['25'] = true; }
         }
     });
 </script>
