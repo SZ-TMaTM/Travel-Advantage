@@ -3,73 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>חופשה חלומית</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>חופשה חלומית</title>
     <style>
-        body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
-        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; margin-bottom: 25px; }
-        .yellow-text { color: #ffcc00; text-shadow: 1px 1px 2px #000; }
-        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
+        body { 
+            font-family: 'Heebo', sans-serif; 
+            text-align: center; 
+            background-color: #f4f7f9; 
+            margin: 0; 
+            padding: 10px;
+        }
+        .container { 
+            max-width: 1000px; 
+            margin: 10px auto; 
+            background: white; 
+            padding: 30px 20px; 
+            border-radius: 30px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+        .main-title {
+            font-size: clamp(18px, 4.5vw, 34px); 
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .flyer-style {
+            padding: 0 5px; 
+            text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
+        }
+        .yellow-text { color: #ffcc00; }
+        .white-text { color: #ffffff; }
+        .red-badge { 
+            background: #e60000; 
+            color: white; 
+            padding: 6px 20px; 
+            border-radius: 12px; 
+            box-shadow: 3px 3px 0px #000;
+            font-size: 0.85em;
+        }
+        .video-wrapper { 
+            position: relative; 
+            width: 100%;
+            max-width: 920px; 
+            margin: 0 auto;
+            aspect-ratio: 16/9;
+            border-radius: 20px; 
+            overflow: hidden; 
+            background: #000; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 5px solid #fff;
+        }
         iframe { width: 100%; height: 100%; border: none; }
+        .subtle-note-box {
+            margin-top: 25px;
+            display: inline-block;
+            background: #e9ecef; 
+            padding: 15px 35px;
+            border-radius: 20px;
+            border: 1px solid #dee2e6;
+            opacity: 0.65;
+        }
+        .note-flyer {
+            font-size: 1.15em;
+            font-weight: 900;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0px rgba(0,0,0,0.3);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .orange-note { color: #ff9800; }
+        .white-note { color: #ffffff; }
+        .red-note { color: #ff4444; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="main-title">
-        <span class="yellow-text">חופשה חלומית</span> במחירים הכי זולים בעולם
+        <span class="flyer-style yellow-text">חופשה חלומית</span>
+        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
+        <span class="red-badge">בהתחייבות!</span>
     </div>
 
     <div class="video-wrapper">
         <iframe id="bunny-video" 
-            src="https://player.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
+            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
             allow="autoplay; fullscreen" 
             allowfullscreen>
         </iframe>
     </div>
+    
+    <div class="subtle-note-box">
+        <div class="note-flyer">
+            <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
+            <span class="white-note">ולהנות מרצף הצפייה</span>
+            <span class="red-note">מומלץ שלא לרענן את הדף</span>
+        </div>
+    </div>
 </div>
 
-<script src="https://iframe.mediadelivery.net/playerv2.js"></script>
-
 <script>
-    // 1. הגדרות בסיסיות
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "ללא טלפון";
     
     let sent12 = false, sent20 = false, sent25 = false;
 
-    // 2. פונקציית שליחה
     function reportToMake(statusName) {
         fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                phone: phone, 
-                status: statusName 
-            })
-        }).catch(e => console.log("error"));
+            body: JSON.stringify({ phone: phone, status: statusName })
+        })
+        .then(() => console.log("נשלח:", statusName))
+        .catch(e => console.error("שגיאה:", e));
     }
 
-    // 3. הפעלת הנגן
-    window.onload = function() {
-        // דיווח ראשון שהדף עלה
-        reportToMake("Page_Loaded");
+    // דיווח ראשון
+    reportToMake("Page_Loaded");
 
-        if (typeof BunnyCDNPlayer !== 'undefined') {
-            const player = new BunnyCDNPlayer('bunny-video');
-            
-            setInterval(() => {
-                player.getCurrentTime((time) => {
-                    // בדיקת זמנים בשניות (12 דקות = 720, 20 דק = 1200, 25 דק = 1500)
-                    if (time >= 720 && !sent12) { reportToMake("Watched_Over_12_Min"); sent12 = true; }
-                    if (time >= 1200 && !sent20) { reportToMake("Watched_Over_20_Min"); sent20 = true; }
-                    if (time >= 1500 && !sent25) { reportToMake("Watched_Over_25_Min"); sent25 = true; }
-                });
-            }, 5000); // בדיקה כל 5 שניות
+    // האזנה לוידאו
+    window.addEventListener('message', function(event) {
+        if (!event.origin.includes('mediadelivery.net')) return;
+
+        let data;
+        try {
+            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        } catch (e) { return; }
+
+        if (data.event === 'timeupdate') {
+            const time = data.value; 
+
+            if (time >= 720 && !sent12) {
+                reportToMake("Watched_Over_12_Min");
+                sent12 = true;
+            }
+            if (time >= 1200 && !sent20) {
+                reportToMake("Watched_Over_20_Min");
+                sent20 = true;
+            }
+            if (time >= 1500 && !sent25) {
+                reportToMake("Watched_Over_25_Min");
+                sent25 = true;
+            }
         }
-    };
+    });
 </script>
 
 </body>
