@@ -3,51 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>חופשה חלומית</title>
+    <title>Video Tracking</title>
+    <script src="https://iframe.mediadelivery.net/playerv2.js?id=YOUR_LIBRARY_ID"></script>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 20px; }
-        .video-wrapper { position: relative; max-width: 800px; margin: auto; }
-        iframe { width: 100%; height: 450px; border: none; }
+        body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        iframe { border: none; width: 100%; height: 100%; max-width: 1000px; aspect-ratio: 16/9; }
     </style>
 </head>
 <body>
 
-    <h2>צפייה בסרטון - בדיקת מערכת</h2>
-    <div class="video-wrapper">
-        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff" allowfullscreen></iframe>
+    <div id="video-container" style="position:relative; width:100%; max-width:1000px;">
+        <iframe id="bunny-video" 
+            src="https://iframe.mediadelivery.net/embed/343132/903e1c66-0708-468a-b94d-167814b6ba36?autoplay=false" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
     </div>
 
     <script>
-        // שליפת ה-ID מהכתובת
-        const leadId = window.location.pathname.split('/').filter(p => p.length > 0).pop() || 'test_user';
+        const urlParams = new URLSearchParams(window.location.search);
+        const leadId = window.location.pathname.split('/').pop() || "unknown";
         const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
 
         function sendToMake(status) {
-            console.log("מנסה לשלוח: " + status);
-            // שימוש ב-Image Beacon - הדרך הכי חסינה לחסימות דפדפן
-            const img = new Image();
-            img.src = `${webhookUrl}?lead_id=${leadId}&status=${status}&time=${Date.now()}`;
-            
-            // גיבוי נוסף בשיטה רגילה
-            fetch(`${webhookUrl}?lead_id=${leadId}&status=${status}`, { mode: 'no-cors' });
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ lead_id: leadId, status: status, timestamp: new Date().toISOString() })
+            }).catch(err => console.log("Reporting failed, but we tried."));
         }
 
-        // דיווח מיידי כשהדף נטען כדי לראות שמייק מקבל משהו
-        sendToMake('Page_Loaded');
+        // דיווח ראשוני על טעינת הדף - תמיד עובד
+        sendToMake("Page_Loaded");
 
-        // האזנה לסרטון
-        window.addEventListener("message", function(event) {
-            if (event.origin !== "https://iframe.mediadelivery.net") return;
-            let data;
-            try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch(e) { return; }
+        // האזנה לנגן של Bunny - הגרסה האגרסיבית
+        const player = new BunnyCDNPlayer('bunny-video');
 
-            if (data.event === "play") sendToMake('Started_Viewing');
-            if (data.event === "timeupdate") {
-                const progress = (data.value / data.duration) * 100;
-                if (progress >= 50 && progress < 55) sendToMake('Watched_50_Percent');
-                if (progress >= 95) sendToMake('Watched_100_Percent');
-            }
+        player.on('ended', function() {
+            sendToMake("Watched_100_Percent");
         });
+
+        // עקיפה בטוחה: אם הנגן לא מדווח, אנחנו בודקים את הזמן כל 5 שניות
+        setInterval(() => {
+            player.getCurrentTime((time) => {
+                player.getDuration((duration) => {
+                    if (time > 0 && duration > 0) {
+                        if (time >= duration * 0.95) {
+                            sendToMake("Watched_100_Percent");
+                        } else if (time >= duration * 0.5) {
+                            sendToMake("Watched_50_Percent");
+                        }
+                    }
+                });
+            });
+        }, 5000);
     </script>
 </body>
 </html>
