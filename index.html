@@ -47,28 +47,31 @@
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
         });
-        console.log("נשלח למייק:", status);
+        console.log("דיווח נשלח למייק:", status);
     }
 
-    // דיווח ראשוני
+    // דיווח טעינה ראשוני
     report("Page_Loaded");
 
-    // האזנה לאירועים מהנגן
+    // האזנה להודעות מהנגן
     window.addEventListener('message', function(event) {
-        // מקבלים את הנתונים מה-Iframe
+        if (!event.origin.includes('mediadelivery.net')) return;
+                
         let data;
         try {
             data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         } catch (e) { return; }
 
-        // בדיקה אם מדובר באירוע זמן
+        // אם הנגן מעדכן זמן
         if (data.event === 'timeupdate' || data.method === 'timeupdate') {
-            const currentTime = data.value || data.args[0];
-            const duration = data.duration || data.args[1];
+            const currentTime = data.value || (data.args && data.args[0]);
+            const duration = data.duration || (data.args && data.args[1]);
             
             if (duration > 0) {
                 const percent = Math.round((currentTime / duration) * 100);
-                console.log("אחוז צפייה נוכחי:", percent + "%"); // זה יראה לך בקונסול את האחוז רץ!
+                
+                // בדיקה פנימית בקונסול כדי שתראה שזה עובד
+                if (percent % 5 === 0) console.log("התקדמות סרטון:", percent + "%");
 
                 if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
                 if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
