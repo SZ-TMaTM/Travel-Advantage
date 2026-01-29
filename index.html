@@ -3,138 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הדרכה בלעדית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
+    <title>חופשה חלומית במחירים הכי זולים בעולם בהתחייבות</title>
     <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         body { 
+            font-family: 'Heebo', sans-serif; 
+            text-align: center; 
+            background-color: #f0f4f8; 
             margin: 0; 
-            background-color: #f7f9fc; 
-            font-family: 'Assistant', sans-serif;
+            padding: 10px;
+        }
+        .container { 
+            max-width: 1050px; 
+            margin: 5px auto; 
+            background: white; 
+            padding: 25px 20px; 
+            border-radius: 25px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        .main-title {
+            font-size: clamp(18px, 4vw, 32px); 
+            font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 20px;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 40px 20px;
+            gap: 15px; 
+            background: #1a73e8; /* רקע כחול לכותרת כמו בעיצוב המקורי */
+            padding: 15px;
+            border-radius: 15px;
         }
-
-        .header-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 900px; }
-        
-        /* כותרת עליונה */
-        .main-title { 
-            font-size: 2.5em; font-weight: 800; color: #1a237e; margin-bottom: 20px; 
+        .flyer-style {
+            padding: 0 10px; 
+            text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
         }
-
-        /* הבלוק המעוצב שביקשת */
-        .title-block {
-            background: #ffffff;
-            padding: 20px 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            border: 2px solid #1a73e8; /* מסגרת כחולה היקפית */
-            display: inline-block;
-            margin-bottom: 20px;
+        .yellow-text { color: #ffcc00; }
+        .white-text { color: #ffffff; }
+        .red-badge { 
+            background: #e60000; 
+            color: white; 
+            padding: 5px 18px; 
+            border-radius: 10px; 
+            box-shadow: 3px 3px 0px #000;
         }
-
-        .title-block h2 { 
-            margin: 0; font-size: 1.8em; color: #1a237e; font-weight: 700;
+        .video-wrapper { 
+            position: relative; 
+            width: 100%;
+            max-width: 950px; 
+            margin: 0 auto;
+            padding-bottom: 56.25%; /* יחס 16:9 מושלם */
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 20px; 
+            background: #000; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 4px solid #fff;
         }
-
-        /* הבלוק השני (h2 מהקוד שלך) */
-        .sub-block {
-            background: #ffffff;
-            padding: 15px 30px;
-            border-radius: 5px;
-            border-left: 10px solid #1a73e8;
-            border-right: 10px solid #1a73e8;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
-            margin-bottom: 20px;
-            display: inline-block;
+        .video-wrapper iframe { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
         }
-
-        .sub-block h3 { margin: 0; font-size: 1.4em; color: #0d47a1; }
-
-        /* אזהרה */
-        .warning-box {
-            background: #fff4e5;
-            color: #663c00;
-            padding: 12px 25px;
-            border-radius: 12px;
-            font-weight: 600;
-            border: 1px solid #ffe2b9;
-            margin-top: 10px;
+        .warning-text {
+            margin-top: 15px;
+            color: #d32f2f;
+            font-weight: 700;
+            font-size: 1.1em;
         }
-
-        /* נגן הוידאו עם קצוות מעוגלים */
-        #video-container { 
-            width: 100%; max-width: 900px; aspect-ratio: 16/9; 
-            background: #fff; border-radius: 20px; overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 5px solid white;
-            margin-top: 20px;
-        }
-        iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
-    <div class="header-section">
-        <div class="main-title">מערכת הדרכה</div>
-        
-        <div class="title-block">
-            <h2>איך לבנות עסק רווחי בעולם התיירות ב-2026</h2>
-        </div>
-        
-        <br>
-        
-        <div class="sub-block">
-            <h3>צפו בסרטון עד הסוף לקבלת ההצעה</h3>
-        </div>
-        
-        <br>
-        
-        <div class="warning-box">
-            ⚠️ נא לא לרענן את הדף - המערכת שומרת את זמן הצפייה שלך
-        </div>
+<div class="container">
+    <div class="main-title">
+        <span class="flyer-style yellow-text">חופשה חלומית</span>
+        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
+        <span class="red-badge">בהתחייבות!</span>
     </div>
 
-    <div id="video-container">
+    <div class="video-wrapper">
         <iframe id="bunny-video" 
             src="https://player.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
             allow="autoplay; fullscreen" 
             allowfullscreen>
         </iframe>
     </div>
+    
+    <div class="warning-text">⚠️ נא לא לרענן את הדף כדי לא לאבד את התקדמות הצפייה</div>
+</div>
 
-    <script>
-        const leadId = window.location.pathname.split('/').pop() || "unknown";
-        const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-        
-        let sent50 = false, sent75 = false, sent95 = false;
+<script>
+    // זיהוי הליד מהכתובת
+    const leadId = window.location.pathname.split('/').pop() || "unknown";
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+    
+    let sent50 = false, sent75 = false, sent95 = false;
 
-        function sendToMake(status) {
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ lead_id: leadId, status: status })
-            }).catch(e => console.log("Error"));
-        }
+    function reportToMake(status) {
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                lead_id: leadId, 
+                status: status,
+                timestamp: new Date().toISOString()
+            })
+        }).catch(err => console.log('Report skip'));
+    }
 
-        sendToMake("Page_Loaded");
+    // דיווח ראשון - כניסה לדף
+    reportToMake("Page_Loaded");
 
-        const player = new BunnyCDNPlayer('bunny-video');
+    // חיבור לנגן Bunny
+    const player = new BunnyCDNPlayer('bunny-video');
 
-        setInterval(() => {
-            player.getCurrentTime((time) => {
-                player.getDuration((duration) => {
-                    if (duration > 0) {
-                        const percent = (time / duration) * 100;
-                        if (percent >= 50 && !sent50) { sendToMake("Watched_Over_12_Min"); sent50 = true; }
-                        if (percent >= 75 && !sent75) { sendToMake("Watched_75_Percent"); sent75 = true; }
-                        if (percent >= 95 && !sent95) { sendToMake("Watched_95_Percent"); sent95 = true; }
+    // בדיקה כל 5 שניות של אחוזי צפייה
+    setInterval(() => {
+        player.getCurrentTime((time) => {
+            player.getDuration((duration) => {
+                if (duration > 0) {
+                    const percent = (time / duration) * 100;
+                    
+                    // דיווח 50% (מעל 12 דקות)
+                    if (percent >= 50 && !sent50) { 
+                        reportToMake("Watched_Over_12_Min"); 
+                        sent50 = true; 
                     }
-                });
+                    // דיווח 75%
+                    if (percent >= 75 && !sent75) { 
+                        reportToMake("Watched_75_Percent"); 
+                        sent75 = true; 
+                    }
+                    // דיווח 95%
+                    if (percent >= 95 && !sent95) { 
+                        reportToMake("Watched_95_Percent"); 
+                        sent95 = true; 
+                    }
+                }
             });
-        }, 5000);
-    </script>
+        });
+    }, 5000);
+</script>
+
 </body>
 </html>
