@@ -12,54 +12,52 @@
             text-align: center; 
             background-color: #f0f4f8; 
             margin: 0; 
-            padding: 20px;
+            padding: 10px;
         }
         .container { 
             max-width: 1000px; 
-            margin: 0 auto; 
+            margin: 10px auto; 
             background: white; 
-            padding: 30px; 
+            padding: 30px 20px; 
             border-radius: 30px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
-        /* עיצוב הכותרת המיוחדת (Flyer Style) */
-        .header-box {
-            background: #1a73e8;
-            padding: 20px;
-            border-radius: 20px;
-            margin-bottom: 25px;
-            display: inline-block;
-            width: 100%;
-            box-sizing: border-box;
-        }
+        
+        /* הכותרת המעוצבת ללא הרקע הכחול המיותר */
         .main-title {
-            font-size: clamp(20px, 5vw, 36px); 
+            font-size: clamp(18px, 4.5vw, 34px); 
             font-weight: 900;
+            line-height: 1.4;
+            margin-bottom: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
+            gap: 12px;
             flex-wrap: wrap;
-            gap: 15px;
         }
         .flyer-style {
+            padding: 0 5px; 
             text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
         }
         .yellow-text { color: #ffcc00; }
-        .white-text { color: #ffffff; }
+        .white-text { color: #ffffff; } /* לבן על רקע ה-text-shadow השחור */
+        
         .red-badge { 
             background: #e60000; 
             color: white; 
-            padding: 8px 20px; 
+            padding: 6px 20px; 
             border-radius: 12px; 
             box-shadow: 3px 3px 0px #000;
-            font-size: 0.8em;
+            font-size: 0.85em;
+            text-shadow: none;
         }
+
         /* נגן הוידאו */
         .video-wrapper { 
             position: relative; 
             width: 100%;
-            max-width: 900px;
-            margin: 20px auto;
+            max-width: 920px; 
+            margin: 0 auto;
             aspect-ratio: 16/9;
             border-radius: 20px; 
             overflow: hidden; 
@@ -72,23 +70,19 @@
         .warning-text {
             color: #d32f2f;
             font-weight: 700;
-            background: #fff0f0;
-            padding: 10px;
-            border-radius: 10px;
+            margin-top: 20px;
             display: inline-block;
-            margin-top: 15px;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header-box">
-        <div class="main-title">
-            <span class="flyer-style yellow-text">חופשה חלומית</span>
-            <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
-            <span class="red-badge">בהתחייבות!</span>
-        </div>
+    <div class="main-title">
+        <span class="flyer-style yellow-text">חופשה חלומית</span>
+        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
+        <span class="red-badge">בהתחייבות!</span>
     </div>
 
     <div class="video-wrapper">
@@ -99,7 +93,7 @@
         </iframe>
     </div>
     
-    <div class="warning-text">⚠️ נא לא לרענן את הדף כדי לא לאבד את זמן הצפייה</div>
+    <div class="warning-text">⚠️ נא לא לרענן את הדף כדי לא לאבד את התקדמות הצפייה</div>
 </div>
 
 <script>
