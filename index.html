@@ -15,18 +15,18 @@
             padding: 10px;
         }
         .container { 
-            max-width: 1150px; 
-            margin: 10px auto; 
+            max-width: 1050px; 
+            margin: 5px auto; 
             background: white; 
-            padding: 30px 20px; 
+            padding: 25px 20px; 
             border-radius: 25px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
         .main-title {
-            font-size: clamp(18px, 4.5vw, 36px); 
+            font-size: clamp(18px, 4vw, 32px); 
             font-weight: 900;
             line-height: 1.4;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -41,16 +41,16 @@
         .red-badge { 
             background: #e60000; 
             color: white; 
-            padding: 5px 20px; 
+            padding: 5px 18px; 
             border-radius: 10px; 
             box-shadow: 3px 3px 0px #000;
         }
         .video-wrapper { 
             position: relative; 
             width: 100%;
-            max-width: 1050px; /* הגדלה משמעותית של רוחב הסרטון */
+            max-width: 950px; /* גודל ביניים מדויק */
             margin: 0 auto;
-            padding-bottom: 56.25%; /* יחס 16:9 קלאסי שתופס יותר נוכחות */
+            padding-bottom: 50%; /* יחס גובה מאוזן יותר למניעת גלילה */
             height: 0; 
             overflow: hidden; 
             border-radius: 20px; 
@@ -62,8 +62,9 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
         }
         @media (max-width: 768px) {
-            .main-title { flex-wrap: wrap; gap: 10px; }
-            .container { padding: 20px 10px; }
+            .main-title { flex-wrap: wrap; gap: 8px; }
+            .container { padding: 15px 10px; }
+            .video-wrapper { padding-bottom: 56.25%; } /* בנייד חוזר ליחס רגיל */
         }
     </style>
 </head>
@@ -82,7 +83,6 @@
 
 <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 <script>
-    // זיהוי מזהה סוכן מהכתובת (לוקח את מה שאחרי הלוכסן האחרון)
     const pathParts = window.location.pathname.split('/');
     const leadId = pathParts[pathParts.length - 1] || 'General_Visitor';
     
