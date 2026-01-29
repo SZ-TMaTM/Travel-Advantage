@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
     <title>חופשה חלומית</title>
     <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
     <style>
         body { 
             font-family: 'Heebo', sans-serif; 
             text-align: center; 
-            background-color: #f0f4f8; 
+            background-color: #f4f7f9; 
             margin: 0; 
             padding: 10px;
         }
@@ -20,10 +20,9 @@
             background: white; 
             padding: 30px 20px; 
             border-radius: 30px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
         
-        /* הכותרת המעוצבת ללא הרקע הכחול המיותר */
         .main-title {
             font-size: clamp(18px, 4.5vw, 34px); 
             font-weight: 900;
@@ -40,8 +39,7 @@
             text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
         }
         .yellow-text { color: #ffcc00; }
-        .white-text { color: #ffffff; } /* לבן על רקע ה-text-shadow השחור */
-        
+        .white-text { color: #ffffff; }
         .red-badge { 
             background: #e60000; 
             color: white; 
@@ -49,10 +47,8 @@
             border-radius: 12px; 
             box-shadow: 3px 3px 0px #000;
             font-size: 0.85em;
-            text-shadow: none;
         }
 
-        /* נגן הוידאו */
         .video-wrapper { 
             position: relative; 
             width: 100%;
@@ -62,17 +58,31 @@
             border-radius: 20px; 
             overflow: hidden; 
             background: #000; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             border: 5px solid #fff;
         }
         iframe { width: 100%; height: 100%; border: none; }
         
-        .warning-text {
-            color: #d32f2f;
-            font-weight: 700;
-            margin-top: 20px;
+        /* עיצוב בועת הטיפ החווייתית */
+        .subtle-note-box {
+            margin-top: 25px;
             display: inline-block;
-            font-size: 1.1em;
+            background: rgba(244, 247, 249, 0.8);
+            padding: 10px 25px;
+            border-radius: 50px;
+            border: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .subtle-note-text {
+            color: #5d6d7e;
+            font-size: 0.95em;
+            font-weight: 400;
+        }
+
+        .subtle-note-text strong {
+            color: #2c3e50;
+            font-weight: 700;
         }
     </style>
 </head>
@@ -93,7 +103,11 @@
         </iframe>
     </div>
     
-    <div class="warning-text">⚠️ נא לא לרענן את הדף כדי לא לאבד את התקדמות הצפייה</div>
+    <div class="subtle-note-box">
+        <span class="subtle-note-text">
+            ✨ כדי לא לפספס אף פרט וליהנות מרצף הצפייה, מומלץ <strong>שלא לרענן את הדף</strong>
+        </span>
+    </div>
 </div>
 
 <script>
