@@ -3,47 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מצגת וידאו</title>
+    <title>הדרכה בלעדית</title>
     <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         body { 
             margin: 0; 
-            background-color: #f0f2f5; /* רקע בהיר ונעים */
+            background-color: #f7f9fc; 
             font-family: 'Assistant', sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
         }
-        .header-container {
-            text-align: center;
-            margin-bottom: 25px;
-            max-width: 800px;
-        }
-        h1 { color: #1a73e8; margin-bottom: 10px; font-size: 2.2em; }
-        h2 { color: #5f6368; font-weight: 400; margin: 5px 0; }
         
+        /* עיצוב כותרות בבלוקים */
+        .header-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 900px; }
+        
+        .main-title { 
+            font-size: 2.8em; font-weight: 800; color: #1a237e; margin-bottom: 15px; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .sub-title-box {
+            background: #ffffff; padding: 15px 25px; border-radius: 50px;
+            display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 2px solid #e3f2fd; margin-bottom: 10px;
+        }
+        
+        .sub-title-text { font-size: 1.4em; color: #0d47a1; font-weight: 700; }
+        
+        .warning-text { color: #d32f2f; font-size: 1.1em; font-weight: 600; margin-top: 10px; }
+
+        /* עיצוב הנגן */
         #video-container { 
-            width: 100%; 
-            max-width: 900px; 
-            aspect-ratio: 16/9; 
-            background: #fff;
-            border-radius: 20px; /* פינות מעוגלות */
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); /* צל עדין */
-            border: 5px solid white;
+            width: 100%; max-width: 900px; aspect-ratio: 16/9; 
+            background: #fff; border-radius: 25px; overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 8px solid white;
         }
         iframe { border: none; width: 100%; height: 100%; }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <h1>ברוכים הבאים להדרכה</h1>
-        <h2>צפו בסרטון עד הסוף כדי לקבל את ההצעה</h2>
-        <h2>המערכת מזהה את התקדמות הצפייה שלכם</h2>
+    <div class="header-section">
+        <div class="main-title">רגע לפני שמתחילים...</div>
+        
+        <div class="sub-title-box">
+            <span class="sub-title-text">הדרכה מיוחדת: איך לייצר חופש כלכלי דרך עולם התיירות</span>
+        </div>
+        
+        <div class="warning-text">⚠️ נא לא לרענן את הדף כדי לא לאבד את התקדמות הצפייה</div>
     </div>
 
     <div id="video-container">
@@ -65,10 +76,9 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ lead_id: leadId, status: status })
-            }).catch(e => console.log("Report failed"));
+            }).catch(e => console.log("Report error"));
         }
 
-        // דיווח ראשון - פתיחת דף
         sendToMake("Page_Loaded");
 
         const player = new BunnyCDNPlayer('bunny-video');
@@ -78,22 +88,9 @@
                 player.getDuration((duration) => {
                     if (duration > 0) {
                         const percent = (time / duration) * 100;
-                        
-                        // דיווח מעל 12 דקות (50%)
-                        if (percent >= 50 && !sent50) { 
-                            sendToMake("Watched_Over_12_Min"); 
-                            sent50 = true; 
-                        }
-                        // דיווח 75%
-                        if (percent >= 75 && !sent75) { 
-                            sendToMake("Watched_75_Percent"); 
-                            sent75 = true; 
-                        }
-                        // דיווח 95% (סיום)
-                        if (percent >= 95 && !sent95) { 
-                            sendToMake("Watched_95_Percent"); 
-                            sent95 = true; 
-                        }
+                        if (percent >= 50 && !sent50) { sendToMake("Watched_Over_12_Min"); sent50 = true; }
+                        if (percent >= 75 && !sent75) { sendToMake("Watched_75_Percent"); sent75 = true; }
+                        if (percent >= 95 && !sent95) { sendToMake("Watched_95_Percent"); sent95 = true; }
                     }
                 });
             });
