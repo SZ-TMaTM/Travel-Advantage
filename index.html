@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
     <title>חופשה חלומית</title>
     <style>
@@ -10,16 +11,13 @@
         .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
         .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; line-height: 1.4; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
         .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
-        .yellow-text { color: #ffcc00; }
-        .white-text { color: #ffffff; }
+        .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; font-size: 0.85em; }
         .video-wrapper { position: relative; width: 100%; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
         iframe { width: 100%; height: 100%; border: none; }
         .subtle-note-box { margin-top: 25px; display: inline-block; background: #e9ecef; padding: 15px 35px; border-radius: 20px; border: 1px solid #dee2e6; opacity: 0.65; }
         .note-flyer { font-size: 1.15em; font-weight: 900; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0px rgba(0,0,0,0.3); display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-        .orange-note { color: #ff9800; }
-        .white-note { color: #ffffff; }
-        .red-note { color: #ff4444; }
+        .orange-note { color: #ff9800; } .white-note { color: #ffffff; } .red-note { color: #ff4444; }
     </style>
 </head>
 <body>
@@ -30,6 +28,7 @@
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
+
     <div class="video-wrapper">
         <iframe id="bunny-video" 
             src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
@@ -37,6 +36,7 @@
             allowfullscreen>
         </iframe>
     </div>
+    
     <div class="subtle-note-box">
         <div class="note-flyer">
             <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
@@ -50,28 +50,53 @@
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
-    let sent = { '25%': false, '75%': false, '95%': false };
+    const iframe = document.getElementById('bunny-video');
+    
+    let sent = { '25': false, '75': false, '95': false };
 
     function report(status) {
-        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: status }) });
-        console.log("--- נשלח למייק:", status, "---");
+        fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({ phone: phone, status: status })
+        });
+        console.log(">>> דיווח נשלח: " + status);
     }
 
     report("Page_Loaded");
 
-    window.addEventListener('message', function(e) {
-        if (!e.origin.includes('mediadelivery.net')) return;
-        let d; try { d = typeof e.data === 'string' ? JSON.parse(e.data) : e.data; } catch(err) { return; }
+    // פונקציה ששולחת בקשה לנגן לקבל את הזמן הנוכחי
+    function askVideoStatus() {
+        iframe.contentWindow.postMessage('{"event":"getPlayerData"}', '*');
+    }
 
-        if (d.event === 'timeupdate' && d.duration > 0) {
-            let p = Math.floor((d.value / d.duration) * 100);
-            if (p % 10 === 0) console.log("בדיקת התקדמות: " + p + "%"); // לוג שחייב להופיע בקונסול
+    // שואלים את הנגן כל 2 שניות מה המצב
+    setInterval(askVideoStatus, 2000);
+
+    window.addEventListener('message', function(event) {
+        if (!event.origin.includes('mediadelivery.net')) return;
+        
+        let data;
+        try {
+            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        } catch (e) { return; }
+
+        // בדיקה אם קיבלנו את נתוני הנגן (זמן ומשך)
+        if (data.event === 'playerData' || data.event === 'timeupdate') {
+            const current = data.value || data.currentTime;
+            const total = data.duration;
             
-            if (p >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-            if (p >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-            if (p >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            if (current && total) {
+                const percent = Math.floor((current / total) * 100);
+                console.log("בדיקת התקדמות: " + percent + "%");
+
+                if (percent >= 25 && !sent['25']) { report("25"); sent['25'] = true; }
+                if (percent >= 75 && !sent['75']) { report("75"); sent['75'] = true; }
+                if (percent >= 95 && !sent['95']) { report("95"); sent['95'] = true; }
+            }
         }
     });
 </script>
+
 </body>
 </html>
