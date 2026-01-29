@@ -3,27 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
     <title>חופשה חלומית</title>
     <style>
         body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
         .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; margin-bottom: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
-        .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
-        .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; }
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="main-title">
-        <span class="flyer-style yellow-text">חופשה חלומית</span>
-        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
-        <span class="red-badge">בהתחייבות!</span>
-    </div>
     <div class="video-wrapper">
         <iframe id="bunny-video" 
             src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true&enablejsapi=true" 
@@ -37,46 +26,31 @@
     const webhookUrl = "https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
-    
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
             mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
         });
-        console.log("דיווח נשלח למייק:", status);
+        console.log(">>> נשלח למייק:", status);
     }
 
-    // דיווח טעינה ראשוני
     report("Page_Loaded");
 
-    // האזנה להודעות מהנגן
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
-                
         let data;
-        try {
-            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        } catch (e) { return; }
+        try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
 
-        // אם הנגן מעדכן זמן
-        if (data.event === 'timeupdate' || data.method === 'timeupdate') {
-            const currentTime = data.value || (data.args && data.args[0]);
-            const duration = data.duration || (data.args && data.args[1]);
-            
-            if (duration > 0) {
-                const percent = Math.round((currentTime / duration) * 100);
-                
-                // בדיקה פנימית בקונסול כדי שתראה שזה עובד
-                if (percent % 5 === 0) console.log("התקדמות סרטון:", percent + "%");
+        if (data.event === 'timeupdate') {
+            const percent = Math.round((data.value / data.duration) * 100);
+            console.log("בדיקה - אחוז נוכחי:", percent + "%"); // זה חייב להופיע בקונסול!
 
-                if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-                if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-                if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
-            }
+            if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
+            if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
+            if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
         }
     });
 </script>
