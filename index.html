@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>הדרכה בלעדית</title>
+    <title>מצגת וידאו - גרסה סופית</title>
     <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
@@ -16,26 +16,40 @@
             align-items: center;
             padding: 40px 20px;
         }
-        
-        /* עיצוב כותרות בבלוקים */
-        .header-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 900px; }
+
+        /* העיצוב המדויק של הכותרות מהגרסה ששלחת */
+        .header-section { text-align: center; margin-bottom: 35px; width: 100%; max-width: 900px; }
         
         .main-title { 
-            font-size: 2.8em; font-weight: 800; color: #1a237e; margin-bottom: 15px; 
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            font-size: 2.5em; font-weight: 800; color: #1a237e; margin-bottom: 20px; 
         }
-        
-        .sub-title-box {
-            background: #ffffff; padding: 15px 25px; border-radius: 50px;
-            display: inline-block; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            border: 2px solid #e3f2fd; margin-bottom: 10px;
-        }
-        
-        .sub-title-text { font-size: 1.4em; color: #0d47a1; font-weight: 700; }
-        
-        .warning-text { color: #d32f2f; font-size: 1.1em; font-weight: 600; margin-top: 10px; }
 
-        /* עיצוב הנגן */
+        .title-block {
+            background: #ffffff;
+            padding: 18px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-right: 6px solid #1a73e8; /* פס דקורטיבי בצד */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .title-block h2 { 
+            margin: 0; font-size: 1.5em; color: #0d47a1; 
+        }
+
+        .warning-note {
+            background: #fff5f5;
+            color: #c62828;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 15px;
+            border: 1px solid #ffcdd2;
+        }
+
+        /* עיצוב הנגן עם הקצוות המעוגלים */
         #video-container { 
             width: 100%; max-width: 900px; aspect-ratio: 16/9; 
             background: #fff; border-radius: 25px; overflow: hidden;
@@ -48,13 +62,16 @@
 <body>
 
     <div class="header-section">
-        <div class="main-title">רגע לפני שמתחילים...</div>
+        <div class="main-title">ברוכים הבאים להדרכה</div>
         
-        <div class="sub-title-box">
-            <span class="sub-title-text">הדרכה מיוחדת: איך לייצר חופש כלכלי דרך עולם התיירות</span>
+        <div class="title-block">
+            <h2>איך לבנות עסק רווחי בעולם התיירות ב-2026</h2>
         </div>
         
-        <div class="warning-text">⚠️ נא לא לרענן את הדף כדי לא לאבד את התקדמות הצפייה</div>
+        <br>
+        <div class="warning-note">
+            ⚠️ נא לא לרענן את הדף - המערכת שומרת את זמן הצפייה שלך
+        </div>
     </div>
 
     <div id="video-container">
@@ -79,10 +96,12 @@
             }).catch(e => console.log("Report error"));
         }
 
+        // דיווח ראשוני
         sendToMake("Page_Loaded");
 
         const player = new BunnyCDNPlayer('bunny-video');
 
+        // המנגנון החכם שבודק אחוזים כל 5 שניות
         setInterval(() => {
             player.getCurrentTime((time) => {
                 player.getDuration((duration) => {
