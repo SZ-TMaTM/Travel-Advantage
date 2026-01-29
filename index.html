@@ -1,97 +1,26 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="/logo.png">
-    <title>חופשה חלומית במחירים הכי זולים בעולם בהתחייבות</title>
-    <style>
-        body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f0f4f8; margin: 0; padding: 10px; }
-        .container { max-width: 1050px; margin: 5px auto; background: white; padding: 25px 20px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
-        .main-title { font-size: clamp(18px, 4vw, 32px); font-weight: 900; line-height: 1.4; margin-bottom: 20px; display: flex; justify-content: center; align-items: center; gap: 15px; }
-        .flyer-style { padding: 0 10px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
-        .yellow-text { color: #ffcc00; }
-        .white-text { color: #ffffff; }
-        .red-badge { background: #e60000; color: white; padding: 5px 18px; border-radius: 10px; box-shadow: 3px 3px 0px #000; }
-        .video-wrapper { position: relative; width: 100%; max-width: 950px; margin: 0 auto; padding-bottom: 50%; height: 0; overflow: hidden; border-radius: 20px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 4px solid #fff; }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-        @media (max-width: 768px) { .main-title { flex-wrap: wrap; gap: 8px; } .container { padding: 15px 10px; } .video-wrapper { padding-bottom: 56.25%; } }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="main-title">
-        <span class="flyer-style yellow-text">חופשה חלומית</span>
-        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
-        <span class="red-badge">בהתחייבות!</span>
-    </div>
-    <div class="video-wrapper">
-        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=false" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
-
 <script>
-    // 1. חילוץ מזהה הסוכן (Lead ID) מהכתובת
+    // 1. זיהוי הליד מהכתובת
     const pathParts = window.location.pathname.split('/').filter(part => part !== "");
     const leadId = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'General_Visitor';
-    
-    // 2. כתובת ה-Webhook המדויקת שלך
-    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy"; 
 
-    // 3. פונקציית הדיווח ששולחת את הנתונים ל-Make
-    function reportToMake(status) {
-        const payload = JSON.stringify({ 
-            lead_id: leadId, 
-            status: status, 
-            language: "Hebrew",
+    // 2. כתובת ה-Webhook שלך
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+
+    // 3. פונקציית הדיווח
+    function sendReport(status) {
+        const payload = JSON.stringify({
+            lead_id: leadId,
+            status: status,
             timestamp: new Date().toISOString()
         });
-        
-        // שימוש ב-sendBeacon מבטיח שהנתונים יישלחו גם אם יש חסימות אבטחה בדפדפן
         navigator.sendBeacon(webhookUrl, payload);
     }
 
-    // 4. הפעלת הנגן של Bunny
+    // 4. חיבור לנגן Bunny
     const player = new BJLPlayer('bunny-video');
-    
-    let reported12Min = false;
-    let reported75 = false;
-    let reported95 = false;
 
-    // דיווח על תחילת צפייה
-    player.on('play', function() { 
-        reportToMake('Started_Viewing_HE'); 
-    });
-
-    // מעקב אחרי התקדמות בסרטון
-    player.on('timeupdate', function(data) {
-        const currentTime = data.currentTime; 
-        const duration = data.duration;
-        const percentage = (currentTime / duration) * 100;
-
-        // דיווח אחרי 12 דקות (720 שניות)
-        if (currentTime >= 720 && !reported12Min) {
-            reportToMake('Viewed_Over_12_Minutes_HE');
-            reported12Min = true;
-        }
-
-        // דיווח ב-75% צפייה
-        if (percentage >= 75 && !reported75) {
-            reportToMake('Viewed_75_Percent_HE');
-            reported75 = true;
-        }
-
-        // דיווח ב-95% צפייה
-        if (percentage >= 95 && !reported95) {
-            reportToMake('Viewed_95_Percent_HE');
-            reported95 = true;
-        }
+    // דיווח ברגע שלוחצים Play
+    player.on('play', function() {
+        sendReport('Started Viewing');
     });
 </script>
-
-</body>
-</html>
