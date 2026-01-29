@@ -1,57 +1,76 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חופשה חלומית</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
+        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; margin-bottom: 25px; }
+        .yellow-text { color: #ffcc00; text-shadow: 1px 1px 2px #000; }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
+        iframe { width: 100%; height: 100%; border: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="main-title">
+        <span class="yellow-text">חופשה חלומית</span> במחירים הכי זולים בעולם
+    </div>
+
+    <div class="video-wrapper">
+        <iframe id="bunny-video" 
+            src="https://player.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
 <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
+
 <script>
-    // שליפת נתונים מהכתובת (URL)
+    // 1. הגדרות בסיסיות
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "ללא טלפון";
-    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     
-    let sent12Min = false, sent20Min = false, sent25Min = false;
+    let sent12 = false, sent20 = false, sent25 = false;
 
-    // פונקציה אחידה לשליחת נתונים ל-Make
-    function report(status) {
+    // 2. פונקציית שליחה
+    function reportToMake(statusName) {
         fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
                 phone: phone, 
-                status: status 
+                status: statusName 
             })
-        })
-        .then(() => console.log("נשלח ל-Make:", status))
-        .catch(err => console.log('שגיאת שליחה:', err));
+        }).catch(e => console.log("error"));
     }
 
-    // דיווח ראשוני כשהדף נטען
-    report("Page_Loaded");
-
+    // 3. הפעלת הנגן
     window.onload = function() {
+        // דיווח ראשון שהדף עלה
+        reportToMake("Page_Loaded");
+
         if (typeof BunnyCDNPlayer !== 'undefined') {
             const player = new BunnyCDNPlayer('bunny-video');
             
-            // בדיקה כל 5 שניות
             setInterval(() => {
                 player.getCurrentTime((time) => {
-                    // 1. בדיקה של 12 דקות (720 שניות)
-                    if (time >= 720 && !sent12Min) {
-                        report("Watched_Over_12_Min");
-                        sent12Min = true;
-                    }
-
-                    // 2. בדיקה של 20 דקות (1200 שניות - ה-75% שלך)
-                    if (time >= 1200 && !sent20Min) {
-                        report("Watched_Over_20_Min");
-                        sent20Min = true;
-                    }
-
-                    // 3. בדיקה של 25 דקות (1500 שניות - ה-95% שלך)
-                    if (time >= 1500 && !sent25Min) {
-                        report("Watched_Over_25_Min");
-                        sent25Min = true;
-                    }
+                    // בדיקת זמנים בשניות (12 דקות = 720, 20 דק = 1200, 25 דק = 1500)
+                    if (time >= 720 && !sent12) { reportToMake("Watched_Over_12_Min"); sent12 = true; }
+                    if (time >= 1200 && !sent20) { reportToMake("Watched_Over_20_Min"); sent20 = true; }
+                    if (time >= 1500 && !sent25) { reportToMake("Watched_Over_25_Min"); sent25 = true; }
                 });
-            }, 5000);
-        } else {
-            console.error("BunnyCDNPlayer לא נטען");
+            }, 5000); // בדיקה כל 5 שניות
         }
     };
 </script>
+
+</body>
+</html>
