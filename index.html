@@ -1,27 +1,13 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html>
 <head>
     <meta charset="UTF-8">
-    <title>Video Page</title>
-    <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
+    <title>בדיקת מערכת</title>
 </head>
-<body style="margin:0; background:#000;">
-    <iframe id="bunny-video" 
-        src="https://iframe.mediadelivery.net/embed/343132/903e1c66-0708-468a-b94d-167814b6ba36" 
-        style="width:100vw; height:100vh; border:none;" 
-        allowfullscreen>
-    </iframe>
-
-    <script>
-        const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-        const leadId = window.location.pathname.split('/').pop() || "unknown";
-
-        // דיווח בדיקה מהיר
-        fetch(webhookUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ lead_id: leadId, status: "System_Check" })
-        });
-    </script>
+<body style="background-color: black; color: white; text-align: center; padding-top: 50px;">
+    <h1>האתר בשיחזור...</h1>
+    <p>אם אתה רואה את זה, הקובץ נמצא!</p>
+    <iframe src="https://iframe.mediadelivery.net/embed/343132/903e1c66-0708-468a-b94d-167814b6ba36" 
+            style="width:80%; height:400px;" allowfullscreen></iframe>
 </body>
 </html>
