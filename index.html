@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>חופשה חלומית</title>
-    <script src="https://iframe.mediadelivery.net/playerv2.js?id=586762"></script>
     <style>
-        body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
-        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 20px; border-radius: 30px; }
-        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
+        body { font-family: sans-serif; text-align: center; background: #f4f7f9; }
+        .container { max-width: 900px; margin: 20px auto; padding: 20px; background: white; border-radius: 20px; }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border: 4px solid white; border-radius: 15px; overflow: hidden; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
 </head>
@@ -38,33 +37,33 @@
         console.log("דיווח נשלח למייק:", status);
     }
 
-    // דיווח טעינה
     report("Page_Loaded");
 
-    // פונקציה שמפעילה את המעקב רק כשהנגן מוכן
-    function initPlayer() {
+    // האזנה פשוטה לנגן בלי ספריות חיצוניות
+    window.addEventListener('message', function(event) {
+        if (!event.origin.includes('mediadelivery.net')) return;
+        
+        let data;
         try {
-            const player = new BunnyStreamPlayer('bunny-video');
-            player.on('timeupdate', (data) => {
-                if (data.duration > 0) {
-                    const percent = Math.floor((data.currentTime / data.duration) * 100);
-                    
-                    // זה יוודא שאתה רואה שמשהו קורה בקונסול
-                    if (percent % 5 === 0) console.log("התקדמות צפייה:", percent + "%");
+            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        } catch (e) { return; }
 
-                    if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-                    if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-                    if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
-                }
-            });
-        } catch (e) {
-            console.log("מחכה לנגן שייטען...");
-            setTimeout(initPlayer, 1000); // מנסה שוב בעוד שנייה אם נכשל
+        if (data.event === 'timeupdate') {
+            const current = data.value;
+            const total = data.duration;
+            
+            if (total > 0) {
+                const percent = Math.floor((current / total) * 100);
+                
+                // לוג לבדיקה שלך
+                if (percent % 5 === 0) console.log("אחוז נוכחי:", percent + "%");
+
+                if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
+                if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
+                if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            }
         }
-    }
-
-    // הפעלה
-    window.onload = initPlayer;
+    });
 </script>
 </body>
 </html>
