@@ -1,91 +1,6 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="logo.png">
-    <title>חופשה חלומית במחירים הכי זולים בעולם בהתחייבות</title>
-    <style>
-        body { 
-            font-family: 'Heebo', sans-serif; 
-            text-align: center; 
-            background-color: #f0f4f8; 
-            margin: 0; 
-            padding: 10px;
-        }
-        .container { 
-            max-width: 1050px; 
-            margin: 5px auto; 
-            background: white; 
-            padding: 25px 20px; 
-            border-radius: 25px; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-        .main-title {
-            font-size: clamp(18px, 4vw, 32px); 
-            font-weight: 900;
-            line-height: 1.4;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px; 
-        }
-        .flyer-style {
-            padding: 0 10px; 
-            text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
-        }
-        .yellow-text { color: #ffcc00; }
-        .white-text { color: #ffffff; }
-        .red-badge { 
-            background: #e60000; 
-            color: white; 
-            padding: 5px 18px; 
-            border-radius: 10px; 
-            box-shadow: 3px 3px 0px #000;
-        }
-        .video-wrapper { 
-            position: relative; 
-            width: 100%;
-            max-width: 950px; /* גודל ביניים מדויק */
-            margin: 0 auto;
-            padding-bottom: 50%; /* יחס גובה מאוזן יותר למניעת גלילה */
-            height: 0; 
-            overflow: hidden; 
-            border-radius: 20px; 
-            background: #000; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-            border: 4px solid #fff;
-        }
-        .video-wrapper iframe { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
-        }
-        @media (max-width: 768px) {
-            .main-title { flex-wrap: wrap; gap: 8px; }
-            .container { padding: 15px 10px; }
-            .video-wrapper { padding-bottom: 56.25%; } /* בנייד חוזר ליחס רגיל */
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <div class="main-title">
-        <span class="flyer-style yellow-text">חופשה חלומית</span>
-        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
-        <span class="red-badge">בהתחייבות!</span>
-    </div>
-    <div class="video-wrapper">
-        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=false" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-</div>
-
-<script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 <script>
     const pathParts = window.location.pathname.split('/');
     const leadId = pathParts[pathParts.length - 1] || 'General_Visitor';
-    
     const webhookUrl = "https://hook.eu1.make.com/6n76h8v83f8b8p8p8p8p8p8p8p8p8p8p"; 
 
     function reportToMake(status) {
@@ -102,10 +17,39 @@
     }
 
     var player = new BJLPlayer('bunny-video');
+    
+    let reported12Min = false;
+    let reported75 = false;
+    let reported95 = false;
+
+    // 1. פרמטר ראשון: פתח וצפה (נשלח מיד בסטארט)
     player.on('play', function() { 
         reportToMake('Started_Viewing_HE'); 
     });
-</script>
 
-</body>
-</html>
+    player.on('timeupdate', function(data) {
+        const currentTime = data.currentTime; // בשניות
+        const duration = data.duration;
+        const percentage = (currentTime / duration) * 100;
+
+        // 2. פרמטר שני: צפה 12 דקות ומעלה (720 שניות)
+        if (currentTime >= 720 && !reported12Min) {
+            reportToMake('Viewed_Over_12_Minutes_HE');
+            reported12Min = true;
+        }
+
+        // 3. פרמטר שלישי: צפה 75%
+        if (percentage >= 75 && !reported75) {
+            reportToMake('Viewed_75_Percent_HE');
+            reported75 = true;
+        }
+
+        // 4. פרמטר רביעי: צפה 95%
+        if (percentage >= 95 && !reported95) {
+            reportToMake('Viewed_95_Percent_HE');
+            reported95 = true;
+        }
+    });
+
+    // הערה ליהושע: מי שקיבל סטטוס "Started" אבל לא קיבל "Over_12_Minutes" - נחשב אוטומטית כמי שצפה פחות מ-12 דקות.
+</script>
