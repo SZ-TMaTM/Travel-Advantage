@@ -38,26 +38,23 @@
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
     
-    // מניעת כפילויות בשליחה
-    let sent = { '25%': false, '75%': false, '95%': false, 'Page_Loaded': false };
+    // מניעת כפילויות
+    let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'no-cors', 
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
         });
         console.log("Sent to Make:", status);
     }
 
-    // שליחה מיד עם הטעינה
-    if (!sent['Page_Loaded']) {
-        report("Page_Loaded");
-        sent['Page_Loaded'] = true;
-    }
+    // הודעה ראשונה שרואים בקונסול
+    report("Page_Loaded");
 
-    // האזנה להודעות מה-iframe של Bunny
+    // האזנה לנגן
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
                 
@@ -66,7 +63,7 @@
             data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         } catch (e) { return; }
 
-        // שימוש באירוע 'timeupdate' כדי לחשב אחוזים
+        // חישוב אחוזים מבוסס זמן צפייה חלקי אורך סרטון
         if (data.event === 'timeupdate') {
             const currentTime = data.value;
             const duration = data.duration;
