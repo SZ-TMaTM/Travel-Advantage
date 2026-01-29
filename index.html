@@ -1,23 +1,38 @@
-// קוד מעודכן לשליחת אחוזים ל-Make
-var player = b9c.getPlayer('YOUR_VIDEO_ID'); // וודא שה-ID נכון
+<script>
+// פונקציה שרצה ברגע שהדף נטען
+window.onload = function() {
+    // התחברות לנגן של Bunny - ה-ID 586762 נלקח מהתמונות שלך
+    var player = b9c.getPlayer('586762'); 
 
-player.on('progress', function(data) {
-    var percent = Math.round(data.percent * 100);
-    var statusToSend = "";
+    player.on('progress', function(data) {
+        // הפיכת הנתון לאחוז עגול (0 עד 100)
+        var percent = Math.round(data.percent * 100);
+        var statusToSend = "";
 
-    if (percent === 25) statusToSend = "25%";
-    if (percent === 75) statusToSend = "75%";
-    if (percent === 95) statusToSend = "95%";
+        // בדיקה אם הגענו לאחד מציוני הדרך שקבענו
+        if (percent === 25) statusToSend = "25%";
+        if (percent === 75) statusToSend = "75%";
+        if (percent === 95) statusToSend = "95%";
 
-    if (statusToSend !== "") {
-        fetch('https://hook.eu1.make.com/YOUR_WEBHOOK_ID', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                phone: "972504746464", // הטלפון שמופיע בתמונות שלך
-                status: statusToSend
+        // אם הגענו לאחוז הרצוי - שולחים ל-Make
+        if (statusToSend !== "") {
+            fetch('https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    "phone": "972504746464",
+                    "status": statusToSend
+                })
             })
-        });
-        console.log("נשלח למייק: " + statusToSend);
-    }
-});
+            .then(response => {
+                console.log("נשלח למייק: " + statusToSend);
+            })
+            .catch(error => {
+                console.error("שגיאה בשליחה:", error);
+            });
+        }
+    });
+};
+</script>
