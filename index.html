@@ -39,7 +39,8 @@
     const pathParts = window.location.pathname.split('/').filter(part => part !== "");
     const leadId = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'General_Visitor';
     
-    const webhookUrl = "https://hook.eu1.make.com/6n76h8v83f8b8p8p8p8p8p8p8p8p8p8p"; 
+    // הכתובת המעודכנת שלך מ-Make
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy"; 
 
     function reportToMake(status) {
         fetch(webhookUrl, {
@@ -54,37 +55,31 @@
         }).catch(err => console.log('Reporting skip'));
     }
 
-    // אתחול הנגן
     const player = new BJLPlayer('bunny-video');
     
     let reported12Min = false;
     let reported75 = false;
     let reported95 = false;
 
-    // אירוע לחיצה על Play
     player.on('play', function() { 
         reportToMake('Started_Viewing_HE'); 
     });
 
-    // מעקב אחרי זמן צפייה
     player.on('timeupdate', function(data) {
         const currentTime = data.currentTime; 
         const duration = data.duration;
         const percentage = (currentTime / duration) * 100;
 
-        // 12 דקות (720 שניות)
         if (currentTime >= 720 && !reported12Min) {
             reportToMake('Viewed_Over_12_Minutes_HE');
             reported12Min = true;
         }
 
-        // 75%
         if (percentage >= 75 && !reported75) {
             reportToMake('Viewed_75_Percent_HE');
             reported75 = true;
         }
 
-        // 95%
         if (percentage >= 95 && !reported95) {
             reportToMake('Viewed_95_Percent_HE');
             reported95 = true;
