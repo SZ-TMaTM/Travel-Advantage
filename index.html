@@ -15,7 +15,7 @@
             padding: 10px;
         }
         .container { 
-            max-width: 900px; /* צמצמתי מעט את הרוחב למראה מהודק יותר */
+            max-width: 1150px; 
             margin: 10px auto; 
             background: white; 
             padding: 30px 20px; 
@@ -23,10 +23,10 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
         .main-title {
-            font-size: clamp(16px, 4vw, 32px); 
+            font-size: clamp(18px, 4.5vw, 36px); 
             font-weight: 900;
             line-height: 1.4;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -41,16 +41,16 @@
         .red-badge { 
             background: #e60000; 
             color: white; 
-            padding: 5px 15px; 
+            padding: 5px 20px; 
             border-radius: 10px; 
             box-shadow: 3px 3px 0px #000;
         }
         .video-wrapper { 
             position: relative; 
             width: 100%;
-            max-width: 800px; /* הגבלת רוחב */
+            max-width: 1050px; /* הגדלה משמעותית של רוחב הסרטון */
             margin: 0 auto;
-            padding-bottom: 45%; /* הקטנת היחס כדי שהסרטון יהיה פחות גבוה */
+            padding-bottom: 56.25%; /* יחס 16:9 קלאסי שתופס יותר נוכחות */
             height: 0; 
             overflow: hidden; 
             border-radius: 20px; 
@@ -63,7 +63,7 @@
         }
         @media (max-width: 768px) {
             .main-title { flex-wrap: wrap; gap: 10px; }
-            .video-wrapper { padding-bottom: 56.25%; } /* בנייד נשמור על יחס רגיל */
+            .container { padding: 20px 10px; }
         }
     </style>
 </head>
