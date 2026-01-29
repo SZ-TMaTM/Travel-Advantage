@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
     <title>חופשה חלומית</title>
     <style>
@@ -21,22 +20,15 @@
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="main-title">
         <span class="flyer-style yellow-text">חופשה חלומית</span>
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
-
     <div class="video-wrapper">
-        <iframe id="bunny-video" 
-            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
-            allow="autoplay; fullscreen" 
-            allowfullscreen>
-        </iframe>
+        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
-    
     <div class="subtle-note-box">
         <div class="note-flyer">
             <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
@@ -50,53 +42,29 @@
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
-    const iframe = document.getElementById('bunny-video');
     
+    let secondsWatched = 0;
+    let totalDuration = 2013; // אורך הסרטון שלך בשניות (כ-33 דקות)
     let sent = { '25': false, '75': false, '95': false };
 
     function report(status) {
-        fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({ phone: phone, status: status })
-        });
-        console.log(">>> דיווח נשלח: " + status);
+        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: status }) });
+        console.log(">>> נשלח למייק: " + status);
     }
 
     report("Page_Loaded");
 
-    // פונקציה ששולחת בקשה לנגן לקבל את הזמן הנוכחי
-    function askVideoStatus() {
-        iframe.contentWindow.postMessage('{"event":"getPlayerData"}', '*');
-    }
-
-    // שואלים את הנגן כל 2 שניות מה המצב
-    setInterval(askVideoStatus, 2000);
-
-    window.addEventListener('message', function(event) {
-        if (!event.origin.includes('mediadelivery.net')) return;
+    // טיימר עצמאי שרץ כל שנייה
+    setInterval(() => {
+        secondsWatched++;
+        let percent = Math.floor((secondsWatched / totalDuration) * 100);
         
-        let data;
-        try {
-            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        } catch (e) { return; }
+        if (secondsWatched % 10 === 0) console.log("זמן צפייה (שניות): " + secondsWatched + " | אחוז משוער: " + percent + "%");
 
-        // בדיקה אם קיבלנו את נתוני הנגן (זמן ומשך)
-        if (data.event === 'playerData' || data.event === 'timeupdate') {
-            const current = data.value || data.currentTime;
-            const total = data.duration;
-            
-            if (current && total) {
-                const percent = Math.floor((current / total) * 100);
-                console.log("בדיקת התקדמות: " + percent + "%");
-
-                if (percent >= 25 && !sent['25']) { report("25"); sent['25'] = true; }
-                if (percent >= 75 && !sent['75']) { report("75"); sent['75'] = true; }
-                if (percent >= 95 && !sent['95']) { report("95"); sent['95'] = true; }
-            }
-        }
-    });
+        if (percent >= 25 && !sent['25']) { report("25"); sent['25'] = true; }
+        if (percent >= 75 && !sent['75']) { report("75"); sent['75'] = true; }
+        if (percent >= 95 && !sent['95']) { report("95"); sent['95'] = true; }
+    }, 1000);
 </script>
-
 </body>
 </html>
