@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מצגת וידאו - גרסה סופית</title>
+    <title>הדרכה בלעדית</title>
     <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
@@ -17,44 +17,48 @@
             padding: 40px 20px;
         }
 
-        /* העיצוב המדויק של הכותרות מהגרסה ששלחת */
-        .header-section { text-align: center; margin-bottom: 35px; width: 100%; max-width: 900px; }
+        .header-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 900px; }
         
+        /* כותרת ראשית כחולה */
         .main-title { 
-            font-size: 2.5em; font-weight: 800; color: #1a237e; margin-bottom: 20px; 
+            font-size: 2.8em; font-weight: 800; color: #1a237e; margin-bottom: 20px; 
         }
 
+        /* עיצוב הבלוק הלבן המדויק עם הפס הכחול */
         .title-block {
             background: #ffffff;
-            padding: 18px 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-right: 6px solid #1a73e8; /* פס דקורטיבי בצד */
-            margin-bottom: 15px;
+            padding: 20px 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border-left: 8px solid #1a73e8; /* הפס הכחול בצד */
+            border-right: 8px solid #1a73e8;
             display: inline-block;
+            margin-bottom: 20px;
         }
 
         .title-block h2 { 
-            margin: 0; font-size: 1.5em; color: #0d47a1; 
+            margin: 0; font-size: 1.6em; color: #0d47a1; font-weight: 700;
         }
 
-        .warning-note {
-            background: #fff5f5;
-            color: #c62828;
-            padding: 10px 20px;
-            border-radius: 10px;
+        /* תיבת האזהרה הצהובה/אדומה */
+        .warning-box {
+            background: #fff4e5;
+            color: #663c00;
+            padding: 12px 25px;
+            border-radius: 12px;
             font-weight: 600;
+            font-size: 1.1em;
             display: inline-block;
-            margin-top: 15px;
-            border: 1px solid #ffcdd2;
+            border: 1px solid #ffe2b9;
         }
 
-        /* עיצוב הנגן עם הקצוות המעוגלים */
+        /* נגן הוידאו */
         #video-container { 
             width: 100%; max-width: 900px; aspect-ratio: 16/9; 
             background: #fff; border-radius: 25px; overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
             border: 8px solid white;
+            margin-top: 20px;
         }
         iframe { border: none; width: 100%; height: 100%; }
     </style>
@@ -69,7 +73,7 @@
         </div>
         
         <br>
-        <div class="warning-note">
+        <div class="warning-box">
             ⚠️ נא לא לרענן את הדף - המערכת שומרת את זמן הצפייה שלך
         </div>
     </div>
@@ -93,15 +97,13 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ lead_id: leadId, status: status })
-            }).catch(e => console.log("Report error"));
+            }).catch(e => console.log("Error"));
         }
 
-        // דיווח ראשוני
         sendToMake("Page_Loaded");
 
         const player = new BunnyCDNPlayer('bunny-video');
 
-        // המנגנון החכם שבודק אחוזים כל 5 שניות
         setInterval(() => {
             player.getCurrentTime((time) => {
                 player.getDuration((duration) => {
