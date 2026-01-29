@@ -35,34 +35,45 @@
 <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 
 <script>
-    // 1. זיהוי הליד מהכתובת (למשל test01)
-    const pathParts = window.location.pathname.split('/').filter(part => part !== "");
-    const leadId = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'General_Visitor';
-
-    // 2. כתובת ה-Webhook שלך ב-Make
-    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-
-    // 3. פונקציית הדיווח המתוקנת
-    function sendReportToMake(status) {
-        const payload = JSON.stringify({
-            lead_id: leadId,
-            status: status,
-            timestamp: new Date().toISOString()
-        });
-        
-        // שליחה חכמה שלא נחסמת
-        navigator.sendBeacon(webhookUrl, payload);
-        console.log("Report sent to Make: " + status);
+    // 1. פונקציה לזיהוי הליד מהכתובת
+    function getLeadId() {
+        const path = window.location.pathname;
+        const parts = path.split('/').filter(p => p.length > 0);
+        return parts.length > 0 ? parts[parts.length - 1] : 'General_Visitor';
     }
 
-    // 4. חיבור לאירועים של הנגן
+    const leadId = getLeadId();
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+
+    // 2. פונקציית הדיווח ל-Make
+    function sendReportToMake(status) {
+        const data = {
+            lead_id: leadId,
+            status: status,
+            full_url: window.location.href,
+            timestamp: new Date().toISOString()
+        };
+
+        // שליחה באמצעות fetch עם ביטול הגבלות CORS
+        fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors', 
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        }).then(() => {
+            console.log("דיווח נשלח בהצלחה ל-Make:", status);
+        }).catch(err => {
+            console.error("שגיאה בשליחה:", err);
+        });
+    }
+
+    // 3. חיבור לאירועים של הנגן
     const player = new BJLPlayer('bunny-video');
 
     player.on('play', function() {
         sendReportToMake('Started_Viewing');
     });
 
-    // בונוס: דיווח אם הוא הגיע לסוף הסרטון
     player.on('ended', function() {
         sendReportToMake('Finished_Video');
     });
