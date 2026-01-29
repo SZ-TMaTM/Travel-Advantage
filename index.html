@@ -14,7 +14,7 @@
 
     <div id="video-container">
         <iframe id="bunny-video" 
-            src="https://iframe.mediadelivery.net/embed/343132/903e1c66-0708-468a-b94d-167814b6ba36?autoplay=true" 
+            src="https://iframe.mediadelivery.net/embed/192510/903e1c66-0708-468a-b94d-167814b6ba36?autoplay=true" 
             allow="autoplay; fullscreen" 
             allowfullscreen>
         </iframe>
@@ -34,33 +34,18 @@
             }).catch(e => console.log("Report failed"));
         }
 
-        // דיווח ראשון - הדף נטען
         sendToMake("Page_Loaded");
 
         const player = new BunnyCDNPlayer('bunny-video');
 
-        // בדיקה כל 5 שניות - מדווח את כל התחנות שביקשת
         setInterval(() => {
             player.getCurrentTime((time) => {
                 player.getDuration((duration) => {
                     if (duration > 0) {
                         const percent = (time / duration) * 100;
-                        
-                        // דיווח מעל 12 דקות (50%)
-                        if (percent >= 50 && !sent50) { 
-                            sendToMake("Watched_Over_12_Min"); 
-                            sent50 = true; 
-                        }
-                        // דיווח 75%
-                        if (percent >= 75 && !sent75) { 
-                            sendToMake("Watched_75_Percent"); 
-                            sent75 = true; 
-                        }
-                        // דיווח 95% (סוף הסרטון)
-                        if (percent >= 95 && !sent95) { 
-                            sendToMake("Watched_95_Percent"); 
-                            sent95 = true; 
-                        }
+                        if (percent >= 50 && !sent50) { sendToMake("Watched_Over_12_Min"); sent50 = true; }
+                        if (percent >= 75 && !sent75) { sendToMake("Watched_75_Percent"); sent75 = true; }
+                        if (percent >= 95 && !sent95) { sendToMake("Watched_95_Percent"); sent95 = true; }
                     }
                 });
             });
