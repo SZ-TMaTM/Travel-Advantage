@@ -6,7 +6,6 @@
     <link rel="icon" type="image/png" href="logo.png">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
     <title>חופשה חלומית</title>
-    <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
     <style>
         body { 
             font-family: 'Heebo', sans-serif; 
@@ -23,7 +22,6 @@
             border-radius: 30px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
-        
         .main-title {
             font-size: clamp(18px, 4.5vw, 34px); 
             font-weight: 900;
@@ -49,7 +47,6 @@
             box-shadow: 3px 3px 0px #000;
             font-size: 0.85em;
         }
-
         .video-wrapper { 
             position: relative; 
             width: 100%;
@@ -63,8 +60,6 @@
             border: 5px solid #fff;
         }
         iframe { width: 100%; height: 100%; border: none; }
-        
-        /* הבועה האפורה עם שקיפות (Transparency) */
         .subtle-note-box {
             margin-top: 25px;
             display: inline-block;
@@ -72,17 +67,8 @@
             padding: 15px 35px;
             border-radius: 20px;
             border: 1px solid #dee2e6;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            /* כאן הגדרתי את השקיפות שתהיה עדינה יותר */
-            opacity: 0.65; 
-            transition: opacity 0.3s ease;
+            opacity: 0.65; /* שקיפות כפי שביקשת */
         }
-
-        /* במעבר עכבר זה יחזור להיות בולט (אופציונלי) */
-        .subtle-note-box:hover {
-            opacity: 1;
-        }
-
         .note-flyer {
             font-size: 1.15em;
             font-weight: 900;
@@ -92,7 +78,6 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-
         .orange-note { color: #ff9800; }
         .white-note { color: #ffffff; }
         .red-note { color: #ff4444; }
@@ -124,6 +109,7 @@
     </div>
 </div>
 
+<script src="https://iframe.mediadelivery.net/playerv2.js"></script>
 <script>
     const leadId = window.location.pathname.split('/').pop() || "unknown";
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
@@ -140,20 +126,26 @@
 
     report("Page_Loaded");
 
-    const player = new BunnyCDNPlayer('bunny-video');
-
-    setInterval(() => {
-        player.getCurrentTime((time) => {
-            player.getDuration((duration) => {
-                if (duration > 0) {
-                    const percent = (time / duration) * 100;
-                    if (percent >= 50 && !sent50) { report("Watched_Over_12_Min"); sent50 = true; }
-                    if (percent >= 75 && !sent75) { report("Watched_75_Percent"); sent75 = true; }
-                    if (percent >= 95 && !sent95) { report("Watched_95_Percent"); sent95 = true; }
-                }
-            });
-        });
-    }, 5000);
+    // וידוא שהאובייקט קיים לפני הפעלה
+    window.onload = function() {
+        if (typeof BunnyCDNPlayer !== 'undefined') {
+            const player = new BunnyCDNPlayer('bunny-video');
+            setInterval(() => {
+                player.getCurrentTime((time) => {
+                    player.getDuration((duration) => {
+                        if (duration > 0) {
+                            const percent = (time / duration) * 100;
+                            if (percent >= 50 && !sent50) { report("Watched_Over_12_Min"); sent50 = true; }
+                            if (percent >= 75 && !sent75) { report("Watched_75_Percent"); sent75 = true; }
+                            if (percent >= 95 && !sent95) { report("Watched_95_Percent"); sent95 = true; }
+                        }
+                    });
+                });
+            }, 5000);
+        } else {
+            console.error("BunnyCDNPlayer not loaded - check AdBlock");
+        }
+    };
 </script>
 
 </body>
