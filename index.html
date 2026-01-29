@@ -15,8 +15,6 @@
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; }
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; margin-bottom: 20px; }
         iframe { width: 100%; height: 100%; border: none; }
-        
-        /* העיצוב המלא שהיה לך למטה */
         .blue-section { background: #4a72ff; color: white; padding: 30px; border-radius: 0 0 50px 50px; margin-top: -20px; }
         .yellow-highlight { color: #ffcc00; font-weight: 900; font-size: 1.4em; }
         .green-highlight { color: #00ff00; font-weight: 900; font-size: 1.4em; }
@@ -29,11 +27,9 @@
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
-
     <div class="video-wrapper">
         <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
-
     <div class="blue-section">
         <h2 style="font-size: 2.2em; margin-bottom: 10px;">על תוכנית התגמולים העסקית המלאה!</h2>
         <p style="font-size: 1.3em;">ומה שבטוח... גם אם אתם חושבים כרגע שראיתם ושמעתם הכל.. אנחנו יכולים להבטיח לכם...</p>
@@ -49,32 +45,21 @@
 <script>
     const webhookUrl = "https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9";
     const urlParams = new URLSearchParams(window.location.search);
-    const phone = urlParams.get('phone') || "972504746464";
+    const phone = urlParams.get('phone') || "ללא טלפון";
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
-        fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({ phone: phone, status: status })
-        });
-        console.log("נשלח למייק:", status);
+        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: status }) });
+        console.log("דיווח נשלח:", status);
     }
-
-    // שים לב: הראוטר ב-Make חוסם את זה וזה תקין!
     report("Page_Loaded");
 
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
         let data;
         try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
-
         if (data.event === 'timeupdate') {
             const percent = Math.floor((data.value / data.duration) * 100);
-            
-            // לוג שיאשר לך שהקוד החדש רץ
-            if (percent % 5 === 0) console.log("בדיקת אחוזים:", percent + "%");
-
             if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
             if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
             if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
