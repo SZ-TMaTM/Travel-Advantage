@@ -23,6 +23,7 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
         
+        /* כותרת פלאייר ראשית */
         .main-title {
             font-size: clamp(18px, 4.5vw, 34px); 
             font-weight: 900;
@@ -49,6 +50,7 @@
             font-size: 0.85em;
         }
 
+        /* נגן הוידאו */
         .video-wrapper { 
             position: relative; 
             width: 100%;
@@ -63,27 +65,32 @@
         }
         iframe { width: 100%; height: 100%; border: none; }
         
-        /* עיצוב בועת הטיפ החווייתית */
+        /* הבועה האפורה */
         .subtle-note-box {
             margin-top: 25px;
             display: inline-block;
-            background: rgba(244, 247, 249, 0.8);
-            padding: 10px 25px;
-            border-radius: 50px;
-            border: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            background: #e9ecef; /* אפור מעט יותר עמוק כדי שהלבן יבלוט */
+            padding: 15px 35px;
+            border-radius: 20px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
-        .subtle-note-text {
-            color: #5d6d7e;
-            font-size: 0.95em;
-            font-weight: 400;
+        /* סטייל הפונט בתוך הבועה */
+        .note-flyer {
+            font-size: 1.15em;
+            font-weight: 900;
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0px rgba(0,0,0,0.3);
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .subtle-note-text strong {
-            color: #2c3e50;
-            font-weight: 700;
-        }
+        /* צבעים ספציפיים למשפט */
+        .orange-note { color: #ff9800; }
+        .white-note { color: #ffffff; }
+        .red-note { color: #ff4444; }
     </style>
 </head>
 <body>
@@ -104,9 +111,11 @@
     </div>
     
     <div class="subtle-note-box">
-        <span class="subtle-note-text">
-            ✨ כדי לא לפספס אף פרט וליהנות מרצף הצפייה, מומלץ <strong>שלא לרענן את הדף</strong>
-        </span>
+        <div class="note-flyer">
+            <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
+            <span class="white-note">ולהנות מרצף הצפייה</span>
+            <span class="red-note">מומלץ שלא לרענן את הדף</span>
+        </div>
     </div>
 </div>
 
