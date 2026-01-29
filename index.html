@@ -9,22 +9,20 @@
     <style>
         body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
         .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; line-height: 1.4; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; margin-bottom: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
         .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
-        .yellow-text { color: #ffcc00; }
-        .white-text { color: #ffffff; }
-        .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; font-size: 0.85em; }
-        .video-wrapper { position: relative; width: 100%; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 5px solid #fff; }
+        .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
+        .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; margin-bottom: 20px; }
         iframe { width: 100%; height: 100%; border: none; }
-        .subtle-note-box { margin-top: 25px; display: inline-block; background: #e9ecef; padding: 15px 35px; border-radius: 20px; border: 1px solid #dee2e6; opacity: 0.65; }
-        .note-flyer { font-size: 1.15em; font-weight: 900; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0px rgba(0,0,0,0.3); display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-        .orange-note { color: #ff9800; }
-        .white-note { color: #ffffff; }
-        .red-note { color: #ff4444; }
+        
+        /* העיצוב המלא שהיה לך למטה */
+        .blue-section { background: #4a72ff; color: white; padding: 30px; border-radius: 0 0 50px 50px; margin-top: -20px; }
+        .yellow-highlight { color: #ffcc00; font-weight: 900; font-size: 1.4em; }
+        .green-highlight { color: #00ff00; font-weight: 900; font-size: 1.4em; }
     </style>
 </head>
 <body>
-
 <div class="container">
     <div class="main-title">
         <span class="flyer-style yellow-text">חופשה חלומית</span>
@@ -33,27 +31,25 @@
     </div>
 
     <div class="video-wrapper">
-        <iframe id="bunny-video" 
-            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
-            allow="autoplay; fullscreen" 
-            allowfullscreen>
-        </iframe>
+        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
-    
-    <div class="subtle-note-box">
-        <div class="note-flyer">
-            <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
-            <span class="white-note">ולהנות מרצף הצפייה</span>
-            <span class="red-note">מומלץ שלא לרענן את הדף</span>
-        </div>
+
+    <div class="blue-section">
+        <h2 style="font-size: 2.2em; margin-bottom: 10px;">על תוכנית התגמולים העסקית המלאה!</h2>
+        <p style="font-size: 1.3em;">ומה שבטוח... גם אם אתם חושבים כרגע שראיתם ושמעתם הכל.. אנחנו יכולים להבטיח לכם...</p>
+        <div class="yellow-highlight">שעוד לא ראיתם ועוד לא שמעתם כלום!</div>
+        <div style="margin: 20px 0; border-top: 2px dashed rgba(255,255,255,0.3);"></div>
+        <p style="font-size: 1.2em;">המצגת אולי הסתיימה...</p>
+        <div class="green-highlight">אבל הסיפור האמיתי מתחיל רק עכשיו!</div>
+        <p style="font-size: 1.2em;">אז תגידו...</p>
+        <div class="yellow-highlight" style="font-size: 1.8em;">אתם באמת מוכנים לדבר על חופש אמיתי?</div>
     </div>
 </div>
 
 <script>
-    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+    const webhookUrl = "https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9";
     const urlParams = new URLSearchParams(window.location.search);
-    const phone = urlParams.get('phone') || "ללא טלפון";
-    
+    const phone = urlParams.get('phone') || "972504746464";
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
@@ -65,20 +61,19 @@
         console.log("נשלח למייק:", status);
     }
 
+    // שים לב: הראוטר ב-Make חוסם את זה וזה תקין!
     report("Page_Loaded");
 
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
         let data;
-        try {
-            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        } catch (e) { return; }
+        try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
 
         if (data.event === 'timeupdate') {
             const percent = Math.floor((data.value / data.duration) * 100);
             
-            // לוג שיעזור לך לראות בקונסול שהאחוזים זזים
-            if (percent % 5 === 0) console.log("התקדמות:", percent + "%");
+            // לוג שיאשר לך שהקוד החדש רץ
+            if (percent % 5 === 0) console.log("בדיקת אחוזים:", percent + "%");
 
             if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
             if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
@@ -86,6 +81,5 @@
         }
     });
 </script>
-
 </body>
 </html>
