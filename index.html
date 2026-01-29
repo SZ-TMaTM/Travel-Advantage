@@ -35,26 +35,27 @@
 <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 
 <script>
-    // חילוץ מזהה הסוכן בצורה בטוחה
+    // 1. חילוץ מזהה הסוכן מהכתובת
     const pathParts = window.location.pathname.split('/').filter(part => part !== "");
     const leadId = pathParts.length > 0 ? pathParts[pathParts.length - 1] : 'General_Visitor';
     
-    // הכתובת המעודכנת שלך מ-Make
+    // 2. כתובת ה-Webhook שלך מ-Make
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy"; 
 
+    // 3. פונקציית הדיווח המתוקנת שעוקפת חסימות אבטחה
     function reportToMake(status) {
-        fetch(webhookUrl, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ 
-                lead_id: leadId, 
-                status: status, 
-                language: "Hebrew",
-                timestamp: new Date().toISOString()
-            })
-        }).catch(err => console.log('Reporting skip'));
+        const payload = JSON.stringify({ 
+            lead_id: leadId, 
+            status: status, 
+            language: "Hebrew",
+            timestamp: new Date().toISOString()
+        });
+        
+        // שימוש ב-sendBeacon כדי לוודא שהמידע נשלח גם אם הדפדפן חוסם
+        navigator.sendBeacon(webhookUrl, payload);
     }
 
+    // 4. אתחול הנגן והגדרת אירועים
     const player = new BJLPlayer('bunny-video');
     
     let reported12Min = false;
