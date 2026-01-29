@@ -6,7 +6,7 @@
     <title>חופשה חלומית</title>
     <style>
         body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
-        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 20px; border-radius: 30px; }
         .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
         iframe { width: 100%; height: 100%; border: none; }
     </style>
@@ -15,7 +15,7 @@
 <div class="container">
     <div class="video-wrapper">
         <iframe id="bunny-video" 
-            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true&enablejsapi=true" 
+            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
             allow="autoplay; fullscreen" 
             allowfullscreen>
         </iframe>
@@ -29,28 +29,42 @@
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
+        // שליחה אמינה יותר ל-Webhook
         fetch(webhookUrl, {
             method: 'POST',
             mode: 'no-cors',
             body: JSON.stringify({ phone: phone, status: status })
         });
-        console.log(">>> נשלח למייק:", status);
+        console.log("SUCCESS: Sent to Make ->", status);
     }
 
+    // דיווח ראשוני
     report("Page_Loaded");
 
+    // האזנה לנגן בשיטה פשוטה
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
+        
         let data;
-        try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
+        try {
+            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        } catch (e) { return; }
 
-        if (data.event === 'timeupdate') {
-            const percent = Math.round((data.value / data.duration) * 100);
-            console.log("בדיקה - אחוז נוכחי:", percent + "%"); // זה חייב להופיע בקונסול!
+        // בדיקה ישירה של התקדמות
+        if (data.event === 'timeupdate' || data.method === 'timeupdate') {
+            const currentTime = data.value || (data.args && data.args[0]);
+            const duration = data.duration || (data.args && data.args[1]);
 
-            if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-            if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-            if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            if (duration > 0) {
+                const percent = Math.floor((currentTime / duration) * 100);
+                
+                // לוג לבדיקה שלך - תראה את המספרים רצים!
+                if (percent % 5 === 0) console.log("Current Progress:", percent + "%");
+
+                if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
+                if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
+                if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            }
         }
     });
 </script>
