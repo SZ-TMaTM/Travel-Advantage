@@ -30,44 +30,43 @@
 </div>
 
 <script>
-    // הגדרות
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-    const urlParams = new URLSearchParams(window.location.search);
-    const phone = urlParams.get('phone') || "972504746464";
+    const phone = new URLSearchParams(window.location.search).get('phone') || "972504746464";
     
     let timer = 0;
     let sent = { '25': false, '75': false, '95': false };
 
-    // פונקציית הדיווח למייק
-    function reportToMake(statusValue) {
-        fetch(webhookUrl, {
-            method: 'POST',
-            mode: 'no-cors',
-            body: JSON.stringify({
-                phone: phone,
-                status: statusValue
-            })
+    function reportToMake(val) {
+        fetch(webhookUrl, { 
+            method: 'POST', 
+            mode: 'no-cors', 
+            body: JSON.stringify({ phone: phone, status: val }) 
         });
-        console.log(">>> דיווח נשלח למייק: " + statusValue);
+        console.log(">>> דיווח נשלח למייק: " + val);
     }
 
-    // דיווח ראשון מיד כשהדף נטען
     reportToMake("Page_Loaded");
 
-    // סטופר שרץ כל שנייה
     setInterval(() => {
         timer++;
         
-        // אחרי 10 שניות - שלח דיווח "25" (לבדיקה)
-        if (timer === 10 && !sent['25']) {
+        // 12 דקות (720 שניות)
+        if (timer === 720 && !sent['25']) {
             reportToMake("25");
             sent['25'] = true;
         }
-
-        // הדפסה לקונסול כל 5 שניות כדי לראות שזה עובד
-        if (timer % 5 === 0) {
-            console.log("הסטופר עובד: " + timer + " שניות");
+        // 25 דקות (1500 שניות)
+        if (timer === 1500 && !sent['75']) {
+            reportToMake("75");
+            sent['75'] = true;
         }
+        // 31 דקות (1860 שניות)
+        if (timer === 1860 && !sent['95']) {
+            reportToMake("95");
+            sent['95'] = true;
+        }
+
+        if (timer % 60 === 0) console.log("עברו " + (timer/60) + " דקות");
     }, 1000);
 </script>
 </body>
