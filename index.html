@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap" rel="stylesheet">
-    <title>חופשה חלומית במחירים הכי זולים בעולם בהתחייבות!</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <title>חופשה חלומית במחירים הכי זולים בעולם בהתחייבות</title>
 
     <style>
         body { 
@@ -29,17 +30,15 @@
             font-weight: 900;
             line-height: 1.6;
             margin-bottom: 30px;
-            white-space: nowrap; 
             display: flex;
             justify-content: center;
             align-items: center;
-            /* רווח גדול בין חלקי המשפט */
             gap: 25px; 
         }
 
         .flyer-style {
             padding: 0 10px; 
-            letter-spacing: 0.5px; /* מוסיף רווח קטן בין האותיות עצמן */
+            letter-spacing: 0.5px;
             text-shadow: 
                 -1.5px -1.5px 0 #000,  
                  1.5px -1.5px 0 #000,
@@ -48,14 +47,8 @@
                  4px  4px 0px rgba(0,0,0,0.8);
         }
 
-        .yellow-text { 
-            color: #ffcc00; 
-            margin-left: 10px; /* דוחף את הטקסט הצהוב שמאלה מהטקסט הלבן */
-        }
-        
-        .white-text { 
-            color: #ffffff; 
-        }
+        .yellow-text { color: #ffcc00; }
+        .white-text { color: #ffffff; }
         
         .red-badge { 
             background: #e60000; 
@@ -63,7 +56,6 @@
             padding: 6px 20px; 
             border-radius: 10px; 
             box-shadow: 3px 3px 0px #000;
-            margin-right: 20px; /* רווח גדול לפני הבועה האדומה */
         }
 
         .video-wrapper { 
@@ -81,7 +73,6 @@
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
         }
 
-        /* בנייד - כשזה יורד שורה, שעדיין יהיה רווח יפה */
         @media (max-width: 768px) {
             .main-title { 
                 white-space: normal; 
@@ -89,8 +80,6 @@
                 gap: 15px;
                 line-height: 2.2;
             }
-            .yellow-text { margin-left: 0; }
-            .red-badge { margin-right: 0; }
         }
     </style>
 </head>
@@ -110,7 +99,6 @@
 
 <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 <script>
-    // הקוד של יהושע ו-Make נשאר כאן
     const urlParams = new URLSearchParams(window.location.search);
     const leadId = urlParams.get('lead') || 'General_Visitor';
     const webhookUrl = "https://hook.eu1.make.com/6n76h8v83f8b8p8p8p8p8p8p8p8p8p8p"; 
@@ -129,5 +117,4 @@
 </script>
 
 </body>
-
 </html>
