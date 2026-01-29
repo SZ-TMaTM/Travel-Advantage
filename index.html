@@ -14,10 +14,6 @@
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; font-size: 0.85em; }
         .video-wrapper { position: relative; width: 100%; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
         iframe { width: 100%; height: 100%; border: none; }
-        
-        .subtle-note-box { margin-top: 25px; display: inline-block; background: #e9ecef; padding: 15px 35px; border-radius: 20px; border: 1px solid #dee2e6; opacity: 0.65; }
-        .note-flyer { font-size: 1.15em; font-weight: 900; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0px rgba(0,0,0,0.3); display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
-        .orange-note { color: #ff9800; } .white-note { color: #ffffff; } .red-note { color: #ff4444; }
     </style>
 </head>
 <body>
@@ -27,17 +23,8 @@
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
-    
     <div class="video-wrapper">
         <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-
-    <div class="subtle-note-box">
-        <div class="note-flyer">
-            <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
-            <span class="white-note">ולהנות מרצף הצפייה</span>
-            <span class="red-note">מומלץ שלא לרענן את הדף</span>
-        </div>
     </div>
 </div>
 
@@ -54,27 +41,23 @@
             mode: 'no-cors', 
             body: JSON.stringify({ phone: phone, status: val }) 
         });
-        console.log(">>> דיווח נשלח למייק: " + val);
+        console.log(">>> דיווח נשלח: " + val);
     }
 
-    // דיווח ראשוני בטעינה
     sendToMake("Page_Loaded");
 
-    // טיימר שרץ כל שנייה
     setInterval(() => {
         timer++;
         
-        // בדיקה מהירה: דיווח ראשון אחרי 10 שניות
+        // בדיקה מהירה: דיווח אחרי 10 שניות בלבד
         if (timer === 10 && !sent['25']) { 
             sendToMake("25"); 
             sent['25'] = true; 
         }
         
-        // דיווחים הבאים (כרגע נשאיר אותם ככה לבדיקה)
-        if (timer === 40 && !sent['75']) { sendToMake("75"); sent['75'] = true; }
-        if (timer === 60 && !sent['95']) { sendToMake("95"); sent['95'] = true; }
+        // הדפסה כל 5 שניות כדי שתראה שהשעון עובד
+        if (timer % 5 === 0) console.log("שניות עבודה: " + timer);
         
-        if (timer % 5 === 0) console.log("שניות שחלפו: " + timer);
     }, 1000);
 </script>
 </body>
