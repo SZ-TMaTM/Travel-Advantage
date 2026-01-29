@@ -24,7 +24,6 @@
             box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
         
-        /* כותרת פלאייר ראשית */
         .main-title {
             font-size: clamp(18px, 4.5vw, 34px); 
             font-weight: 900;
@@ -51,7 +50,6 @@
             font-size: 0.85em;
         }
 
-        /* נגן הוידאו */
         .video-wrapper { 
             position: relative; 
             width: 100%;
@@ -66,7 +64,7 @@
         }
         iframe { width: 100%; height: 100%; border: none; }
         
-        /* הבועה האפורה */
+        /* הבועה האפורה עם שקיפות (Transparency) */
         .subtle-note-box {
             margin-top: 25px;
             display: inline-block;
@@ -75,9 +73,16 @@
             border-radius: 20px;
             border: 1px solid #dee2e6;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            /* כאן הגדרתי את השקיפות שתהיה עדינה יותר */
+            opacity: 0.65; 
+            transition: opacity 0.3s ease;
         }
 
-        /* סטייל הפונט בתוך הבועה */
+        /* במעבר עכבר זה יחזור להיות בולט (אופציונלי) */
+        .subtle-note-box:hover {
+            opacity: 1;
+        }
+
         .note-flyer {
             font-size: 1.15em;
             font-weight: 900;
@@ -88,7 +93,6 @@
             justify-content: center;
         }
 
-        /* צבעים ספציפיים למשפט */
         .orange-note { color: #ff9800; }
         .white-note { color: #ffffff; }
         .red-note { color: #ff4444; }
