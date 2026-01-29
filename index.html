@@ -25,7 +25,11 @@
         <span class="red-badge">בהתחייבות!</span>
     </div>
     <div class="video-wrapper">
-        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
+        <iframe id="bunny-video" 
+            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
     </div>
 </div>
 
@@ -38,23 +42,30 @@
     function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
+            mode: 'no-cors', // פותר את בעיית ה-CORS שרואים בתמונה
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
-        }).then(() => console.log("Sent:", status));
+        });
+        console.log("Sent to Make:", status);
     }
 
+    // שליחה מיד עם הטעינה
     report("Page_Loaded");
 
-    // האזנה ישירה לנגן בלי קבצים חיצוניים
-    window.addEventListener('message', function(e) {
-        if (!e.origin.includes('mediadelivery.net')) return;
-        let data = typeof e.data === 'string' ? JSON.parse(e.data) : e.data;
+    // הקשבה לנגן
+    window.addEventListener('message', function(event) {
+        if (!event.origin.includes('mediadelivery.net')) return;
         
+        let data;
+        try {
+            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        } catch (e) { return; }
+
         if (data.event === 'timeupdate') {
-            const t = data.value;
-            if (t >= 720 && !sent['12']) { report("Watched_Over_12_Min"); sent['12'] = true; }
-            if (t >= 1200 && !sent['20']) { report("Watched_Over_20_Min"); sent['20'] = true; }
-            if (t >= 1500 && !sent['25']) { report("Watched_Over_25_Min"); sent['25'] = true; }
+            const time = data.value;
+            if (time >= 720 && !sent['12']) { report("Watched_Over_12_Min"); sent['12'] = true; }
+            if (time >= 1200 && !sent['20']) { report("Watched_Over_20_Min"); sent['20'] = true; }
+            if (time >= 1500 && !sent['25']) { report("Watched_Over_25_Min"); sent['25'] = true; }
         }
     });
 </script>
