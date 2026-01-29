@@ -1,73 +1,23 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="logo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
-    <title>חופשה חלומית</title>
-    <style>
-        body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
-        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
-        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; margin-bottom: 25px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
-        .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
-        .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; }
-        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
-        iframe { width: 100%; height: 100%; border: none; }
-    </style>
-</head>
-<body>
-<div class="container">
-    <div class="main-title">
-        <span class="flyer-style yellow-text">חופשה חלומית</span>
-        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
-        <span class="red-badge">בהתחייבות!</span>
-    </div>
-    <div class="video-wrapper">
-        <iframe id="bunny-video" 
-            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
-            allow="autoplay; fullscreen" 
-            allowfullscreen>
-        </iframe>
-    </div>
-</div>
+// קוד מעודכן לשליחת אחוזים ל-Make
+var player = b9c.getPlayer('YOUR_VIDEO_ID'); // וודא שה-ID נכון
 
-<script>
-    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-    const urlParams = new URLSearchParams(window.location.search);
-    const phone = urlParams.get('phone') || "ללא טלפון";
-    let sent = { '12': false, '20': false, '25': false };
+player.on('progress', function(data) {
+    var percent = Math.round(data.percent * 100);
+    var statusToSend = "";
 
-    function report(status) {
-        fetch(webhookUrl, {
+    if (percent === 25) statusToSend = "25%";
+    if (percent === 75) statusToSend = "75%";
+    if (percent === 95) statusToSend = "95%";
+
+    if (statusToSend !== "") {
+        fetch('https://hook.eu1.make.com/YOUR_WEBHOOK_ID', {
             method: 'POST',
-            mode: 'no-cors', // פותר את בעיית ה-CORS שרואים בתמונה
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: phone, status: status })
+            body: JSON.stringify({
+                phone: "972504746464", // הטלפון שמופיע בתמונות שלך
+                status: statusToSend
+            })
         });
-        console.log("Sent to Make:", status);
+        console.log("נשלח למייק: " + statusToSend);
     }
-
-    // שליחה מיד עם הטעינה
-    report("Page_Loaded");
-
-    // הקשבה לנגן
-    window.addEventListener('message', function(event) {
-        if (!event.origin.includes('mediadelivery.net')) return;
-        
-        let data;
-        try {
-            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        } catch (e) { return; }
-
-        if (data.event === 'timeupdate') {
-            const time = data.value;
-            if (time >= 720 && !sent['12']) { report("Watched_Over_12_Min"); sent['12'] = true; }
-            if (time >= 1200 && !sent['20']) { report("Watched_Over_20_Min"); sent['20'] = true; }
-            if (time >= 1500 && !sent['25']) { report("Watched_Over_25_Min"); sent['25'] = true; }
-        }
-    });
-</script>
-</body>
-</html>
+});
