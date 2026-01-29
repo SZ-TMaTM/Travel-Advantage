@@ -33,12 +33,14 @@
             gap: 12px;
             flex-wrap: wrap;
         }
+        /* כאן החזרתי את העיצוב המדויק של הפלאייר */
         .flyer-style {
             padding: 0 5px; 
             text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
         }
         .yellow-text { color: #ffcc00; }
         .white-text { color: #ffffff; }
+        
         .red-badge { 
             background: #e60000; 
             color: white; 
@@ -116,43 +118,26 @@
     
     let sent12 = false, sent20 = false, sent25 = false;
 
-    function reportToMake(statusName) {
+    function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phone: phone, status: statusName })
-        })
-        .then(() => console.log("נשלח:", statusName))
-        .catch(e => console.error("שגיאה:", e));
+            body: JSON.stringify({ phone: phone, status: status })
+        }).catch(err => console.log('skip'));
     }
 
-    // דיווח ראשון
-    reportToMake("Page_Loaded");
+    report("Page_Loaded");
 
-    // האזנה לוידאו
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
-
         let data;
-        try {
-            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        } catch (e) { return; }
+        try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
 
         if (data.event === 'timeupdate') {
             const time = data.value; 
-
-            if (time >= 720 && !sent12) {
-                reportToMake("Watched_Over_12_Min");
-                sent12 = true;
-            }
-            if (time >= 1200 && !sent20) {
-                reportToMake("Watched_Over_20_Min");
-                sent20 = true;
-            }
-            if (time >= 1500 && !sent25) {
-                reportToMake("Watched_Over_25_Min");
-                sent25 = true;
-            }
+            if (time >= 720 && !sent12) { report("Watched_Over_12_Min"); sent12 = true; }
+            if (time >= 1200 && !sent20) { report("Watched_Over_20_Min"); sent20 = true; }
+            if (time >= 1500 && !sent25) { report("Watched_Over_25_Min"); sent25 = true; }
         }
     });
 </script>
