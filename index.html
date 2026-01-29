@@ -43,26 +43,24 @@
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
     
-    let timerSeconds = 0;
-    let alreadySent = { '25': false, '75': false, '95': false };
+    let timer = 0;
+    let sent = { '25': false, '75': false, '95': false };
 
-    function sendToMake(statusValue) {
-        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: statusValue }) });
-        console.log("סנכרון למייק בוצע: " + statusValue);
+    function send(val) {
+        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: val }) });
+        console.log("--- דווח למייק: " + val + " ---");
     }
 
-    sendToMake("Page_Loaded");
+    send("Page_Loaded");
 
-    // הטיימר שיעקוף את כל שגיאות הנגן
+    // טיימר שסופר שניות בלי קשר לנגן
     setInterval(() => {
-        timerSeconds++;
-        
-        // הדפסה לקונסול כדי שנדע שזה חי
-        if (timerSeconds % 2 === 0) console.log("מונה זמן פעיל: " + timerSeconds + " שניות");
+        timer++;
+        if (timer % 5 === 0) console.log("מונה זמן: " + timer + " שניות");
 
-        if (timerSeconds >= 480 && !alreadySent['25']) { sendToMake("25"); alreadySent['25'] = true; }
-        if (timerSeconds >= 1500 && !alreadySent['75']) { sendToMake("75"); alreadySent['75'] = true; }
-        if (timerSeconds >= 1860 && !alreadySent['95']) { sendToMake("95"); alreadySent['95'] = true; }
+        if (timer >= 480 && !sent['25']) { send("25"); sent['25'] = true; }
+        if (timer >= 1500 && !sent['75']) { send("75"); sent['75'] = true; }
+        if (timer >= 1860 && !sent['95']) { send("95"); sent['95'] = true; }
     }, 1000);
 </script>
 </body>
