@@ -23,41 +23,51 @@
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
+    
     <div class="video-wrapper">
         <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
     </div>
 </div>
 
 <script>
+    // הגדרות
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-    const phone = new URLSearchParams(window.location.search).get('phone') || "972504746464";
+    const urlParams = new URLSearchParams(window.location.search);
+    const phone = urlParams.get('phone') || "972504746464";
     
     let timer = 0;
     let sent = { '25': false, '75': false, '95': false };
 
-    function sendToMake(val) {
-        fetch(webhookUrl, { 
-            method: 'POST', 
-            mode: 'no-cors', 
-            body: JSON.stringify({ phone: phone, status: val }) 
+    // פונקציית הדיווח למייק
+    function reportToMake(statusValue) {
+        fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({
+                phone: phone,
+                status: statusValue
+            })
         });
-        console.log(">>> דיווח נשלח: " + val);
+        console.log(">>> דיווח נשלח למייק: " + statusValue);
     }
 
-    sendToMake("Page_Loaded");
+    // דיווח ראשון מיד כשהדף נטען
+    reportToMake("Page_Loaded");
 
+    // סטופר שרץ כל שנייה
     setInterval(() => {
         timer++;
         
-        // בדיקה מהירה: דיווח אחרי 10 שניות בלבד
-        if (timer === 10 && !sent['25']) { 
-            sendToMake("25"); 
-            sent['25'] = true; 
+        // אחרי 10 שניות - שלח דיווח "25" (לבדיקה)
+        if (timer === 10 && !sent['25']) {
+            reportToMake("25");
+            sent['25'] = true;
         }
-        
-        // הדפסה כל 5 שניות כדי שתראה שהשעון עובד
-        if (timer % 5 === 0) console.log("שניות עבודה: " + timer);
-        
+
+        // הדפסה לקונסול כל 5 שניות כדי לראות שזה עובד
+        if (timer % 5 === 0) {
+            console.log("הסטופר עובד: " + timer + " שניות");
+        }
     }, 1000);
 </script>
 </body>
