@@ -51,15 +51,14 @@
         console.log("Sent to Make:", status);
     }
 
-    // שליחה בטעינה ראשונית
+    // שליחה מיד עם הטעינה
     if (!sent['Page_Loaded']) {
         report("Page_Loaded");
         sent['Page_Loaded'] = true;
     }
 
-    // הקשבה להודעות מה-iframe של Bunny
+    // האזנה להודעות מה-iframe של Bunny
     window.addEventListener('message', function(event) {
-        // וודא שההודעה מגיעה מהנגן
         if (!event.origin.includes('mediadelivery.net')) return;
                 
         let data;
@@ -75,6 +74,7 @@
             if (duration > 0) {
                 const percent = Math.round((currentTime / duration) * 100);
 
+                // שליחה לפי האחוזים שהגדרת בראוטר ב-Make
                 if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
                 if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
                 if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
