@@ -13,13 +13,8 @@
         .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
         .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; }
-        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; margin-bottom: 30px; }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
         iframe { width: 100%; height: 100%; border: none; }
-        
-        /* עיצוב אזור התשלום */
-        .payment-section { margin-top: 20px; padding: 25px; border: 3px solid #0070ba; border-radius: 20px; background: #fdfdfd; }
-        .payment-title { font-size: 22px; font-weight: 700; color: #0070ba; margin-bottom: 15px; }
-        select { padding: 12px; font-size: 18px; width: 100%; max-width: 400px; border-radius: 10px; border: 2px solid #0070ba; margin-bottom: 20px; font-family: 'Heebo'; }
     </style>
 </head>
 <body>
@@ -29,55 +24,58 @@
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
-
     <div class="video-wrapper">
-        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-
-    <div class="payment-section">
-        <div class="payment-title">מוכנים להתחיל לחסוך? בחרו מסלול:</div>
-        <select id="plan-select">
-            <option value="monthly">מנוי חודשי - 100 ש"ח לחודש</option>
-            <option value="yearly">מנוי שנתי - 1,000 ש"ח לשנה (חיסכון של 200 ש"ח!)</option>
-        </select>
-        <div id="paypal-button-container"></div>
+        <iframe id="bunny-video" 
+            src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
     </div>
 </div>
 
-<script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&vault=true&intent=subscription"></script>
 <script>
-    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+    const webhookUrl = "https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9";
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "ללא טלפון";
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
-        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: status }) });
-        console.log("דיווח נשלח:", status);
+        fetch(webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors',
+            body: JSON.stringify({ phone: phone, status: status })
+        });
+        console.log("דיווח נשלח למייק:", status);
     }
+
+    // דיווח ראשוני בטעינה
     report("Page_Loaded");
 
+    // האזנה לאירועים מהנגן של Bunny
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
+        
         let data;
-        try { data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data; } catch (e) { return; }
+        try {
+            data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+        } catch (e) { return; }
+
         if (data.event === 'timeupdate') {
-            const percent = Math.floor((data.value / data.duration) * 100);
-            if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-            if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-            if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            const current = data.value;
+            const total = data.duration;
+            
+            if (total > 0) {
+                const percent = Math.floor((current / total) * 100);
+                
+                // לוג לבדיקה שלך - לראות שהאחוזים רצים
+                if (percent % 5 === 0) console.log("התקדמות צפייה:", percent + "%");
+
+                if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
+                if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
+                if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
+            }
         }
     });
-
-    // כפתור פייפאל
-    paypal.Buttons({
-        createSubscription: function(data, actions) {
-            const plan = document.getElementById('plan-select').value;
-            const planId = (plan === 'monthly') ? 'YOUR_MONTHLY_PLAN_ID' : 'YOUR_YEARLY_PLAN_ID';
-            return actions.subscription.create({ 'plan_id': planId });
-        },
-        onApprove: function(data, actions) { alert('ברוכים הבאים! המנוי הופעל: ' + data.subscriptionID); }
-    }).render('#paypal-button-container');
 </script>
 </body>
 </html>
