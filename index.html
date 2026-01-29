@@ -17,6 +17,7 @@
         .video-wrapper { position: relative; width: 100%; max-width: 950px; margin: 0 auto; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; background: #000; box-shadow: 0 10px 30px rgba(0,0,0,0.4); border: 4px solid #fff; }
         .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
     </style>
+    <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 </head>
 <body>
 
@@ -32,10 +33,8 @@
     </div>
 </div>
 
-<script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
-
 <script>
-    // 1. פונקציה לזיהוי הליד מהכתובת
+    // זיהוי הליד
     function getLeadId() {
         const path = window.location.pathname;
         const parts = path.split('/').filter(p => p.length > 0);
@@ -45,38 +44,25 @@
     const leadId = getLeadId();
     const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
 
-    // 2. פונקציית הדיווח ל-Make
-    function sendReportToMake(status) {
-        const data = {
-            lead_id: leadId,
-            status: status,
-            full_url: window.location.href,
-            timestamp: new Date().toISOString()
-        };
-
-        // שליחה באמצעות fetch עם ביטול הגבלות CORS
+    function sendToMake(status) {
         fetch(webhookUrl, {
             method: 'POST',
-            mode: 'no-cors', 
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data)
-        }).then(() => {
-            console.log("דיווח נשלח בהצלחה ל-Make:", status);
-        }).catch(err => {
-            console.error("שגיאה בשליחה:", err);
+            mode: 'no-cors',
+            body: JSON.stringify({ lead_id: leadId, status: status })
         });
+        console.log("דיווח נשלח: " + leadId + " - " + status);
     }
 
-    // 3. חיבור לאירועים של הנגן
-    const player = new BJLPlayer('bunny-video');
-
-    player.on('play', function() {
-        sendReportToMake('Started_Viewing');
-    });
-
-    player.on('ended', function() {
-        sendReportToMake('Finished_Video');
-    });
+    // הפעלת הנגן רק כשהוא נטען
+    window.onload = function() {
+        if (typeof BJLPlayer !== 'undefined') {
+            const player = new BJLPlayer('bunny-video');
+            player.on('play', () => sendToMake('Started_Viewing'));
+            player.on('ended', () => sendToMake('Finished_Video'));
+        } else {
+            console.error("Bunny Player script failed to load");
+        }
+    };
 </script>
 
 </body>
