@@ -12,29 +12,28 @@
             text-align: center; 
             background-color: #f0f4f8; 
             margin: 0; 
-            padding: 15px;
+            padding: 10px;
         }
         .container { 
-            max-width: 1150px; 
-            margin: 20px auto; 
+            max-width: 900px; /* צמצמתי מעט את הרוחב למראה מהודק יותר */
+            margin: 10px auto; 
             background: white; 
-            padding: 40px 20px; 
+            padding: 30px 20px; 
             border-radius: 25px; 
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
         .main-title {
-            font-size: clamp(16px, 4.2vw, 36px); 
+            font-size: clamp(16px, 4vw, 32px); 
             font-weight: 900;
-            line-height: 1.6;
-            margin-bottom: 30px;
+            line-height: 1.4;
+            margin-bottom: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 25px; 
+            gap: 15px; 
         }
         .flyer-style {
             padding: 0 10px; 
-            letter-spacing: 0.5px;
             text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8);
         }
         .yellow-text { color: #ffcc00; }
@@ -42,30 +41,29 @@
         .red-badge { 
             background: #e60000; 
             color: white; 
-            padding: 6px 20px; 
+            padding: 5px 15px; 
             border-radius: 10px; 
             box-shadow: 3px 3px 0px #000;
         }
         .video-wrapper { 
             position: relative; 
-            padding-bottom: 56.25%; 
+            width: 100%;
+            max-width: 800px; /* הגבלת רוחב */
+            margin: 0 auto;
+            padding-bottom: 45%; /* הקטנת היחס כדי שהסרטון יהיה פחות גבוה */
             height: 0; 
             overflow: hidden; 
             border-radius: 20px; 
             background: #000; 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            border: 5px solid #fff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 4px solid #fff;
         }
         .video-wrapper iframe { 
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; 
         }
         @media (max-width: 768px) {
-            .main-title { 
-                white-space: normal; 
-                flex-wrap: wrap;
-                gap: 15px;
-                line-height: 2.2;
-            }
+            .main-title { flex-wrap: wrap; gap: 10px; }
+            .video-wrapper { padding-bottom: 56.25%; } /* בנייד נשמור על יחס רגיל */
         }
     </style>
 </head>
@@ -84,12 +82,13 @@
 
 <script src="https://iframe.mediadelivery.net/play/static/player.js"></script>
 <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    const leadId = urlParams.get('lead') || 'General_Visitor';
+    // זיהוי מזהה סוכן מהכתובת (לוקח את מה שאחרי הלוכסן האחרון)
+    const pathParts = window.location.pathname.split('/');
+    const leadId = pathParts[pathParts.length - 1] || 'General_Visitor';
+    
     const webhookUrl = "https://hook.eu1.make.com/6n76h8v83f8b8p8p8p8p8p8p8p8p8p8p"; 
 
     function reportToMake(status) {
-        // שליחה משופרת כדי לוודא שהנתונים עוברים ל-Make
         fetch(webhookUrl, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
