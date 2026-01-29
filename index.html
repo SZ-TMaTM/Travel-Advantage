@@ -1,53 +1,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Video Page</title>
-    <script src="https://iframe.mediadelivery.net/playerv2.js?id=586762"></script>
 </head>
 <body>
-
-    <div style="position:relative;padding-top:56.25%;">
-        <iframe src="https://iframe.mediadelivery.net/embed/224623/586762?autoplay=true" 
-            loading="lazy" 
-            style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" 
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" 
-            allowfullscreen="true">
-        </iframe>
-    </div>
+    <iframe src="https://iframe.mediadelivery.net/embed/224623/586762?autoplay=true" 
+        style="border:none;width:100%;height:500px;" 
+        allowfullscreen="true">
+    </iframe>
 
     <script>
-    // פונקציה לשליחה ל-Make
-    function sendToMake(status) {
-        fetch('https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                "phone": "972504746464",
-                "status": status
-            })
-        }).then(() => console.log("נשלח למייק: " + status))
-          .catch(err => console.error("שגיאה:", err));
-    }
-
-    // המתנה לנגן של Bunny
-    window.onload = function() {
-        if (typeof b9c !== 'undefined') {
-            var player = b9c.getPlayer('586762');
-            
-            player.on('progress', function(data) {
-                // המרת זמן לאחוזים
-                var percent = Math.round(data.percent * 100);
-                
-                // שליחה בנקודות זמן ספציפיות
-                if (percent === 25) sendToMake("25%");
-                if (percent === 75) sendToMake("75%");
-                if (percent === 95) sendToMake("95%");
-            });
-            
-            console.log("המערכת מוכנה ומאזינה לסרטון");
-        }
-    };
+    // שליחה בסיסית ל-Make רק כדי לוודא שהכל עובד
+    fetch('https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            "phone": "972504746464",
+            "status": "Page_Loaded"
+        })
+    })
+    .then(() => console.log("הודעה נשלחה למייק!"))
+    .catch(err => console.log("שגיאה:", err));
     </script>
-
 </body>
 </html>
