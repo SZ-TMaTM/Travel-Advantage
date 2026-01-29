@@ -19,45 +19,57 @@
 
         .header-section { text-align: center; margin-bottom: 30px; width: 100%; max-width: 900px; }
         
-        /* כותרת ראשית כחולה */
+        /* כותרת עליונה */
         .main-title { 
-            font-size: 2.8em; font-weight: 800; color: #1a237e; margin-bottom: 20px; 
+            font-size: 2.5em; font-weight: 800; color: #1a237e; margin-bottom: 20px; 
         }
 
-        /* עיצוב הבלוק הלבן המדויק עם הפס הכחול */
+        /* הבלוק המעוצב שביקשת */
         .title-block {
             background: #ffffff;
             padding: 20px 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-            border-left: 8px solid #1a73e8; /* הפס הכחול בצד */
-            border-right: 8px solid #1a73e8;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border: 2px solid #1a73e8; /* מסגרת כחולה היקפית */
             display: inline-block;
             margin-bottom: 20px;
         }
 
         .title-block h2 { 
-            margin: 0; font-size: 1.6em; color: #0d47a1; font-weight: 700;
+            margin: 0; font-size: 1.8em; color: #1a237e; font-weight: 700;
         }
 
-        /* תיבת האזהרה הצהובה/אדומה */
+        /* הבלוק השני (h2 מהקוד שלך) */
+        .sub-block {
+            background: #ffffff;
+            padding: 15px 30px;
+            border-radius: 5px;
+            border-left: 10px solid #1a73e8;
+            border-right: 10px solid #1a73e8;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .sub-block h3 { margin: 0; font-size: 1.4em; color: #0d47a1; }
+
+        /* אזהרה */
         .warning-box {
             background: #fff4e5;
             color: #663c00;
             padding: 12px 25px;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1.1em;
-            display: inline-block;
             border: 1px solid #ffe2b9;
+            margin-top: 10px;
         }
 
-        /* נגן הוידאו */
+        /* נגן הוידאו עם קצוות מעוגלים */
         #video-container { 
             width: 100%; max-width: 900px; aspect-ratio: 16/9; 
-            background: #fff; border-radius: 25px; overflow: hidden;
+            background: #fff; border-radius: 20px; overflow: hidden;
             box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 8px solid white;
+            border: 5px solid white;
             margin-top: 20px;
         }
         iframe { border: none; width: 100%; height: 100%; }
@@ -66,13 +78,20 @@
 <body>
 
     <div class="header-section">
-        <div class="main-title">ברוכים הבאים להדרכה</div>
+        <div class="main-title">מערכת הדרכה</div>
         
         <div class="title-block">
             <h2>איך לבנות עסק רווחי בעולם התיירות ב-2026</h2>
         </div>
         
         <br>
+        
+        <div class="sub-block">
+            <h3>צפו בסרטון עד הסוף לקבלת ההצעה</h3>
+        </div>
+        
+        <br>
+        
         <div class="warning-box">
             ⚠️ נא לא לרענן את הדף - המערכת שומרת את זמן הצפייה שלך
         </div>
