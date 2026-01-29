@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Video Success</title>
+    <title>Video Tracking System</title>
     <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
     <style>
         body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
@@ -14,7 +14,7 @@
 
     <div id="video-container">
         <iframe id="bunny-video" 
-            src="https://iframe.mediadelivery.net/embed/192510/903e1c66-0708-468a-b94d-167814b6ba36?autoplay=true" 
+            src="https://player.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
             allow="autoplay; fullscreen" 
             allowfullscreen>
         </iframe>
@@ -24,6 +24,7 @@
         const leadId = window.location.pathname.split('/').pop() || "unknown";
         const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
         
+        // מניעת כפילויות בדיווח
         let sent50 = false, sent75 = false, sent95 = false;
 
         function sendToMake(status) {
@@ -34,18 +35,33 @@
             }).catch(e => console.log("Report failed"));
         }
 
+        // 1. דיווח על פתיחת הדף (פחות מ-12 דקות)
         sendToMake("Page_Loaded");
 
         const player = new BunnyCDNPlayer('bunny-video');
 
+        // בדיקה אקטיבית כל 5 שניות
         setInterval(() => {
             player.getCurrentTime((time) => {
                 player.getDuration((duration) => {
                     if (duration > 0) {
                         const percent = (time / duration) * 100;
-                        if (percent >= 50 && !sent50) { sendToMake("Watched_Over_12_Min"); sent50 = true; }
-                        if (percent >= 75 && !sent75) { sendToMake("Watched_75_Percent"); sent75 = true; }
-                        if (percent >= 95 && !sent95) { sendToMake("Watched_95_Percent"); sent95 = true; }
+                        
+                        // 2. דיווח מעל 12 דקות (50% מהסרטון)
+                        if (percent >= 50 && !sent50) { 
+                            sendToMake("Watched_Over_12_Min"); 
+                            sent50 = true; 
+                        }
+                        // 3. דיווח 75% צפייה
+                        if (percent >= 75 && !sent75) { 
+                            sendToMake("Watched_75_Percent"); 
+                            sent75 = true; 
+                        }
+                        // 4. דיווח 95% צפייה (סוף הסרטון)
+                        if (percent >= 95 && !sent95) { 
+                            sendToMake("Watched_95_Percent"); 
+                            sent95 = true; 
+                        }
                     }
                 });
             });
