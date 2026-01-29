@@ -13,13 +13,8 @@
         .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
         .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; }
-        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; margin-bottom: 20px; }
+        .video-wrapper { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
         iframe { width: 100%; height: 100%; border: none; }
-        
-        /* עיצוב הטקסט התחתון שביקשת להחזיר */
-        .info-box { background: #2b57ff; color: white; padding: 25px; border-radius: 20px; margin-top: 20px; line-height: 1.6; }
-        .info-box h2 { color: #ffcc00; margin-top: 0; font-size: 28px; }
-        .info-box p { font-size: 20px; font-weight: 700; }
     </style>
 </head>
 <body>
@@ -29,7 +24,6 @@
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
-
     <div class="video-wrapper">
         <iframe id="bunny-video" 
             src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
@@ -37,52 +31,48 @@
             allowfullscreen>
         </iframe>
     </div>
-
-    <div class="info-box">
-        <h2>על תוכנית התגמולים העסקית המלאה!</h2>
-        <p>ומה שבטוח... גם אם אתם חושבים כרגע שראיתם ושמעתם הכל.. אנחנו יכולים להבטיח לכם...</p>
-        <p style="color: #ffcc00; font-size: 24px;">שעוד לא ראיתם ועוד לא שמעתם כלום!</p>
-        <hr style="border: 1px solid rgba(255,255,255,0.2); margin: 20px 0;">
-        <p>המצגת אולי הסתיימה... אבל הסיפור האמיתי מתחיל רק עכשיו!</p>
-        <p>אז תגידו... אתם באמת מוכנים לדבר על חופש אמיתי?</p>
-    </div>
 </div>
 
 <script>
-    const webhookUrl = "https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9";
+    // ה-Webhook שלך מהקוד שעבד
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
     const urlParams = new URLSearchParams(window.location.search);
-    const phone = urlParams.get('phone') || "972504746464";
+    const phone = urlParams.get('phone') || "ללא טלפון";
+    
+    // שיניתי את המעקב לאחוזים
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
             mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
         });
-        console.log("דיווח נשלח למייק:", status);
+        console.log("נשלח למייק:", status);
     }
 
+    // שליחה בטעינה
     report("Page_Loaded");
 
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
+        
         let data;
         try {
             data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         } catch (e) { return; }
 
         if (data.event === 'timeupdate') {
-            const current = data.value;
-            const total = data.duration;
-            if (total > 0) {
-                const percent = Math.floor((current / total) * 100);
-                if (percent % 5 === 0) console.log("אחוז צפייה נוכחי:", percent + "%");
+            const percent = Math.floor((data.value / data.duration) * 100);
+            
+            // לוג שיעזור לך לראות בקונסול שהאחוזים רצים
+            if (percent % 5 === 0) console.log("התקדמות:", percent + "%");
 
-                if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
-                if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
-                if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
-            }
+            // שליחת הסטטוס המדויק שהראוטר ב-Make מחפש
+            if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
+            if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
+            if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
         }
     });
 </script>
