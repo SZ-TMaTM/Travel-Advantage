@@ -9,7 +9,7 @@
         body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
         .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
         .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; line-height: 1.4; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, -1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
+        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
         .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; font-size: 0.85em; }
         .video-wrapper { position: relative; width: 100%; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
@@ -43,28 +43,26 @@
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
     
-    let seconds = 0;
-    let sent = { '25': false, '75': false, '95': false };
+    let timerSeconds = 0;
+    let alreadySent = { '25': false, '75': false, '95': false };
 
-    function report(status) {
-        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: status }) });
-        console.log("נשלח למייק:", status);
+    function sendToMake(statusValue) {
+        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: statusValue }) });
+        console.log("סנכרון למייק בוצע: " + statusValue);
     }
 
-    report("Page_Loaded");
+    sendToMake("Page_Loaded");
 
-    // טיימר פשוט שפועל כל שנייה מהרגע שהדף נפתח
+    // הטיימר שיעקוף את כל שגיאות הנגן
     setInterval(() => {
-        seconds++;
+        timerSeconds++;
         
-        // אחרי 8 דקות (480 שניות) זה בערך 25% מהסרטון
-        if (seconds >= 480 && !sent['25']) { report("25"); sent['25'] = true; }
-        // אחרי 25 דקות (1500 שניות) זה בערך 75%
-        if (seconds >= 1500 && !sent['75']) { report("75"); sent['75'] = true; }
-        // אחרי 31 דקות (1860 שניות) זה בערך 95%
-        if (seconds >= 1860 && !sent['95']) { report("95"); sent['95'] = true; }
-        
-        if (seconds % 5 === 0) console.log("זמן שעבר בשניות: " + seconds);
+        // הדפסה לקונסול כדי שנדע שזה חי
+        if (timerSeconds % 2 === 0) console.log("מונה זמן פעיל: " + timerSeconds + " שניות");
+
+        if (timerSeconds >= 480 && !alreadySent['25']) { sendToMake("25"); alreadySent['25'] = true; }
+        if (timerSeconds >= 1500 && !alreadySent['75']) { sendToMake("75"); alreadySent['75'] = true; }
+        if (timerSeconds >= 1860 && !alreadySent['95']) { sendToMake("95"); alreadySent['95'] = true; }
     }, 1000);
 </script>
 </body>
