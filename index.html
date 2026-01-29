@@ -1,74 +1,57 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <title>צפייה בסרטון</title>
-    </head>
-<body>
+<script src="https://iframe.mediadelivery.net/playerv2.js"></script>
+<script>
+    // שליפת נתונים מהכתובת (URL)
+    const urlParams = new URLSearchParams(window.location.search);
+    const phone = urlParams.get('phone') || "ללא טלפון";
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+    
+    let sent12Min = false, sent20Min = false, sent25Min = false;
 
-    <div style="position:relative;padding-top:56.25%;">
-        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/132428/8d-8-4f6c-a296-4557894852ff?autoplay=true" 
-            loading="lazy" style="border:none;position:absolute;top:0;left:0;width:100%;height:100%;" 
-            allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;" 
-            allowfullscreen="true">
-        </iframe>
-    </div>
+    // פונקציה אחידה לשליחת נתונים ל-Make
+    function report(status) {
+        fetch(webhookUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ 
+                phone: phone, 
+                status: status 
+            })
+        })
+        .then(() => console.log("נשלח ל-Make:", status))
+        .catch(err => console.log('שגיאת שליחה:', err));
+    }
 
-    <script>
-        const player = document.getElementById('bunny-video');
-        const webhookUrl = 'https://hook.eu1.make.com/npxf7wz5e77u58y8m8g8m8g8m8g8m8g'; // וודא שזה הכתובת המדויקת מהעיגול האדום
+    // דיווח ראשוני כשהדף נטען
+    report("Page_Loaded");
 
-        // משתנים למניעת כפילויות
-        let sent12Min = false;
-        let sent20Min = false;
-        let sent25Min = false;
+    window.onload = function() {
+        if (typeof BunnyCDNPlayer !== 'undefined') {
+            const player = new BunnyCDNPlayer('bunny-video');
+            
+            // בדיקה כל 5 שניות
+            setInterval(() => {
+                player.getCurrentTime((time) => {
+                    // 1. בדיקה של 12 דקות (720 שניות)
+                    if (time >= 720 && !sent12Min) {
+                        report("Watched_Over_12_Min");
+                        sent12Min = true;
+                    }
 
-        // פונקציה לשליחת הנתונים ל-Make
-        function sendToMake(statusName) {
-            const urlParams = new URLSearchParams(window.location.search);
-            const phone = urlParams.get('phone') || 'אין טלפון';
+                    // 2. בדיקה של 20 דקות (1200 שניות - ה-75% שלך)
+                    if (time >= 1200 && !sent20Min) {
+                        report("Watched_Over_20_Min");
+                        sent20Min = true;
+                    }
 
-            fetch(webhookUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    status: statusName,
-                    phone: phone,
-                    timestamp: new Date().toISOString()
-                })
-            }).then(() => console.log('נשלח סטטוס:', statusName));
+                    // 3. בדיקה של 25 דקות (1500 שניות - ה-95% שלך)
+                    if (time >= 1500 && !sent25Min) {
+                        report("Watched_Over_25_Min");
+                        sent25Min = true;
+                    }
+                });
+            }, 5000);
+        } else {
+            console.error("BunnyCDNPlayer לא נטען");
         }
-
-        // האזנה להודעות מהנגן של Bunny
-        window.addEventListener('message', function(event) {
-            // בדיקה שההודעה מגיעה מהנגן
-            if (event.origin !== 'https://iframe.mediadelivery.net') return;
-
-            const data = JSON.parse(event.data);
-
-            if (data.event === 'timeupdate') {
-                const currentTime = data.value; // זמן בשניות
-                const duration = 1617; // אורך הסרטון בשניות (כ-26:57 דקות)
-
-                // בדיקת 12 דקות (720 שניות)
-                if (currentTime >= 720 && !sent12Min) {
-                    sendToMake('Watched_Over_12_Min');
-                    sent12Min = true;
-                }
-
-                // בדיקת 75% (כ-20 דקות / 1212 שניות)
-                if (currentTime >= 1212 && !sent20Min) {
-                    sendToMake('Watched_Over_20_Min');
-                    sent20Min = true;
-                }
-
-                // בדיקת 95% (כ-25 דקות / 1536 שניות)
-                if (currentTime >= 1536 && !sent25Min) {
-                    sendToMake('Watched_Over_25_Min');
-                    sent25Min = true;
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+    };
+</script>
