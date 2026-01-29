@@ -24,12 +24,14 @@
     </style>
 </head>
 <body>
+
 <div class="container">
     <div class="main-title">
         <span class="flyer-style yellow-text">חופשה חלומית</span>
         <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
         <span class="red-badge">בהתחייבות!</span>
     </div>
+
     <div class="video-wrapper">
         <iframe id="bunny-video" 
             src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
@@ -37,6 +39,7 @@
             allowfullscreen>
         </iframe>
     </div>
+    
     <div class="subtle-note-box">
         <div class="note-flyer">
             <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
@@ -62,20 +65,27 @@
         console.log("דיווח נשלח למייק:", status);
     }
 
+    // דיווח ראשוני
     report("Page_Loaded");
 
+    // האזנה להודעות מהנגן
     window.addEventListener('message', function(event) {
+        // אנחנו מקשיבים רק לנגן של Bunny
         if (!event.origin.includes('mediadelivery.net')) return;
+        
         let data;
         try {
             data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         } catch (e) { return; }
 
+        // אם הנגן מעדכן זמן
         if (data.event === 'timeupdate' && data.duration > 0) {
-            const percent = Math.floor((data.value / data.duration) * 100);
+            const current = data.value;
+            const total = data.duration;
+            const percent = Math.floor((current / total) * 100);
             
-            // לוג חדש כדי לוודא שאתה על הגרסה הנכונה
-            if (percent % 5 === 0) console.log(">>> אחוז צפייה נוכחי: " + percent + "% <<<");
+            // לוג שיעזור לך לראות בקונסול שזה זז
+            if (percent % 5 === 0) console.log("--- התקדמות: " + percent + "% ---");
 
             if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
             if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
@@ -83,5 +93,6 @@
         }
     });
 </script>
+
 </body>
 </html>
