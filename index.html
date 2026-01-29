@@ -2,43 +2,70 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>בדיקת מערכת</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
+    <title>חופשה חלומית - Travel Advantage</title>
+    <style>
+        body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
+        .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
+        .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; line-height: 1.4; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
+        .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
+        .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; font-size: 0.85em; }
+        .video-wrapper { position: relative; width: 100%; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
+        iframe { width: 100%; height: 100%; border: none; }
+        .subtle-note-box { margin-top: 25px; display: inline-block; background: #e9ecef; padding: 15px 35px; border-radius: 20px; border: 1px solid #dee2e6; opacity: 0.65; }
+        .note-flyer { font-size: 1.15em; font-weight: 900; text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000, 2px 2px 0px rgba(0,0,0,0.3); display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+        .orange-note { color: #ff9800; } .white-note { color: #ffffff; } .red-note { color: #ff4444; }
+    </style>
 </head>
-<body style="text-align:center; font-family:Arial;">
-    <h1>הסרטון רץ - נא לא לסגור</h1>
+<body>
+<div class="container">
+    <div class="main-title">
+        <span class="flyer-style yellow-text">חופשה חלומית</span>
+        <span class="flyer-style white-text">במחירים הכי זולים בעולם</span>
+        <span class="red-badge">בהתחייבות!</span>
+    </div>
+    <div class="video-wrapper">
+        <iframe id="bunny-video" src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <div class="subtle-note-box">
+        <div class="note-flyer">
+            <span class="orange-note">✨ כדי לא לפספס אף פרט</span>
+            <span class="white-note">ולהנות מרצף הצפייה</span>
+            <span class="red-note">מומלץ שלא לרענן את הדף</span>
+        </div>
+    </div>
+</div>
+
+<script>
+    const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+    const phone = new URLSearchParams(window.location.search).get('phone') || "972504746464";
     
-    <iframe id="bunny-video" 
-        src="https://iframe.mediadelivery.net/embed/586762/13242e8d-deb8-4f6e-a296-a55789f852ff?autoplay=true" 
-        width="800" height="450" allowfullscreen>
-    </iframe>
+    let timer = 0;
+    let sent = { '25': false, '75': false, '95': false };
 
-    <script>
-        const webh = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
-        const ph = new URLSearchParams(window.location.search).get('phone') || "972504746464";
+    function sendToMake(val) {
+        fetch(webhookUrl, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: phone, status: val }) });
+        console.log("סונכרן למייק: " + val);
+    }
+
+    sendToMake("Page_Loaded");
+
+    setInterval(() => {
+        timer++;
         
-        console.log("--- המערכת הופעלה ---");
-
-        function report(s) {
-            fetch(webh, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ phone: ph, status: s }) });
-            console.log("דיווח נשלח למייק: " + s);
-        }
-
-        report("Page_Loaded");
-
-        let seconds = 0;
-        // טיימר פשוט שרץ כל שנייה ומדפיס לקונסול
-        setInterval(() => {
-            seconds++;
-            console.log("שניות שעברו: " + seconds);
-
-            // בדיקת 30 שניות ראשונות רק כדי לראות שזה עובד!
-            if (seconds == 30) { report("25"); } 
-            
-            // המקוריים שלך (זמנים משוערים)
-            if (seconds == 480) { report("25"); }
-            if (seconds == 1500) { report("75"); }
-            if (seconds == 1860) { report("95"); }
-        }, 1000);
-    </script>
+        // דיווח ראשון - 12 דקות (720 שניות)
+        if (timer === 720 && !sent['25']) { sendToMake("25"); sent['25'] = true; }
+        
+        // דיווח שני - 25 דקות (1500 שניות)
+        if (timer === 1500 && !sent['75']) { sendToMake("75"); sent['75'] = true; }
+        
+        // דיווח שלישי - 31 דקות (1860 שניות)
+        if (timer === 1860 && !sent['95']) { sendToMake("95"); sent['95'] = true; }
+        
+        if (timer % 60 === 0) console.log("זמן צפייה: " + (timer/60) + " דקות");
+    }, 1000);
+</script>
 </body>
 </html>
