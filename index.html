@@ -1,10 +1,18 @@
 <script>
-(function() {
-    function initBunnyTracking() {
-        // בדיקה שהנגן קיים בדף
-        if (typeof b9c !== 'undefined') {
+document.addEventListener('DOMContentLoaded', function() {
+    // בדיקה בסיסית אם הנגן קיים
+    if (window.b9c) {
+        setupTracking();
+    } else {
+        // אם הנגן לא נטען מיד, נחכה לו
+        window.addEventListener('load', setupTracking);
+    }
+
+    function setupTracking() {
+        try {
             var player = b9c.getPlayer('586762');
-            
+            if (!player) return;
+
             player.on('progress', function(data) {
                 var percent = Math.round(data.percent * 100);
                 var statusToSend = "";
@@ -14,29 +22,22 @@
                 if (percent === 95) statusToSend = "95%";
 
                 if (statusToSend !== "") {
+                    var payload = {
+                        "phone": "972504746464",
+                        "status": statusToSend
+                    };
+
                     fetch('https://hook.eu1.make.com/60mbe87l2p39x6j9579oowatj1m6m0r9', {
                         method: 'POST',
+                        mode: 'no-cors', // זה מונע שגיאות אבטחה שעלולות לתקוע את הדף
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            "phone": "972504746464",
-                            "status": statusToSend
-                        })
-                    }).then(() => console.log("Sent to Make: " + statusToSend))
-                      .catch(err => console.error("Error:", err));
+                        body: JSON.stringify(payload)
+                    });
                 }
             });
-            console.log("Bunny Tracking Initialized");
-        } else {
-            // אם הנגן עוד לא נטען, ננסה שוב בעוד חצי שנייה
-            setTimeout(initBunnyTracking, 500);
+        } catch (e) {
+            console.error("Tracking error:", e);
         }
     }
-
-    // הפעלת הפונקציה
-    if (document.readyState === 'complete') {
-        initBunnyTracking();
-    } else {
-        window.addEventListener('load', initBunnyTracking);
-    }
-})();
+});
 </script>
