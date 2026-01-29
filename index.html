@@ -38,23 +38,21 @@
     const urlParams = new URLSearchParams(window.location.search);
     const phone = urlParams.get('phone') || "972504746464";
     
-    // מניעת כפילויות
     let sent = { '25%': false, '75%': false, '95%': false };
 
     function report(status) {
         fetch(webhookUrl, {
             method: 'POST',
-            mode: 'no-cors', 
+            mode: 'no-cors',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone: phone, status: status })
         });
         console.log("Sent to Make:", status);
     }
 
-    // הודעה ראשונה שרואים בקונסול
+    // הודעת בדיקה בטעינה
     report("Page_Loaded");
 
-    // האזנה לנגן
     window.addEventListener('message', function(event) {
         if (!event.origin.includes('mediadelivery.net')) return;
                 
@@ -63,7 +61,6 @@
             data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         } catch (e) { return; }
 
-        // חישוב אחוזים מבוסס זמן צפייה חלקי אורך סרטון
         if (data.event === 'timeupdate') {
             const currentTime = data.value;
             const duration = data.duration;
@@ -71,7 +68,7 @@
             if (duration > 0) {
                 const percent = Math.round((currentTime / duration) * 100);
 
-                // שליחה לפי האחוזים שהגדרת בראוטר ב-Make
+                // שליחה לפי האחוזים שהראוטר ב-Make מחפש
                 if (percent >= 25 && !sent['25%']) { report("25%"); sent['25%'] = true; }
                 if (percent >= 75 && !sent['75%']) { report("75%"); sent['75%'] = true; }
                 if (percent >= 95 && !sent['95%']) { report("95%"); sent['95%'] = true; }
