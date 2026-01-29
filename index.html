@@ -1,13 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>בדיקת מערכת</title>
+    <title>Video Success</title>
+    <script src="https://iframe.mediadelivery.net/playerv2.js"></script>
+    <style>
+        body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        #video-container { width: 100%; max-width: 1000px; aspect-ratio: 16/9; }
+        iframe { border: none; width: 100%; height: 100%; }
+    </style>
 </head>
-<body style="background-color: black; color: white; text-align: center; padding-top: 50px;">
-    <h1>האתר בשיחזור...</h1>
-    <p>אם אתה רואה את זה, הקובץ נמצא!</p>
-    <iframe src="https://iframe.mediadelivery.net/embed/343132/903e1c66-0708-468a-b94d-167814b6ba36" 
-            style="width:80%; height:400px;" allowfullscreen></iframe>
+<body>
+
+    <div id="video-container">
+        <iframe id="bunny-video" 
+            src="https://iframe.mediadelivery.net/embed/343132/903e1c66-0708-468a-b94d-167814b6ba36?autoplay=true" 
+            allow="autoplay; fullscreen" 
+            allowfullscreen>
+        </iframe>
+    </div>
+
+    <script>
+        const leadId = window.location.pathname.split('/').pop() || "unknown";
+        const webhookUrl = "https://hook.eu1.make.com/ce9hrcv5hyrivpp3tq5ah3rxh2sg5emy";
+        
+        let sent50 = false, sent75 = false, sent95 = false;
+
+        function sendToMake(status) {
+            fetch(webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ lead_id: leadId, status: status })
+            }).catch(e => console.log("Report failed"));
+        }
+
+        // דיווח ראשון - הדף נטען
+        sendToMake("Page_Loaded");
+
+        const player = new BunnyCDNPlayer('bunny-video');
+
+        // בדיקה כל 5 שניות - מדווח את כל התחנות שביקשת
+        setInterval(() => {
+            player.getCurrentTime((time) => {
+                player.getDuration((duration) => {
+                    if (duration > 0) {
+                        const percent = (time / duration) * 100;
+                        
+                        // דיווח מעל 12 דקות (50%)
+                        if (percent >= 50 && !sent50) { 
+                            sendToMake("Watched_Over_12_Min"); 
+                            sent50 = true; 
+                        }
+                        // דיווח 75%
+                        if (percent >= 75 && !sent75) { 
+                            sendToMake("Watched_75_Percent"); 
+                            sent75 = true; 
+                        }
+                        // דיווח 95% (סוף הסרטון)
+                        if (percent >= 95 && !sent95) { 
+                            sendToMake("Watched_95_Percent"); 
+                            sent95 = true; 
+                        }
+                    }
+                });
+            });
+        }, 5000);
+    </script>
 </body>
 </html>
