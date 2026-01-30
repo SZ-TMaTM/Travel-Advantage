@@ -7,17 +7,20 @@
     <title>חופשה חלומית - Travel Advantage</title>
     <meta property="og:title" content="חופשה חלומית במחירים הכי זולים בעולם!">
     <meta property="og:description" content="בהתחייבות! הצטרפו למהפכת התיירות של Travel Advantage.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop">
+    
+    <meta property="og:image" content="favicon.png"> 
     <meta property="og:type" content="website">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image:width" content="300">
+    <meta property="og:image:height" content="300">
 
+    <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
+    
     <style>
         body { font-family: 'Heebo', sans-serif; text-align: center; background-color: #f4f7f9; margin: 0; padding: 10px; }
         .container { max-width: 1000px; margin: 10px auto; background: white; padding: 30px 20px; border-radius: 30px; box-shadow: 0 15px 40px rgba(0,0,0,0.08); }
         .main-title { font-size: clamp(18px, 4.5vw, 34px); font-weight: 900; line-height: 1.4; margin-bottom: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; }
-        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
+        .flyer-style { padding: 0 5px; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, -1.5px 1.5px 0 #000, 4px 4px 0px rgba(0,0,0,0.8); }
         .yellow-text { color: #ffcc00; } .white-text { color: #ffffff; }
         .red-badge { background: #e60000; color: white; padding: 6px 20px; border-radius: 12px; box-shadow: 3px 3px 0px #000; font-size: 0.85em; }
         .video-wrapper { position: relative; width: 100%; max-width: 920px; margin: 0 auto; aspect-ratio: 16/9; border-radius: 20px; overflow: hidden; background: #000; border: 5px solid #fff; }
@@ -58,17 +61,14 @@
     setInterval(() => {
         timer++;
         
-        // 12 דקות (720 שניות)
         if (timer === 720 && !sent['25']) {
             reportToMake("25");
             sent['25'] = true;
         }
-        // 20 דקות (1200 שניות)
         if (timer === 1200 && !sent['75']) {
             reportToMake("75");
             sent['75'] = true;
         }
-        // 25 דקות (1500 שניות)
         if (timer === 1500 && !sent['95']) {
             reportToMake("95");
             sent['95'] = true;
