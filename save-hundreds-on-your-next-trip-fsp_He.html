@@ -6,41 +6,24 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; }
-
-    /* עיצוב חלק עליון */
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 80px 5%; display: flex; justify-content: center; min-height: 500px;
-    }
-
+    .hero-section { background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000') no-repeat center; background-size: cover; padding: 80px 5%; display: flex; justify-content: center; min-height: 500px; }
     .container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
     .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-    .hero-content h1 { font-size: 48px; margin-bottom: 20px; color: #ff9d2b; font-weight: bold; }
-
+    .hero-content h1 { font-size: 48px; color: #ff9d2b; font-weight: bold; }
     .image-box { background: white; padding: 10px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 380px; }
     .image-box img { width: 100%; border-radius: 20px; display: block; }
-
-    /* חלק אמצעי */
     .details-section { background: #ffffff; padding: 80px 5%; width: 100%; display: flex; justify-content: center; }
     .details-content { max-width: 1000px; width: 100%; text-align: right; }
-    .details-content h2 { color: #0056A7; font-size: 36px; margin-bottom: 40px; text-align: center; }
+    .details-content h2 { color: #0056A7; font-size: 36px; text-align: center; font-weight: bold; }
     .details-list { list-style: none; padding: 0; font-size: 22px; line-height: 2; color: #333; }
-    .details-list li::before { content: '✔️'; color: #0056A7; margin-left: 10px; font-weight: bold; }
-
-    /* חלק תחתון */
-    .footer-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 100px 5%; display: flex; justify-content: center;
-    }
-
+    .details-list li::before { content: '✔️'; color: #0056A7; margin-left: 10px; }
+    .footer-section { background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000') no-repeat center; background-size: cover; padding: 100px 5%; display: flex; justify-content: center; }
     .form-container { background: white; padding: 40px; border-radius: 30px; width: 100%; max-width: 450px; box-shadow: 0 15px 45px rgba(0,0,0,0.4); }
     input { width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #ddd; text-align: right; box-sizing: border-box; }
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; }
-
-    /* פוטר סוכן - הפס השחור */
-    #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
+    
+    /* פוטר סוכן דינמי */
+    #rf-user-details { background-color: #1a1a1a; color: white; padding: 25px; border-top: 4px solid #ff9d2b; }
     .agent-bar { display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; direction: ltr; }
     .agent-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #ff9d2b; object-fit: cover; background: #333; }
     .agent-info { text-align: left; }
@@ -89,7 +72,7 @@
       <img id="agent-pic" class="agent-img" src="https://rapidfunnel.com/wp-content/uploads/2021/01/user-icon.png">
       <div class="agent-info">
         <span id="agent-name-label" class="agent-name">Authorized Agent</span>
-        <span id="agent-id-label" class="agent-id"></span>
+        <span id="agent-id-label" class="agent-id">Partner ID</span>
       </div>
     </div>
   </div>
@@ -108,20 +91,26 @@
     window.labelId = 48708;
 
     $(document).ready(function() {
-      // 1. הגדרת ה-ID בטקסט
       $('#agent-id-label').text("Partner ID: " + uId);
 
-      // 2. טיפול אוטומטי בשם ובתמונה:
-      // אם זה ה-ID שלך, נשים את הפרטים שלך ישר (עוקף את החסימה)
-      if (uId === '358354') {
-          $('#agent-name-label').text("Sharon"); // תכתבי כאן את השם שלך אם תרצי שיהיה בעברית
-          $('#agent-pic').attr('src', 'https://my.aimmwrlife.com/images/user-placeholder.png'); // כאן תוכלי לשים קישור לתמונה שלך
-      } 
-      
-      // 3. ניסיון בכל זאת להפעיל את הסקריפט שלהם לאחרים
-      if (typeof renderUserDetails === "function") {
-          renderUserDetails('#rf-user-details');
-      }
+      // מנגנון משיכת נתונים אוטומטי מ-RapidFunnel לכל סוכן
+      fetch(`https://api.rapidfunnel.com/v1/users/details?userId=${uId}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.user) {
+            // אם הצלחנו למשוך נתונים - נעדכן את השם והתמונה
+            $('#agent-name-label').text(data.user.firstName + " " + data.user.lastName);
+            if (data.user.profileImage) {
+              $('#agent-pic').attr('src', data.user.profileImage);
+            }
+          }
+        })
+        .catch(err => {
+          // אם ה-API חסום, ננסה להפעיל את הסקריפט המקורי כגיבוי אחרון
+          if (typeof renderUserDetails === "function") {
+            renderUserDetails('#rf-user-details');
+          }
+        });
     });
   </script>
 </body>
