@@ -2,82 +2,93 @@
 <html dir="rtl" lang="he">
 <head>
   <meta charset="utf-8">
-  <title>חיסכון בטיולים - Travel Advantage</title>
+  <title>חסוך מאות דולרים בטיול הבא שלך</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   
   <style>
-    body, html { margin: 0; padding: 0; font-family: 'Assistant', sans-serif, Arial; background-color: #fff; overflow-x: hidden; }
+    body, html { margin: 0; padding: 0; font-family: sans-serif; overflow-x: hidden; }
     
-    /* החלק העליון - רקע כחול כהה כמו במקור */
+    /* חלק ה-Hero עם תמונת הנוף מהשרת של החברה */
     .hero-section {
-      background-color: #0056A7;
-      color: white;
+      background-image: url('https://my.aimmwrlife.com/images/Landing-Page-Background-p-2000.jpeg'); /* תמונת הנוף המקורית */
+      background-size: cover;
+      background-position: center;
+      min-height: 90vh;
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      padding: 60px 20px;
-      gap: 40px;
+      padding: 40px 5%;
+      gap: 30px;
     }
 
+    .hero-container {
+      max-width: 1200px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap-reverse; /* בשביל התאמה לנייד */
+    }
+
+    /* הטקסט שצף מעל הנוף */
     .hero-text {
       flex: 1;
-      max-width: 550px;
+      max-width: 600px;
+      color: white; /* טקסט לבן על רקע הים */
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* גורם לטקסט להיות קריא על הנוף */
       text-align: right;
     }
 
-    .hero-text h1 { font-size: 42px; margin-bottom: 20px; line-height: 1.1; color: #fff; }
-    .hero-text h2 { font-size: 22px; font-weight: 300; line-height: 1.4; opacity: 0.9; }
+    .hero-text h1 { font-size: 48px; line-height: 1.1; margin-bottom: 20px; font-weight: bold; }
+    .hero-text h2 { font-size: 24px; font-weight: normal; line-height: 1.4; }
 
-    /* התמונה של הבחורה - עכשיו היא אלמנט נפרד ולא רקע! */
-    .hero-image-wrapper {
-      flex: 1;
-      max-width: 450px;
+    /* הקוביה של הבחורה */
+    .girl-box {
+      flex: 0 0 auto;
+      background: white;
+      padding: 15px;
+      border-radius: 25px; /* פינות מעוגלות כמו במקור */
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      max-width: 400px;
     }
-    
-    .hero-image-wrapper img {
+
+    .girl-box img {
       width: 100%;
       height: auto;
-      border-radius: 20px; /* הפינות המעוגלות מהמקור */
+      border-radius: 15px;
+      display: block;
     }
 
-    /* חלק היתרונות - רקע בהיר */
+    /* חלק היתרונות (למטה) */
     .features-section {
+      background-color: #0056A7;
+      color: white;
       padding: 60px 20px;
-      background-color: #f4f7f9;
       text-align: center;
     }
 
-    .features-box {
-      max-width: 900px;
-      margin: 0 auto;
+    .features-content { max-width: 800px; margin: 0 auto; text-align: right; }
+    .feature-item { margin-bottom: 15px; font-size: 20px; }
+
+    /* חלק הטופס */
+    .form-section { padding: 60px 20px; background-color: #f4f7f9; }
+    .form-box {
       background: white;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-      text-align: right;
-    }
-
-    .features-box h3 { color: #0056A7; font-size: 28px; text-align: center; margin-bottom: 30px; }
-    .feature-item { font-size: 19px; margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
-
-    /* הטופס - נקי ומקצועי */
-    .form-section { padding: 40px 20px; }
-    .form-container {
       max-width: 500px;
-      margin: 0 auto;
-      background: white;
-      border: 2px solid #0056A7;
+      margin: -100px auto 0;
       padding: 40px;
       border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      border: 1px solid #eee;
     }
 
-    input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; box-sizing: border-box; }
-    .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; }
+    input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; box-sizing: border-box; text-align: right; }
+    .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; }
 
-    @media (max-width: 768px) {
-      .hero-section { flex-direction: column; text-align: center; }
-      .hero-text { text-align: center; }
+    @media (max-width: 900px) {
+      .hero-section { text-align: center; }
+      .hero-container { justify-content: center; }
+      .hero-text { text-align: center; margin-top: 20px; }
       .hero-text h1 { font-size: 32px; }
     }
   </style>
@@ -97,28 +108,30 @@
 <body>
 
   <div class="hero-section">
-    <div class="hero-text">
-      <h1>חסוך מאות דולרים בטיול הבא שלך, עוד לפני שתזמין!</h1>
-      <h2>רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה מטיילים חכמים עושים אחרת.</h2>
-    </div>
-    <div class="hero-image-wrapper">
-      <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Happy Traveler">
+    <div class="hero-container">
+        <div class="girl-box">
+            <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
+        </div>
+
+        <div class="hero-text">
+            <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
+            <h2>רוב המטיילים משלמים ביוקר בלי לדעת. גלה מה המטיילים החכמים עושים אחרת.</h2>
+        </div>
     </div>
   </div>
 
   <div class="features-section">
-    <div class="features-box">
-      <h3>למה אתה מבזבז מאות דולרים בכל שנה?</h3>
+    <div class="features-content">
+      <h3 style="font-size: 28px; text-align: center; margin-bottom: 30px;">למה אתה מבזבז מאות דולרים בכל שנה?</h3>
       <div class="feature-item">✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</div>
       <div class="feature-item">✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</div>
       <div class="feature-item">✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</div>
-      <div class="feature-item">✔️ תשלום יתר על טיסות ומלונות פשוט כי אין לך מערכת חכמה.</div>
     </div>
   </div>
 
   <div class="form-section">
-    <div class="form-container">
-      <h3 style="color: #0056A7; text-align: center; margin-top: 0;">קבל את המדריך לחיסכון - בחינם!</h3>
+    <div class="form-box">
+      <h3 style="color: #0056A7; margin-top: 0; text-align: center;">קבל את המדריך לחיסכון - בחינם!</h3>
       <form id="rfContactForm">
         <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
         <input type="text" id="contactLastName" placeholder="שם משפחה" required>
