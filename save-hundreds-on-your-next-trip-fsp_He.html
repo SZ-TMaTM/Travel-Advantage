@@ -7,6 +7,7 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
+    /* Hero Section */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -20,34 +21,33 @@
     .image-box { flex: 1; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 350px; }
     .image-box img { width: 100%; border-radius: 15px; display: block; }
 
+    /* Middle Content Area */
     .content-area { padding: 10px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
-    
     .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-top: 5px; margin-bottom: 15px; text-align: center; line-height: 1.2; }
     .wasting-list { font-size: 22px; line-height: 1.5; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin-bottom: 5px; }
     .wasting-list li { margin-bottom: 12px; padding-right: 25px; border-right: 8px solid #ff9d2b; }
     .wasting-list li strong { color: #000; font-size: 24px; }
 
+    /* Footer Section */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 50px 5%; display: flex; justify-content: center;
+      background-size: cover; padding: 60px 5%; display: flex; justify-content: center;
     }
     .footer-container { 
-      max-width: 1300px; width: 100%; display: flex; align-items: center; 
-      justify-content: space-between; gap: 40px; position: relative;
+      max-width: 1300px; width: 100%; display: flex; align-items: flex-start; 
+      justify-content: space-between; gap: 40px;
     }
     
-    .footer-text-area { flex: 1.2; position: relative; }
-    .footer-text { color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
+    /* סידור מחדש של אזור הטקסט והחץ */
+    .footer-text-column { flex: 1.2; display: flex; flex-direction: column; align-items: flex-end; }
+    .footer-text { color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; margin-bottom: 30px; }
     
-    /* החזרת החץ לצד שמאל מתחת לכיתוב */
     .arrow-container {
-      position: absolute;
-      left: -20px; 
-      bottom: -40px;
       width: 180px;
       z-index: 10;
       animation: flashArrow 1.2s infinite ease-in-out;
+      margin-right: 150px; /* מזיז את החץ שמאלה לכיוון הטופס מבלי לעלות על הטקסט */
     }
 
     @keyframes flashArrow {
@@ -57,7 +57,7 @@
 
     .form-box { 
       flex: 1; background: white; padding: 40px; border-radius: 35px; min-width: 480px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box; z-index: 5;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box;
     }
     .form-box h3 { color: #0056A7; margin-bottom: 25px; font-size: 30px; text-align: center; font-weight: 900; line-height: 1.2; }
     
@@ -72,8 +72,9 @@
 
     @media (max-width: 1100px) {
       .footer-container { flex-direction: column !important; align-items: center; }
-      .arrow-container { display: none; }
       .footer-text { font-size: 38px; text-align: center; }
+      .footer-text-column { align-items: center; }
+      .arrow-container { display: none; }
       .form-box { min-width: 100%; margin-top: 20px; }
     }
   </style>
@@ -105,7 +106,7 @@
 
   <section class="footer-bg">
     <div class="footer-container">
-      <div class="footer-text-area">
+      <div class="footer-text-column">
         <div class="footer-text">
           הצטרפו לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים!
         </div>
