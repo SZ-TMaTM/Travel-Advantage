@@ -4,99 +4,58 @@
   <meta charset="utf-8">
   <title>חסוך מאות דולרים בטיול הבא שלך</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  
   <style>
-    body, html { margin: 0; padding: 0; font-family: sans-serif; overflow-x: hidden; }
+    body, html { margin: 0; padding: 0; font-family: 'Assistant', sans-serif; overflow-x: hidden; }
     
-    /* חלק ה-Hero עם תמונת הנוף מהשרת של החברה */
-    .hero-section {
-      background-image: url('https://my.aimmwrlife.com/images/Landing-Page-Background-p-2000.jpeg'); /* תמונת הנוף המקורית */
-      background-size: cover;
-      background-position: center;
-      min-height: 90vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 40px 5%;
-      gap: 30px;
+    /* חלק 1: נוף הים והבחורה */
+    .section-hero {
+      background-image: url('https://my.aimmwrlife.com/images/Landing-Page-Background-p-2000.jpeg');
+      background-size: cover; background-position: center;
+      min-height: 80vh; display: flex; align-items: center; justify-content: center; padding: 40px 5%;
     }
+    .container { max-width: 1100px; width: 100%; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap-reverse; }
+    .hero-text { flex: 1; max-width: 600px; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); text-align: right; }
+    .hero-text h1 { font-size: 50px; line-height: 1.1; margin-bottom: 20px; }
+    .hero-text h2 { font-size: 24px; font-weight: normal; }
+    .girl-card { background: white; padding: 15px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 400px; }
+    .girl-card img { width: 100%; border-radius: 20px; display: block; }
 
-    .hero-container {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap-reverse; /* בשביל התאמה לנייד */
+    /* חלק 2: הלמה (רקע כחול חלק) */
+    .section-why {
+      background-color: #f4f7f9; padding: 80px 20px; text-align: center;
     }
+    .why-content { max-width: 900px; margin: 0 auto; text-align: right; }
+    .why-content h2 { color: #0056A7; font-size: 40px; text-align: center; margin-bottom: 40px; }
+    .why-list { list-style: none; padding: 0; font-size: 22px; line-height: 1.8; color: #333; }
+    .why-list li { margin-bottom: 20px; padding-right: 35px; position: relative; }
+    .why-list li::before { content: '•'; position: absolute; right: 0; color: #0056A7; font-size: 30px; }
 
-    /* הטקסט שצף מעל הנוף */
-    .hero-text {
-      flex: 1;
-      max-width: 600px;
-      color: white; /* טקסט לבן על רקע הים */
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.5); /* גורם לטקסט להיות קריא על הנוף */
-      text-align: right;
+    /* חלק 3: טופס ונוף הרים */
+    .section-footer {
+      background-image: url('https://my.aimmwrlife.com/images/Join-Thousands-Background-p-2000.jpeg');
+      background-size: cover; background-position: center;
+      padding: 100px 20px; display: flex; align-items: center; justify-content: center;
     }
-
-    .hero-text h1 { font-size: 48px; line-height: 1.1; margin-bottom: 20px; font-weight: bold; }
-    .hero-text h2 { font-size: 24px; font-weight: normal; line-height: 1.4; }
-
-    /* הקוביה של הבחורה */
-    .girl-box {
-      flex: 0 0 auto;
-      background: white;
-      padding: 15px;
-      border-radius: 25px; /* פינות מעוגלות כמו במקור */
-      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-      max-width: 400px;
-    }
-
-    .girl-box img {
-      width: 100%;
-      height: auto;
-      border-radius: 15px;
-      display: block;
-    }
-
-    /* חלק היתרונות (למטה) */
-    .features-section {
-      background-color: #0056A7;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-
-    .features-content { max-width: 800px; margin: 0 auto; text-align: right; }
-    .feature-item { margin-bottom: 15px; font-size: 20px; }
-
-    /* חלק הטופס */
-    .form-section { padding: 60px 20px; background-color: #f4f7f9; }
+    .footer-container { display: flex; width: 100%; max-width: 1100px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .footer-text { flex: 1; max-width: 550px; color: white; text-align: right; margin-bottom: 30px; }
+    .footer-text h2 { font-size: 45px; color: #ff9d2b; line-height: 1.1; }
+    
     .form-box {
-      background: white;
-      max-width: 500px;
-      margin: -100px auto 0;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-      border: 1px solid #eee;
+      background: white; padding: 40px; border-radius: 25px; width: 100%; max-width: 450px; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
-
-    input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; box-sizing: border-box; text-align: right; }
+    .form-box h3 { color: #0056A7; font-size: 28px; margin-bottom: 20px; text-align: center; }
+    input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; box-sizing: border-box; text-align: right; }
     .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; }
 
-    @media (max-width: 900px) {
-      .hero-section { text-align: center; }
-      .hero-container { justify-content: center; }
-      .hero-text { text-align: center; margin-top: 20px; }
-      .hero-text h1 { font-size: 32px; }
+    @media (max-width: 800px) {
+      .hero-text h1, .footer-text h2 { font-size: 32px; text-align: center; }
+      .container, .footer-container { justify-content: center; }
     }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
-  
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     window.userId = urlParams.get('userId') || '358354';
@@ -107,40 +66,48 @@
 </head>
 <body>
 
-  <div class="hero-section">
-    <div class="hero-container">
-        <div class="girl-box">
-            <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
-        </div>
-
-        <div class="hero-text">
-            <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
-            <h2>רוב המטיילים משלמים ביוקר בלי לדעת. גלה מה המטיילים החכמים עושים אחרת.</h2>
-        </div>
+  <section class="section-hero">
+    <div class="container">
+      <div class="girl-card">
+        <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
+      </div>
+      <div class="hero-text">
+        <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
+        <h2>רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה המטיילים החכמים עושים אחרת.</h2>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="features-section">
-    <div class="features-content">
-      <h3 style="font-size: 28px; text-align: center; margin-bottom: 30px;">למה אתה מבזבז מאות דולרים בכל שנה?</h3>
-      <div class="feature-item">✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</div>
-      <div class="feature-item">✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</div>
-      <div class="feature-item">✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</div>
+  <section class="section-why">
+    <div class="why-content">
+      <h2>למה מטיילים כמוך מבזבזים מאות (או אלפי) דולרים כל שנה?</h2>
+      <ul class="why-list">
+        <li>חיפוש דילים לוקח שעות - ובכל זאת רוב ה"הנחות" מנופחות כדי להיראות כמו חיסכון.</li>
+        <li>הזמנה במספר אתרים מובילה לתזמון גרוע, עמלות נסתרות ומחירים גבוהים יותר.</li>
+        <li>פספוס תעריפים למקורבים בלבד, דילים שלא פורסמו והטבות שנצברות שרוב המטיילים לעולם לא רואים.</li>
+        <li>תשלום יתר על טיסות, מלונות, קרוזים והשכרת רכב פשוט כי אין מערכת חכמה.</li>
+        <li style="font-weight: bold;">כל טיול יכול לעלות פחות - אם היית יודע מה לעשות לפני ההזמנה.</li>
+      </ul>
     </div>
-  </div>
+  </section>
 
-  <div class="form-section">
-    <div class="form-box">
-      <h3 style="color: #0056A7; margin-top: 0; text-align: center;">קבל את המדריך לחיסכון - בחינם!</h3>
-      <form id="rfContactForm">
-        <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
-        <input type="text" id="contactLastName" placeholder="שם משפחה" required>
-        <input type="email" id="contactEmail" placeholder="אימייל" required>
-        <input type="tel" id="contactPhone" placeholder="טלפון" required>
-        <button id="contactFormSubmitBtn" type="submit" class="btn">שלחו לי את המדריך!</button>
-      </form>
+  <section class="section-footer">
+    <div class="footer-container">
+      <div class="form-box">
+        <h3>קבל את המדריך לחיסכון!</h3>
+        <form id="rfContactForm">
+          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+          <input type="email" id="contactEmail" placeholder="אימייל" required>
+          <input type="tel" id="contactPhone" placeholder="טלפון" required>
+          <button id="contactFormSubmitBtn" type="submit" class="btn">שלחו לי את המדריך!</button>
+        </form>
+      </div>
+      <div class="footer-text">
+        <h2>הצטרף לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים תוך כדי חיסכון ענק.</h2>
+      </div>
     </div>
-  </div>
+  </section>
 
 </body>
 </html>
