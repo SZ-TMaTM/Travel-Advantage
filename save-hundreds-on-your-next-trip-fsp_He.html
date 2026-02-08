@@ -28,7 +28,7 @@
     .wasting-list li { margin-bottom: 12px; padding-right: 25px; border-right: 8px solid #ff9d2b; }
     .wasting-list li strong { color: #000; font-size: 24px; }
 
-    /* Footer Section - Fixed Centering */
+    /* Footer Section */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -36,25 +36,33 @@
     }
     .footer-container { 
       max-width: 1300px; width: 100%; display: flex; 
-      align-items: center; /* מרכוז אנכי מושלם */
+      align-items: center; 
       justify-content: space-between; gap: 40px;
     }
     
-    /* קופסה שמחזיקה את הטקסט והחץ וממרכזת אותם */
     .footer-text-column { 
       flex: 1.2; 
       display: flex; 
       flex-direction: column; 
       justify-content: center; 
       align-items: center; 
-      min-height: 450px; /* מבטיח שהאזור גבוה מספיק כדי שיהיה לאן לרדת */
+      min-height: 450px;
     }
     
-    .footer-text { color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; width: 100%; }
+    /* הטקסט המוגדל והמחולק */
+    .footer-text { 
+      color: #ff9d2b; 
+      font-size: 62px; /* הגדלתי מ-50 */
+      font-weight: 900; 
+      text-align: center; 
+      text-shadow: 3px 3px 15px rgba(0,0,0,1); 
+      line-height: 1.1; 
+      width: 100%; 
+    }
     
     .arrow-container {
       width: 180px;
-      margin-top: 30px;
+      margin-top: 25px;
       z-index: 10;
       animation: flashArrow 1.2s infinite ease-in-out;
     }
@@ -82,7 +90,7 @@
     @media (max-width: 1100px) {
       .footer-container { flex-direction: column !important; align-items: center; }
       .footer-text-column { min-height: auto; margin-bottom: 30px; }
-      .footer-text { font-size: 38px; }
+      .footer-text { font-size: 42px; }
       .arrow-container { display: none; }
       .form-box { min-width: 100%; }
     }
@@ -117,7 +125,9 @@
     <div class="footer-container">
       <div class="footer-text-column">
         <div class="footer-text">
-          הצטרפו לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים!
+          הצטרפו לאלפי מטיילים<br>
+          שהופכים את הטיולים שלהם<br>
+          לבלתי נשכחים!
         </div>
         
         <div class="arrow-container">
