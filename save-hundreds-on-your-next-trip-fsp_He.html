@@ -44,26 +44,25 @@
     input { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ccc; font-size: 18px; text-align: right; box-sizing: border-box; }
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 18px; border: none; border-radius: 10px; font-size: 24px; font-weight: 900; cursor: pointer; }
 
-    /* --- RapidFunnel Footer המדויק מהמקור --- */
-    .rapidfunnel-components--footer_section { background-color: #000; color: #fff; padding: 60px 20px; direction: ltr; text-align: center; }
-    .rapidfunnel-components--footer_container { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; }
-    
-    .rapidfunnel-components--profileimage { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
-    .rapidfunnel-components--info_wrapper { text-align: left; min-width: 300px; }
-    .rapidfunnel-components--namediv { font-size: 32px; font-weight: bold; margin-bottom: 15px; color: #fff; }
-    .rapidfunnel-components--user_info_text { font-size: 20px; margin-bottom: 10px; display: flex; align-items: center; gap: 12px; color: #fff; }
+    /* --- RapidFunnel Original CSS (Pure Copy) --- */
+    .rapidfunnel-components--footer_section { background-color: #000; color: #fff; padding: 100px 20px; direction: ltr; text-align: center; }
+    .rapidfunnel-components--footer_container { display: flex; align-items: center; justify-content: center; max-width: 1100px; margin: 0 auto; gap: 40px; }
+    .rapidfunnel-components--profileimage { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+    .rapidfunnel-components--info_wrapper { text-align: left; }
+    .rapidfunnel-components--namediv { font-size: 32px; font-weight: bold; margin-bottom: 10px; }
+    .rapidfunnel-components--user_info_text { font-size: 18px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
     .rapidfunnel-components--link_standard { color: #fff; text-decoration: none; }
-    .rapidfunnel-components--book_me_button_centered { background-color: #fff; color: #000; padding: 12px 35px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin: 20px 0; font-size: 18px; }
+    .rapidfunnel-components--book_me_button_centered { background-color: #fff; color: #000; padding: 10px 30px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; margin: 20px 0; }
     
-    /* סידור האייקונים החברתיים */
-    .rapidfunnel-components--social_links_wrapper { display: flex; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
-    .rapidfunnel-components--social_link { width: 45px; height: 45px; border: 1px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 20px; transition: 0.3s; }
-    .rapidfunnel-components--social_link:hover { background: #fff; color: #000; }
+    /* Social Buttons */
+    .rapidfunnel-components--footer_socials { display: flex; gap: 10px; justify-content: flex-start; }
+    .rapidfunnel-components--link_social { width: 45px; height: 45px; border: 1px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 20px; }
 
-    .rapidfunnel-components--footerbottom { background-color: #111; padding: 40px 20px; border-top: 1px solid #222; text-align: center; color: #888; }
-    .rapidfunnel-components--footer_bottom { list-style: none; padding: 0; margin: 0 0 20px 0; display: flex; justify-content: center; gap: 25px; font-size: 15px; }
-    .rapidfunnel-components--link_standard_light { color: #888; text-decoration: none; }
-    .footer-logo img { width: 220px; margin-top: 15px; }
+    /* Bottom Section */
+    .rapidfunnel-components--footerbottom { background-color: #111; padding: 50px 20px; border-top: 1px solid #222; text-align: center; }
+    .rapidfunnel-components--footer_bottom { list-style: none; padding: 0; margin: 0 0 20px 0; display: flex; justify-content: center; gap: 30px; }
+    .rapidfunnel-components--link_standard_light { color: #888; text-decoration: none; font-size: 14px; }
+    .rapidfunnel-components--footer_logo { width: 220px; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -124,22 +123,22 @@
           <span class="firstName">[firstName]</span> <span class="lastName">[lastName]</span>
         </div>
         <div class="rapidfunnel-components--user_info_text">
-          <i class="fa fa-envelope"></i>
+          <span class="fa fa-envelope"></span>
           <a id="email" href="#" class="rapidfunnel-components--link_standard">[email]</a>
         </div>
         <div class="rapidfunnel-components--user_info_text">
-          <i class="fa fa-phone"></i>
+          <span class="fa fa-phone"></span>
           <a id="phoneNumber" href="#" class="rapidfunnel-components--link_standard">[phoneNumber]</a>
         </div>
         <a id="customBookingLink" href="#" class="rapidfunnel-components--book_me_button_centered">Book Me</a>
         
-        <div class="rapidfunnel-components--social_links_wrapper">
-          <a href="#" class="rapidfunnel-components--social_link sm-twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="rapidfunnel-components--social_link sm-instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="rapidfunnel-components--social_link sm-tiktok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" class="rapidfunnel-components--social_link sm-linkedin"><i class="fab fa-linkedin-in"></i></a>
-          <a href="#" class="rapidfunnel-components--social_link sm-whatsapp"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="rapidfunnel-components--social_link sm-facebook"><i class="fab fa-facebook-f"></i></a>
+        <div class="rapidfunnel-components--footer_socials">
+          <a href="#" class="rapidfunnel-components--link_social sm-twitter"><span class="fab fa-twitter"></span></a>
+          <a href="#" class="rapidfunnel-components--link_social sm-instagram"><span class="fab fa-instagram"></span></a>
+          <a href="#" class="rapidfunnel-components--link_social sm-tiktok"><span class="fab fa-tiktok"></span></a>
+          <a href="#" class="rapidfunnel-components--link_social sm-linkedin"><span class="fab fa-linkedin-in"></span></a>
+          <a href="#" class="rapidfunnel-components--link_social sm-whatsapp"><span class="fab fa-whatsapp"></span></a>
+          <a href="#" class="rapidfunnel-components--link_social sm-facebook"><span class="fab fa-facebook-f"></span></a>
         </div>
       </div>
     </div>
@@ -153,20 +152,15 @@
       <li>|</li>
       <li><a href="https://rapidfunnel.com/privacy_policy_terms/" class="rapidfunnel-components--link_standard_light">Privacy Policy</a></li>
     </ul>
-    <div class="footer-logo">
-      <a href="https://www.rapidfunnel.com/powered-by-rapidfunnel/" target="_blank">
-        <img src="https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg">
-      </a>
-    </div>
-    <p style="margin-top: 15px; font-size: 13px;">Powered by RapidFunnel</p>
+    <a href="https://www.rapidfunnel.com/powered-by-rapidfunnel/" target="_blank">
+      <img src="https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg" class="rapidfunnel-components--footer_logo">
+    </a>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
-  
   <script>
-    // הגדרת userId כברירת מחדל אם אין ב-URL
     const urlParams = new URLSearchParams(window.location.search);
     window.userId = urlParams.get('userId') || '358354'; 
   </script>
