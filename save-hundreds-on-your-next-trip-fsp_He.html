@@ -20,35 +20,33 @@
     .image-box { flex: 1; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 350px; }
     .image-box img { width: 100%; border-radius: 15px; display: block; }
 
-    /* צמצום רווחים בחלק הלבן האמצעי */
-    .content-area { padding: 30px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
+    .content-area { padding: 10px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
     
-    .wasting-title { color: #0056A7; font-size: 44px; font-weight: 900; margin-bottom: 20px; text-align: center; line-height: 1.2; }
-    .wasting-list { font-size: 22px; line-height: 1.6; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
-    .wasting-list li { margin-bottom: 15px; padding-right: 25px; border-right: 8px solid #ff9d2b; }
+    .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-top: 5px; margin-bottom: 15px; text-align: center; line-height: 1.2; }
+    .wasting-list { font-size: 22px; line-height: 1.5; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin-bottom: 5px; }
+    .wasting-list li { margin-bottom: 12px; padding-right: 25px; border-right: 8px solid #ff9d2b; }
     .wasting-list li strong { color: #000; font-size: 24px; }
 
-    /* Footer Section */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 60px 5%; display: flex; justify-content: center;
+      background-size: cover; padding: 50px 5%; display: flex; justify-content: center;
     }
     .footer-container { 
       max-width: 1300px; width: 100%; display: flex; align-items: center; 
       justify-content: space-between; gap: 40px; position: relative;
     }
     
-    .footer-text-area { flex: 1.2; position: relative; }
+    .footer-text-area { flex: 1.2; position: relative; display: flex; flex-direction: column; align-items: flex-end; }
     .footer-text { color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
+    /* חץ ממוקם מתחת לכיתוב כדי שלא יסתיר אותו */
     .arrow-container {
-      position: absolute;
-      left: -20px; 
-      bottom: -30px;
+      margin-top: 20px; /* נותן מרווח מתחת לטקסט */
       width: 180px;
       z-index: 10;
       animation: flashArrow 1.2s infinite ease-in-out;
+      align-self: center; /* ממרכז את החץ ביחס לטקסט שמעליו */
     }
 
     @keyframes flashArrow {
@@ -73,8 +71,8 @@
 
     @media (max-width: 1100px) {
       .footer-container { flex-direction: column !important; align-items: center; }
-      .arrow-container { display: none; }
       .footer-text { font-size: 38px; text-align: center; }
+      .footer-text-area { align-items: center; }
       .form-box { min-width: 100%; margin-top: 20px; }
     }
   </style>
@@ -93,7 +91,7 @@
 
   <div class="content-area">
     <h3 class="wasting-title">
-      למה מטיילים ברוב העולם, כן כן גם כמוכם<br>
+      למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>
       מבזבזים מאות או אלפי דולרים בכל שנה?
     </h3>
     <ul class="wasting-list">
