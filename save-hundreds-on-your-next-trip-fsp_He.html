@@ -2,51 +2,65 @@
 <html dir="rtl" lang="he">
 <head>
   <meta charset="utf-8">
-  <title>חסוך מאות דולרים בטיול הבא שלך</title>
+  <title>חיסכון בטיולים - Travel Advantage</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   
-  <link href="https://my.aimmwrlife.com/css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="https://my.aimmwrlife.com/css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="https://my.aimmwrlife.com/css/aim-becb63.webflow.css" rel="stylesheet" type="text/css">
-  
   <style>
-    body { direction: rtl; text-align: right; font-family: sans-serif; overflow-x: hidden; }
+    /* עיצוב בסיסי ונקי שמתאים לעברית */
+    body, html { margin: 0; padding: 0; font-family: sans-serif; overflow-x: hidden; }
     
-    /* תיקון תמונת הרקע והטקסט מעליה */
-    .fspherosection-3 {
-      background-image: url('https://my.aimmwrlife.com/images/Happy-Girl.png') !important;
-      background-position: center !important;
-      background-size: cover !important;
-      display: flex !important;
-      justify-content: flex-start !important;
-      align-items: center !important;
-      padding-right: 5% !important;
-      min-height: 80vh !important;
+    /* חלק עליון - תמונה עם טקסט בצד */
+    .hero-container {
+      background: url('https://my.aimmwrlife.com/images/Happy-Girl.png') no-repeat center center;
+      background-size: cover;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
     }
 
-    .fspherotextwrapper-3 {
-      background-color: rgba(255, 255, 255, 0.85); /* רקע לבן שקוף כדי שהטקסט יהיה קריא */
+    .hero-content {
+      background-color: rgba(255, 255, 255, 0.9); /* רקע לבן שקוף לטקסט */
       padding: 30px;
       border-radius: 15px;
       max-width: 500px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
     }
 
-    .fspheroheading-3 { color: #0056A7 !important; font-size: 32px !important; line-height: 1.2 !important; }
-    .heading-19 { color: #333 !important; font-size: 20px !important; margin-top: 15px !important; }
+    h1 { color: #0056A7; font-size: 36px; line-height: 1.2; margin-bottom: 20px; }
+    h2 { color: #444; font-size: 22px; font-weight: normal; }
 
-    /* סידור הטופס */
-    .fspcontactformwrapper-3 {
-      background-color: #ffffff !important;
-      border: 2px solid #0056A7 !important;
-      padding: 30px !important;
-      margin-top: -50px !important; /* גורם לטופס "לעלות" קצת על התמונה */
-      z-index: 10;
-      position: relative;
+    /* חלק כחול - היתרונות */
+    .features-section {
+      background-color: #0056A7;
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
     }
 
-    input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; text-align: right; }
-    .submit-btn { background-color: #0056A7; color: white; padding: 18px; width: 100%; border: none; border-radius: 10px; font-weight: bold; font-size: 20px; cursor: pointer; }
+    .features-content { max-width: 800px; margin: 0 auto; text-align: right; }
+    .feature-item { margin-bottom: 15px; font-size: 18px; }
+
+    /* חלק תחתון - הטופס */
+    .form-section { padding: 60px 20px; background-color: #f4f7f9; text-align: center; }
+    .form-box {
+      background: white;
+      max-width: 500px;
+      margin: -100px auto 0; /* גורם לטופס לצוף מעל החלק הכחול */
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      border: 1px solid #ddd;
+    }
+
+    input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc; font-size: 16px; box-sizing: border-box; }
+    .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .btn:hover { background-color: #003d7a; }
+
+    @media (max-width: 768px) {
+      .hero-container { justify-content: center; text-align: center; }
+      h1 { font-size: 28px; }
+    }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -62,35 +76,36 @@
   </script>
 </head>
 <body>
-  <div class="pagewrapper-6">
-    <section class="fspherosection-3">
-      <div class="fspherotextwrapper-3">
-        <h1 class="fspheroheading-3"><strong>חסוך מאות דולרים בטיול הבא שלך, עוד לפני שתזמין!</strong></h1>
-        <h2 class="heading-19">רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה מטיילים חכמים עושים אחרת.</h2>
-      </div>
-    </section>
 
-    <section class="fspsection2-3" style="background-color: #0056a7; color: white; padding: 60px 20px; text-align: center;">
-      <h1 class="heading-20" style="color: white; font-size: 28px;"><strong>למה אתה מבזבז מאות דולרים בכל שנה?</strong></h1>
-      <div style="max-width: 800px; margin: 20px auto; text-align: right; display: inline-block;">
-        <p>✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</p>
-        <p>✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</p>
-        <p>✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</p>
-      </div>
-    </section>
-
-    <section class="fspcontactformsection-3" style="max-width: 600px; margin: 0 auto; padding: 20px;">
-      <div class="fspcontactformwrapper-3">
-        <h1 class="fspcontactformheading-3" style="text-align: center; color: #0056A7;">קבל את המדריך לחיסכון - בחינם!</h1>
-        <form id="rfContactForm">
-          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
-          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
-          <input type="email" id="contactEmail" placeholder="אימייל" required>
-          <input type="tel" id="contactPhone" placeholder="טלפון" required>
-          <button id="contactFormSubmitBtn" type="submit" class="submit-btn">שלחו לי את המדריך!</button>
-        </form>
-      </div>
-    </section>
+  <div class="hero-container">
+    <div class="hero-content">
+      <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
+      <h2>רוב המטיילים משלמים ביוקר בלי לדעת. גלה מה המטיילים החכמים עושים אחרת.</h2>
+    </div>
   </div>
+
+  <div class="features-section">
+    <div class="features-content">
+      <h3 style="font-size: 28px; text-align: center;">למה אתה מבזבז מאות דולרים בכל שנה?</h3>
+      <div class="feature-item">✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</div>
+      <div class="feature-item">✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</div>
+      <div class="feature-item">✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</div>
+    </div>
+  </div>
+
+  <div class="form-section">
+    <div class="form-box">
+      <h3 style="color: #0056A7; margin-top: 0;">קבל את המדריך לחיסכון - בחינם!</h3>
+      <form id="rfContactForm">
+        <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+        <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+        <input type="email" id="contactEmail" placeholder="אימייל" required>
+        <input type="tel" id="contactPhone" placeholder="טלפון" required>
+        <button id="contactFormSubmitBtn" type="submit" class="btn">שלחו לי את המדריך!</button>
+      </form>
+      <p style="font-size: 14px; color: #777; margin-top: 15px;">🔒 המידע שלך מאובטח - אין צורך בכרטיס אשראי</p>
+    </div>
+  </div>
+
 </body>
 </html>
