@@ -17,6 +17,8 @@
     .hero-container { max-width: 1100px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap-reverse; }
     .hero-content { flex: 1; color: white; text-align: center; text-shadow: 2px 4px 15px rgba(0,0,0,0.8); }
     .hero-content h1 { font-size: 65px; margin: 0 0 10px 0; color: #ff9d2b; font-weight: 900; line-height: 1.1; }
+    
+    /* הגדלת הטקסט הלבן ב-Hero כפי שביקשת */
     .hero-content h2 { font-size: 36px; font-weight: 600; line-height: 1.3; color: #fff; margin: 0; }
     
     .image-box { flex: 0 1 350px; }
@@ -24,7 +26,10 @@
 
     /* Content Area */
     .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
+    
+    /* התיקון לכותרת: למה מטיילים... כן כן גם כמוכם... ומבזבזים בשורה מתחת */
     .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
+    
     .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
     .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
@@ -46,6 +51,20 @@
     .form-subtitle { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 20px; font-weight: 900; display: block; }
     input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
+
+    /* RapidFunnel Footer Styles */
+    .rapidfunnel-components--footer_section { background-color: #000; color: #fff; padding: 60px 0 0 0; direction: ltr; text-align: center; }
+    .rapidfunnel-components--profileimage { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #fff; }
+    .rapidfunnel-components--namediv { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #fff; }
+    .rapidfunnel-components--user_info_text { margin-bottom: 8px; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .rapidfunnel-components--link_standard { color: #fff; text-decoration: none; }
+    .rapidfunnel-components--book_me_button_centered { background-color: #fff; color: #000; padding: 10px 30px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; margin: 20px 0; }
+    .footer-btn-socials { width: 45px; height: 45px; border: 1px solid white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin: 0 5px; color: white; text-decoration: none; }
+    
+    .rapidfunnel-components--footerbottom { background-color: #111; padding: 25px; border-top: 1px solid #222; font-size: 14px; color: #888; margin-top: 40px; }
+    .rapidfunnel-components--footer_bottom { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 15px; }
+    .rapidfunnel-components--link_standard_light { color: #888; text-decoration: none; }
+    .footer-logo img { width: 220px; height: auto; margin-top: 20px; }
   </style>
 </head>
 <body>
@@ -91,16 +110,76 @@
       <div class="form-box">
         <h3>מלאו את הפרטים שלכם...</h3>
         <span class="form-subtitle">כדי לקבל את המדריך בחינם</span>
-        <form>
-          <input type="text" placeholder="שם פרטי" required>
-          <input type="text" placeholder="שם משפחה" required>
-          <input type="email" placeholder="אימייל" required>
-          <input type="tel" placeholder="טלפון" required>
+        <form id="rfContactForm">
+          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+          <input type="email" id="contactEmail" placeholder="אימייל" required>
+          <input type="tel" id="contactPhone" placeholder="טלפון" required>
           <button type="submit" class="submit-btn">גם אני רוצה לחסוך כסף - עכשיו!</button>
         </form>
       </div>
     </div>
   </section>
 
+  <footer class="rapidfunnel-components--footer_section">
+    <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" id="profileImage" class="rapidfunnel-components--profileimage">
+    <div class="rapidfunnel-components--namediv">
+      <span class="firstName">[firstName]</span> <span class="lastName">[lastName]</span>
+    </div>
+    <div class="rapidfunnel-components--user_info_text">
+      <span class="fa fa-envelope"></span>
+      <a id="email" href="#" class="rapidfunnel-components--link_standard">[email]</a>
+    </div>
+    <div class="rapidfunnel-components--user_info_text">
+      <span class="fa fa-phone"></span>
+      <a id="phoneNumber" href="#" class="rapidfunnel-components--link_standard">[phoneNumber]</a>
+    </div>
+    <a id="customBookingLink" href="#" class="rapidfunnel-components--book_me_button_centered">Book Me</a>
+    
+    <div class="rf-social-icons">
+      <a href="#" class="footer-btn-socials"><span class="fab fa-twitter"></span></a>
+      <a href="#" class="footer-btn-socials"><span class="fab fa-instagram"></span></a>
+      <a href="#" class="footer-btn-socials"><span class="fab fa-tiktok"></span></a>
+      <a href="#" class="footer-btn-socials"><span class="fab fa-linkedin"></span></a>
+      <a href="#" class="footer-btn-socials"><span class="fab fa-whatsapp"></span></a>
+      <a href="#" class="footer-btn-socials"><span class="fab fa-facebook-f"></span></a>
+    </div>
+
+    <div class="rapidfunnel-components--footerbottom">
+      <ul class="rapidfunnel-components--footer_bottom">
+        <li>Copyright 2024</li>
+        <li>|</li>
+        <li><a href="https://rapidfunnel.com/terms-conditions/" class="rapidfunnel-components--link_standard_light">Terms and Conditions</a></li>
+        <li>|</li>
+        <li><a href="https://rapidfunnel.com/privacy_policy_terms/" class="rapidfunnel-components--link_standard_light">Privacy Policy</a></li>
+      </ul>
+      <div class="footer-logo">
+        <a href="https://www.rapidfunnel.com/powered-by-rapidfunnel/" target="_blank">
+          <img src="https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg" id="footer-logo">
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
+  <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    window.userId = urlParams.get('userId') || '358354'; 
+
+    document.addEventListener("DOMContentLoaded", function() {
+      var logo = document.getElementById("footer-logo");
+      if(logo) {
+        logo.addEventListener("mouseenter", function() {
+          logo.src = "https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d84985c878f8e87a8981_RF%20LOGO%20FOOTER%20(HOVER).svg";
+        });
+        logo.addEventListener("mouseleave", function() {
+          logo.src = "https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg";
+        });
+      }
+    });
+  </script>
 </body>
 </html>
