@@ -20,18 +20,17 @@
     .image-box { flex: 1; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 380px; }
     .image-box img { width: 100%; border-radius: 15px; display: block; }
 
-    /* עיצוב נקי לחלק האמצעי - ללא אנגלית */
-    .content-area { padding: 60px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
+    /* חלק אמצעי - מבנה מתורגם מלא */
+    .content-area { padding: 60px 5%; text-align: center; max-width: 1000px; margin: 0 auto; }
     
     .benefits-title { color: #0056A7; font-size: 45px; margin-bottom: 35px; font-weight: 900; }
-    .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 24px; line-height: 1.8; font-weight: bold; margin-bottom: 60px; }
+    .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 22px; line-height: 1.8; font-weight: bold; margin-bottom: 60px; }
     .benefits-list li { margin-bottom: 15px; position: relative; padding-right: 45px; }
-    .benefits-list li::before { content: '✔️'; color: #0056A7; position: absolute; right: 0; font-size: 28px; }
+    .benefits-list li::before { content: '✔️'; color: #0056A7; position: absolute; right: 0; font-size: 26px; }
 
-    .wasting-title { color: #0056A7; font-size: 38px; font-weight: 900; margin-bottom: 30px; text-align: right; }
-    .wasting-list { font-size: 20px; line-height: 1.6; color: #333; list-style: none; padding: 0; text-align: right; }
-    .wasting-list li { margin-bottom: 25px; padding-right: 20px; border-right: 6px solid #ff9d2b; }
-    .wasting-list li strong { color: #000; font-size: 22px; }
+    .wasting-title { color: #0056A7; font-size: 36px; font-weight: 900; margin-bottom: 40px; text-align: center; }
+    .wasting-list { font-size: 19px; line-height: 1.6; color: #333; list-style: none; padding: 0; text-align: right; }
+    .wasting-list li { margin-bottom: 25px; padding-right: 20px; border-right: 5px solid #ff9d2b; } /* הקווים הכתומים בצד ימין */
 
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
@@ -40,46 +39,41 @@
     }
     .footer-container { 
       max-width: 1300px; width: 100%; display: flex; align-items: center; 
-      justify-content: space-between; gap: 20px; position: relative;
+      justify-content: space-between; gap: 40px; position: relative;
     }
     
     .footer-text-area { flex: 1.2; position: relative; }
-    .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
+    .footer-text { color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; margin-bottom: 20px; }
     
-    /* חץ ממוקם שמאלה לכיוון הטופס - כדי שלא יסתיר את הטקסט */
-    .arrow-svg-container {
+    /* החץ הלבן המעוקל - ממוקם בצד שמאל של הטקסט לכיוון הטופס */
+    .arrow-container {
       position: absolute;
-      left: 450px; 
-      top: 100%; 
-      width: 180px;
+      left: 10px; /* צמוד לטופס */
+      bottom: -40px;
+      width: 150px;
       z-index: 10;
-      animation: pointToForm 2s infinite ease-in-out;
-    }
-
-    @keyframes pointToForm {
-      0%, 100% { transform: translateX(0) rotate(-5deg); }
-      50% { transform: translateX(-25px) rotate(-10deg); }
+      transform: scaleX(-1); /* הופך את כיוון החץ שיצביע שמאלה */
     }
 
     .form-box { 
-      flex: 1; background: white; padding: 40px; border-radius: 35px; min-width: 480px; 
+      flex: 1; background: white; padding: 40px; border-radius: 35px; min-width: 450px; 
       box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box; z-index: 5;
     }
-    .form-box h3 { color: #0056A7; margin-bottom: 25px; font-size: 28px; text-align: center; font-weight: bold; }
+    .form-box h3 { color: #0056A7; margin-bottom: 25px; font-size: 26px; text-align: center; font-weight: bold; }
     
     input { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 12px; border: 2px solid #eee; font-size: 18px; text-align: right; box-sizing: border-box; }
     
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 24px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; transition: 0.3s; }
     .submit-btn:hover { background: #ff9d2b; }
 
-    .no-credit-card { text-align: center; color: #555; font-size: 16px; margin-top: 15px; font-weight: bold; display: block; }
+    .no-credit-card { text-align: center; color: #555; font-size: 15px; margin-top: 15px; font-weight: bold; display: block; }
 
     #rf-user-details { background: #000; color: #fff; padding: 25px; width: 100%; border-top: 5px solid #ff9d2b; }
 
     @media (max-width: 1100px) {
       .footer-container { flex-direction: column !important; align-items: center; }
-      .arrow-svg-container { display: none; }
-      .footer-text { font-size: 35px; text-align: center; }
+      .arrow-container { display: none; }
+      .footer-text { font-size: 32px; text-align: center; }
       .form-box { min-width: 100%; margin-top: 30px; }
     }
   </style>
@@ -121,10 +115,10 @@
           הצטרפו לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים!
         </div>
         
-        <div class="arrow-svg-container">
+        <div class="arrow-container">
           <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M180 10C150 50 80 80 20 85" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M45 70L15 85L40 95" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M155 70L185 85L160 95" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </div>
