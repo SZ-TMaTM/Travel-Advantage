@@ -5,91 +5,92 @@
   <title>חסוך מאות דולרים בטיול הבא - Travel Advantage</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <style>
-    body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: #f0f4f8; }
+    body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; }
 
-    /* חלק 1: רקע ים עליון */
+    /* חלק 1: רקע ים עליון - תיקון נתיב התמונה */
     .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
-                  url('https://images.unsplash.com/photo-1506929113675-b55f949b654f?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+      background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
+                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover;
-      padding: 60px 5%;
+      padding: 80px 5%;
       display: flex;
       justify-content: center;
-      min-height: 500px;
+      min-height: 550px;
     }
 
     .container {
-      max-width: 1100px;
+      max-width: 1200px;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 30px;
+      gap: 40px;
       flex-wrap: wrap-reverse;
     }
 
-    .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
-    .hero-content h1 { font-size: 42px; margin-bottom: 15px; line-height: 1.2; color: #ff9d2b; }
-    .hero-content h2 { font-size: 22px; font-weight: normal; }
+    .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+    .hero-content h1 { font-size: 48px; margin-bottom: 20px; line-height: 1.1; color: #ff9d2b; font-weight: bold; }
+    .hero-content h2 { font-size: 26px; font-weight: normal; line-height: 1.4; color: white; }
 
     .image-box { 
-      background: white; padding: 12px; border-radius: 20px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 350px; 
+      background: white; padding: 10px; border-radius: 25px; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 400px; 
     }
-    .image-box img { width: 100%; border-radius: 15px; display: block; }
+    .image-box img { width: 100%; border-radius: 20px; display: block; }
 
-    /* חלק 2: האמצע הלבן עם הפירוט */
+    /* חלק 2: האמצע - ביטול ה"קובייה" ופריסה רחבה */
     .details-section {
       background: #ffffff;
-      padding: 60px 20px;
-      text-align: center;
+      padding: 80px 5%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
     }
-    .details-card {
-      max-width: 800px;
-      margin: 0 auto;
+    .details-content {
+      max-width: 1000px; /* רחב יותר מהקוד הקודם */
+      width: 100%;
       text-align: right;
-      border: 1px solid #e1e8ed;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     }
-    .details-card h2 { color: #0056A7; font-size: 30px; margin-bottom: 25px; text-align: center; }
-    .details-list { list-style: none; padding: 0; font-size: 19px; line-height: 1.8; color: #444; }
-    .details-list li { margin-bottom: 12px; padding-right: 35px; position: relative; }
-    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; }
+    .details-content h2 { color: #0056A7; font-size: 36px; margin-bottom: 40px; text-align: center; font-weight: bold; }
+    .details-list { list-style: none; padding: 0; font-size: 22px; line-height: 2; color: #333; }
+    .details-list li { margin-bottom: 15px; padding-right: 45px; position: relative; }
+    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; font-size: 24px; }
 
-    /* חלק 3: רקע הרים תחתון */
+    /* חלק 3: רקע הרים תחתון (שכבר עובד לך) */
     .footer-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover;
-      padding: 80px 5%;
+      padding: 100px 5%;
       display: flex;
       justify-content: center;
     }
 
     .form-container {
-      background: white; padding: 35px; border-radius: 25px; 
-      width: 100%; max-width: 420px; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+      background: white; padding: 40px; border-radius: 30px; 
+      width: 100%; max-width: 450px; box-shadow: 0 15px 45px rgba(0,0,0,0.4);
     }
-    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 20px; font-size: 24px; }
+    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 25px; font-size: 28px; margin-top: 0; }
     
     input { 
-      width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 8px; 
-      border: 1px solid #ccc; font-size: 16px; box-sizing: border-box; text-align: right; 
+      width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; 
+      border: 1px solid #ddd; font-size: 17px; box-sizing: border-box; text-align: right; 
     }
     .submit-btn { 
-      background: #0056A7; color: white; width: 100%; padding: 16px; 
-      border: none; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer;
+      background: #0056A7; color: white; width: 100%; padding: 18px; 
+      border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer;
+      transition: background 0.3s;
     }
+    .submit-btn:hover { background: #004485; }
 
-    .footer-text { flex: 1; color: white; text-align: right; max-width: 500px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
-    .footer-text h2 { font-size: 38px; line-height: 1.1; }
+    .footer-text { flex: 1; color: white; text-align: right; max-width: 550px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
+    .footer-text h2 { font-size: 42px; line-height: 1.1; color: #ff9d2b; }
 
     @media (max-width: 768px) {
       .container { flex-direction: column-reverse; text-align: center; }
       .hero-content, .footer-text { text-align: center; }
-      .hero-content h1 { font-size: 30px; }
+      .hero-content h1 { font-size: 34px; }
+      .details-list { font-size: 18px; }
     }
   </style>
 </head>
@@ -108,14 +109,14 @@
   </section>
 
   <section class="details-section">
-    <div class="details-card">
-      <h2>למה מטיילים כמוך מבזבזים כסף?</h2>
+    <div class="details-content">
+      <h2>למה מטיילים כמוך מבזבזים מאות (או אלפי) דולרים כל שנה?</h2>
       <ul class="details-list">
-        <li>חיפוש דילים לוקח שעות - וההנחות לרוב מנופחות.</li>
-        <li>הזמנה באתרים שונים גורמת לעמלות נסתרות ומחירים גבוהים.</li>
-        <li>פספוס של תעריפי "סוכנים בלבד" שסגורים לקהל הרחב.</li>
-        <li>חוסר במערכת חכמה שמתריעה מתי המחיר באמת הכי נמוך.</li>
-        <li style="font-weight: bold; color: #0056A7;">הטיול הבא שלך יכול לעלות הרבה פחות.</li>
+        <li>חיפוש דילים לוקח שעות - ובכל זאת רוב ה"הנחות" מנופחות.</li>
+        <li>הזמנה במספר אתרים מובילה לתזמון גרוע ועמלות נסתרות.</li>
+        <li>פספוס תעריפים למקורבים בלבד ודילים שלא פורסמו.</li>
+        <li>תשלום יתר פשוט כי אין לך מערכת חכמה לניהול הזמנות.</li>
+        <li style="font-weight: bold; color: #0056A7;">כל טיול יכול לעלות פחות - אם תדע מה לעשות.</li>
       </ul>
     </div>
   </section>
@@ -123,7 +124,7 @@
   <section class="footer-section">
     <div class="container">
       <div class="form-container">
-        <h3>קבלו את המדריך בחינם!</h3>
+        <h3>קבל את המדריך בחינם!</h3>
         <form id="rfContactForm">
           <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
@@ -133,7 +134,7 @@
         </form>
       </div>
       <div class="footer-text">
-        <h2>הצטרפו לאלפי מטיילים שכבר מטיילים יותר ומשלמים פחות.</h2>
+        <h2>הצטרף לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים תוך כדי חיסכון ענק.</h2>
       </div>
     </div>
   </section>
