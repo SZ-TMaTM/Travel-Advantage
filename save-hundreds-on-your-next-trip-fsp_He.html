@@ -7,111 +7,77 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; }
 
-    /* חלק 1: רקע ים עליון */
+    /* עיצוב כללי של הדף */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover;
-      padding: 80px 5%;
+      padding: 60px 5%;
       display: flex;
       justify-content: center;
-      min-height: 500px;
+      min-height: 450px;
     }
-
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      flex-wrap: wrap-reverse;
-    }
-
+    .container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
     .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-    .hero-content h1 { font-size: 48px; margin-bottom: 20px; line-height: 1.1; color: #ff9d2b; font-weight: bold; }
-    .hero-content h2 { font-size: 26px; font-weight: normal; line-height: 1.4; color: white; }
-
-    .image-box { 
-      background: white; padding: 10px; border-radius: 25px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 380px; 
-    }
+    .hero-content h1 { font-size: 42px; margin-bottom: 20px; color: #ff9d2b; font-weight: bold; }
+    .hero-content h2 { font-size: 24px; font-weight: normal; }
+    .image-box { background: white; padding: 10px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 350px; }
     .image-box img { width: 100%; border-radius: 20px; display: block; }
 
-    /* חלק 2: האמצע הלבן */
-    .details-section {
-      background: #ffffff;
-      padding: 80px 5%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .details-content { max-width: 1000px; width: 100%; text-align: right; }
-    .details-content h2 { color: #0056A7; font-size: 36px; margin-bottom: 40px; text-align: center; font-weight: bold; }
-    .details-list { list-style: none; padding: 0; font-size: 22px; line-height: 2; color: #333; }
-    .details-list li { margin-bottom: 15px; padding-right: 45px; position: relative; }
-    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; font-size: 24px; }
+    .details-section { background: #ffffff; padding: 60px 5%; width: 100%; display: flex; justify-content: center; }
+    .details-content { max-width: 900px; width: 100%; text-align: right; }
+    .details-content h2 { color: #0056A7; font-size: 32px; margin-bottom: 30px; text-align: center; font-weight: bold; }
+    .details-list { list-style: none; padding: 0; font-size: 20px; line-height: 1.8; color: #333; }
+    .details-list li { margin-bottom: 12px; padding-right: 40px; position: relative; }
+    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; }
 
-    /* חלק 3: רקע הרים תחתון */
     .footer-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover;
-      padding: 100px 5%;
+      padding: 80px 5%;
       display: flex;
       justify-content: center;
     }
+    .form-container { background: white; padding: 35px; border-radius: 25px; width: 100%; max-width: 400px; box-shadow: 0 15px 45px rgba(0,0,0,0.4); }
+    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 20px; font-size: 24px; margin-top: 0; }
+    input { width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; box-sizing: border-box; text-align: right; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 16px; border: none; border-radius: 10px; font-size: 20px; font-weight: bold; cursor: pointer; }
+    .footer-text { flex: 1; color: white; text-align: right; max-width: 500px; }
+    .footer-text h2 { font-size: 36px; color: #ff9d2b; }
 
-    .form-container {
-      background: white; padding: 40px; border-radius: 30px; 
-      width: 100%; max-width: 450px; box-shadow: 0 15px 45px rgba(0,0,0,0.4);
-    }
-    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 25px; font-size: 28px; margin-top: 0; }
-    
-    input { 
-      width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; 
-      border: 1px solid #ddd; font-size: 17px; box-sizing: border-box; text-align: right; 
-    }
-    .submit-btn { 
-      background: #0056A7; color: white; width: 100%; padding: 18px; 
-      border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer;
-    }
-
-    .footer-text { flex: 1; color: white; text-align: right; max-width: 550px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
-    .footer-text h2 { font-size: 42px; line-height: 1.1; color: #ff9d2b; }
-
-    /* עיצוב פוטר סוכן דינמי */
-    #rf-user-details {
+    /* עיצוב הפוטר של הסוכן - הפתרון הסופי */
+    #custom-agent-footer {
       background-color: #1a1a1a;
       color: white;
-      padding: 30px 20px;
-      min-height: 100px;
+      padding: 25px 20px;
+      border-top: 3px solid #ff9d2b;
     }
-    .agent-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-        max-width: 900px;
-        margin: 0 auto;
-        direction: ltr; /* פרטי קשר בד"כ משמאל לימין */
+    .agent-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      direction: ltr; /* אחידות עם מבנה האתר המקורי */
     }
-    .agent-img-circle {
-        width: 70px;
-        height: 70px;
-        border-radius: 50%;
-        border: 2px solid #ff9d2b;
-        background-size: cover;
-        background-position: center;
+    .agent-avatar {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      border: 2px solid #ff9d2b;
+      object-fit: cover;
+      background: #333;
     }
-    .agent-text { text-align: left; }
-    .agent-name-label { font-weight: bold; font-size: 20px; color: #ff9d2b; display: block; }
-    .agent-sub { font-size: 14px; color: #ccc; }
+    .agent-details { text-align: left; }
+    .agent-name { font-weight: bold; font-size: 22px; color: #ff9d2b; display: block; margin-bottom: 5px; }
+    .agent-tagline { font-size: 14px; color: #aaa; display: block; }
 
     @media (max-width: 768px) {
-      .container { flex-direction: column-reverse; text-align: center; }
-      .agent-wrapper { flex-direction: column; text-align: center; }
-      .agent-text { text-align: center; }
+      .container { flex-direction: column-reverse; }
+      .agent-layout { flex-direction: column; text-align: center; }
+      .agent-details { text-align: center; }
     }
   </style>
 </head>
@@ -159,54 +125,55 @@
     </div>
   </section>
 
-  <div id="rf-user-details">
-      <div class="agent-wrapper">
-          <div id="agent-pic" class="agent-img-circle" style="background-image: url('https://rapidfunnel.com/wp-content/uploads/2021/01/user-icon.png');"></div>
-          <div class="agent-text">
-              <span id="agent-name" class="agent-name-label">טוען פרטי סוכן...</span>
-              <span id="agent-phone" class="agent-sub"></span>
+  <div id="custom-agent-footer">
+      <div class="agent-layout">
+          <img id="agent-image" class="agent-avatar" src="https://rapidfunnel.com/wp-content/uploads/2021/01/user-icon.png">
+          <div class="agent-details">
+              <span id="agent-name-display" class="agent-name">Authorized Agent</span>
+              <span id="agent-tagline-display" class="agent-tagline">Travel Advantage Partner</span>
           </div>
       </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
   
   <script>
+    // 1. פונקציית זיהוי סוכן מהכתובת
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
-    const resourceId = urlParams.get('resourceId');
 
-    window.userId = userId || '358354'; 
-    window.resourceId = resourceId || '67370';
+    // 2. נתוני הסוכנים (כאן תוכלי להוסיף סוכנים נוספים בעתיד)
+    const agents = {
+        "358354": {
+            name: "Your Full Name", // <--- כאן תכתבי את השם המלא שלך
+            image: "https://my.aimmwrlife.com/images/user-placeholder.png", // <--- קישור לתמונה שלך
+            tagline: "Expert Travel Consultant"
+        }
+    };
+
+    // 3. הצגת הפרטים לפי ה-ID
+    $(document).ready(function() {
+        if (userId && agents[userId]) {
+            // אם זה ה-ID שלך - נציג את הפרטים שלך
+            $('#agent-name-display').text(agents[userId].name);
+            $('#agent-image').attr('src', agents[userId].image);
+            $('#agent-tagline-display').text(agents[userId].tagline);
+        } else if (userId) {
+            // אם זה סוכן אחר שאין לנו נתונים עליו - נציג מזהה כללי
+            $('#agent-name-display').text("Authorized Agent #" + userId);
+            $('#agent-tagline-display').text("Travel Advantage Global Partner");
+        } else {
+            // אם אין ID בכלל בקישור
+            $('#agent-name-display').text("Travel Advantage Team");
+        }
+    });
+
+    // הגדרות למערכת RapidFunnel (לשליחת הטופס)
+    window.userId = userId || '358354';
+    window.resourceId = urlParams.get('resourceId') || '67370';
     window.assignCampaignId = 2434;
     window.labelId = 48708;
-
-    $(document).ready(function() {
-        // ניסיון ראשון: לתת לסקריפט של RapidFunnel לעבוד
-        if (typeof renderUserDetails === "function") {
-            renderUserDetails('#rf-user-details');
-        }
-
-        // ניסיון שני: אם הוא לא עבד תוך 1.5 שניות, נמלא ידנית לפי ה-userId
-        setTimeout(function() {
-            const currentName = $('#agent-name').text();
-            if (currentName === "טוען פרטי סוכן..." || currentName === "") {
-                
-                // כאן אנחנו מגדירים מה קורה אם הסקריפט נחסם
-                if (window.userId === '358354') {
-                    $('#agent-name').text('השם שלך כאן'); // <--- תכתבי כאן את שמך
-                    $('#agent-phone').text('Contact via Portal');
-                    $('#agent-pic').css('background-image', "url('כאן קישור לתמונה שלך')");
-                } else {
-                    // עבור כל סוכן אחר - נציג את המספר שלו כדי שידעו שזה הוא
-                    $('#agent-name').text('Authorized Agent #' + window.userId);
-                    $('#agent-phone').text('Travel Advantage Partner');
-                }
-            }
-        }, 1500);
-    });
   </script>
 </body>
 </html>
