@@ -7,11 +7,10 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* Hero Section */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 60px 5%; display: flex; justify-content: center; align-items: center;
+      background-size: cover; padding: 40px 5%; display: flex; justify-content: center; align-items: center;
     }
     .hero-container { max-width: 1100px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap-reverse; }
     .hero-content { flex: 1; color: white; text-align: center; text-shadow: 2px 4px 15px rgba(0,0,0,0.8); }
@@ -20,46 +19,38 @@
     .image-box { flex: 0 1 350px; }
     .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6), 0 20px 50px rgba(0,0,0,0.5); display: block; }
 
-    /* Text Content Area */
-    .content-area { padding: 40px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
-    .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-bottom: 30px; line-height: 1.2; }
-    .wasting-list { font-size: 26px; line-height: 1.6; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
-    .wasting-list li { margin-bottom: 15px; padding-right: 20px; border-right: 6px solid #ff9d2b; }
+    .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
+    .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
+    .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
+    .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
-    /* Form Section with Background Image */
-    .form-section-bg {
-      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+    .footer-bg {
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 80px 5%; display: flex; justify-content: center;
+      background-size: cover; padding: 50px 5%; display: flex; justify-content: center;
     }
-    .main-flex-container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; }
+    .footer-container { max-width: 1300px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+    .footer-text-column { flex: 1.5; display: flex; flex-direction: column; align-items: center; min-width: 550px; }
+    .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    .footer-text-side { flex: 1; color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; min-width: 300px; }
-    
-    /* The Floating Form - Back to original style */
+    .arrow-container { width: 130px; margin-top: 15px; animation: flashArrow 1.2s infinite ease-in-out; }
+    @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.05) scaleX(-1); } }
+
     .form-box { 
-      flex: 1; background: rgba(255, 255, 255, 0.95); padding: 40px; border-radius: 40px; min-width: 380px; box-shadow: 0 25px 60px rgba(0,0,0,0.5); 
+      flex: 1; background: white; padding: 15px 35px 35px 35px; border-radius: 35px; min-width: 400px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
     }
-    .form-box h3 { color: #0056A7; margin: 0 0 10px 0; font-size: 30px; text-align: center; font-weight: 900; }
-    .form-box p { color: #0056A7; text-align: center; margin-bottom: 25px; font-weight: 700; font-size: 20px; }
-    
-    input { width: 100%; padding: 15px; margin-bottom: 12px; border-radius: 10px; border: 1px solid #ddd; font-size: 18px; text-align: right; box-sizing: border-box; background: #f9f9f9; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 18px; border: none; border-radius: 10px; font-size: 24px; font-weight: 900; cursor: pointer; transition: 0.3s; margin-top: 10px; }
-    .submit-btn:hover { background: #ff9d2b; transform: translateY(-2px); }
+    .form-box h3 { color: #0056A7; margin: 0 0 5px 0; font-size: 32px; text-align: center; font-weight: 900; }
+    .form-subtitle { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 20px; font-weight: 900; display: block; }
+    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
+    .submit-btn:hover { background: #ff9d2b; }
 
-    /* RapidFunnel Footers - Fixed and Exact */
-    .agent-footer { background-color: #000; color: white; padding: 60px 5%; text-align: center; border-bottom: 1px solid #222; }
-    .agent-card { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
-    .agent-photo { width: 120px; height: 120px; border-radius: 50%; border: 2px solid #555; object-fit: cover; margin-bottom: 15px; }
-    .agent-name { font-size: 24px; font-weight: bold; margin-bottom: 8px; }
-    .agent-contact-info { font-size: 18px; color: #ccc; margin-bottom: 20px; }
-    .agent-contact-info a { color: #ccc; text-decoration: none; display: block; margin: 4px 0; }
-    .book-me-white { background: #fff; color: #000; padding: 12px 40px; border-radius: 30px; text-decoration: none; font-weight: bold; font-size: 16px; margin: 15px 0; display: inline-block; }
-    .social-links { display: flex; gap: 15px; justify-content: center; margin-top: 10px; }
-    .social-links img { width: 30px; height: 30px; filter: invert(1); opacity: 0.8; }
-
-    .legal-footer { background-color: #1a1c1e; color: #888; padding: 25px; text-align: center; font-size: 13px; border-top: 1px solid #222; }
-    .legal-footer a { color: #888; text-decoration: none; margin: 0 8px; }
+    /* Footer סוכן דינמי של RapidFunnel */
+    #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
+    .agent-bar { display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; direction: ltr; }
+    .agent-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #ff9d2b; object-fit: cover; }
+    .agent-info { text-align: left; }
+    .agent-name { font-weight: bold; font-size: 20px; color: #ff9d2b; display: block; }
   </style>
 </head>
 <body>
@@ -75,24 +66,38 @@
   </section>
 
   <div class="content-area">
-    <h3 class="wasting-title">למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>מבזבזים מאות או אלפי דולרים בכל שנה?</h3>
+    <h3 class="wasting-title">
+      למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>
+      מבזבזים מאות או אלפי דולרים בכל שנה?
+    </h3>
     <ul class="wasting-list">
-      <li>חיפוש דילים לוקח שעות — ועדיין רוב ה"הנחות" מנופחות.</li>
-      <li>הזמנה דרך מספר אתרים — מובילה לעמלות נסתרות ומחירים גבוהים.</li>
-      <li>פספוס תעריפים למקורבים בלבד — דילים והטבות שרובכם לא רואים.</li>
-      <li>תשלום יתר על טיסות ומלונות — כי אין לכם מערכת חכמה שבודקת עבורכם.</li>
+      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות.</li>
+      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לעמלות נסתרות ומחירים גבוהים.</li>
+      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים והטבות שרובכם לא רואים.</li>
+      <li><strong>תשלום יתר על טיסות ומלונות</strong> — כי אין לכם מערכת חכמה שבודקת עבורכם.</li>
     </ul>
   </div>
 
-  <section class="form-section-bg">
-    <div class="main-flex-container">
-      <div class="footer-text-side">
-        הצטרפו לאלפי מטיילים<br>שהופכים את הטיולים שלהם<br>לבלתי נשכחים!
+  <section class="footer-bg">
+    <div class="footer-container">
+      <div class="footer-text-column">
+        <div class="footer-text">
+          הצטרפו לאלפי מטיילים<br>
+          שהופכים את הטיולים שלהם<br>
+          לבלתי נשכחים!
+        </div>
+        <div class="arrow-container">
+          <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M150 65L185 85L155 98" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
       </div>
       
       <div class="form-box">
         <h3>מלאו את הפרטים שלכם...</h3>
-        <p>כדי לקבל את המדריך בחינם</p>
+        <span class="form-subtitle">כדי לקבל את המדריך בחינם</span>
+        
         <form id="rfContactForm">
           <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
@@ -104,32 +109,25 @@
     </div>
   </section>
 
-  <footer class="agent-footer" id="rf-user-details">
-    <div class="agent-card">
-      <img src="" id="display-img" class="agent-photo" style="display:none;">
-      <div class="agent-name" id="display-name">טוען פרטי סוכן...</div>
-      <div class="agent-contact-info">
-        <a href="#" id="display-email"></a>
-        <a href="#" id="display-phone"></a>
-      </div>
-      <a href="#" class="book-me-white" id="display-booking" style="display:none;">Book Me</a>
-      <div class="social-links" id="display-social"></div>
+  <div id="rf-user-details">
     </div>
-  </footer>
-
-  <footer class="legal-footer">
-    <div>Copyright 2026 | <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a></div>
-    <div style="margin-top: 5px;">Powered by RapidFunnel.</div>
-  </footer>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
 
   <script>
-    if (typeof renderUserDetails === "function") {
+    // Logic to capture Agent ID and resource from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    window.userId = urlParams.get('userId') || '358354'; 
+    window.resourceId = urlParams.get('resourceId') || '67370';
+
+    $(document).ready(function() {
+      // Renders the agent details at the bottom automatically
+      if (typeof renderUserDetails === "function") {
         renderUserDetails('#rf-user-details');
-    }
+      }
+    });
   </script>
 
 </body>
