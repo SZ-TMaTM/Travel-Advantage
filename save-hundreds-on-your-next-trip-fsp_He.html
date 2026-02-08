@@ -45,12 +45,12 @@
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
     .submit-btn:hover { background: #ff9d2b; }
 
-    /* Footer סוכן דינמי של RapidFunnel */
-    #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
-    .agent-bar { display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; direction: ltr; }
-    .agent-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #ff9d2b; object-fit: cover; }
+    #rf-user-details { background-color: #1a1a1a; color: white; padding: 25px; border-top: 4px solid #ff9d2b; text-align: center; }
+    .agent-display { display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; direction: ltr; }
+    .agent-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #ff9d2b; object-fit: cover; background: #333; }
     .agent-info { text-align: left; }
-    .agent-name { font-weight: bold; font-size: 20px; color: #ff9d2b; display: block; }
+    .agent-name { font-weight: bold; font-size: 22px; color: #ff9d2b; display: block; }
+    .agent-contact { font-size: 16px; color: #ccc; }
   </style>
 </head>
 <body>
@@ -110,24 +110,27 @@
   </section>
 
   <div id="rf-user-details">
+    <div class="agent-display">
+      <img src="https://my.aimmwrlife.com/images/mwr-logo-white.png" class="agent-img" id="display-img">
+      <div class="agent-info">
+        <span class="agent-name" id="display-name">Travel Advantage Consultant</span>
+        <span class="agent-contact" id="display-site">mwr-travel-deals.com</span>
+      </div>
     </div>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
 
   <script>
-    // Logic to capture Agent ID and resource from URL
     const urlParams = new URLSearchParams(window.location.search);
-    window.userId = urlParams.get('userId') || '358354'; 
-    window.resourceId = urlParams.get('resourceId') || '67370';
-
-    $(document).ready(function() {
-      // Renders the agent details at the bottom automatically
-      if (typeof renderUserDetails === "function") {
+    const userId = urlParams.get('userId');
+    
+    // אם יש ID בכתובת, הסקריפט ינסה להחליף את הפרטים של הסוכן אוטומטית
+    if (userId && typeof renderUserDetails === "function") {
         renderUserDetails('#rf-user-details');
-      }
-    });
+    }
   </script>
 
 </body>
