@@ -10,13 +10,12 @@
   <link href="https://my.aimmwrlife.com/css/aim-becb63.webflow.css" rel="stylesheet" type="text/css">
   
   <style>
-    body { direction: rtl; text-align: right; font-family: 'Assistant', sans-serif, Arial; background-color: #fff; margin: 0; }
-    .fspcontactformwrapper-3 { background-color: #f9f9f9; padding: 25px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    input { width: 100%; padding: 12px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 8px; text-align: right; font-size: 16px; box-sizing: border-box; }
-    .submit-btn { background-color: #0056A7; color: white; padding: 18px; width: 100%; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-    .submit-btn:hover { background-color: #003d7a; transform: scale(1.02); }
-    .fsplisttext-3 { margin-bottom: 15px; font-size: 18px; line-height: 1.5; }
-    .hero-img { max-width: 100%; height: auto; display: block; margin: 20px auto; }
+    body { direction: rtl; text-align: right; font-family: sans-serif; }
+    .fspcontactformwrapper-3 { background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 15px; }
+    input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; text-align: right; }
+    .submit-btn { background-color: #0056A7; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+    /* תיקון לטקסט שבורח הצידה */
+    .fspherotextwrapper-3, .div-block-34 { max-width: 90%; margin: 0 auto; float: none !important; }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,62 +23,52 @@
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
   
   <script>
-    // פונקציה חכמה שמושכת את הנתונים מהכתובת (URL)
     const urlParams = new URLSearchParams(window.location.search);
-
-    // הגדרת הנתונים: אם השותף שם אותם בכתובת - נשתמש בהם. אם לא - נשתמש בדיפולט שלך.
-    const userId = urlParams.get('userId') || '358354'; // ברירת מחדל שלך
-    const resourceId = urlParams.get('resourceId') || '67370'; // ברירת מחדל שלך
+    const userId = urlParams.get('userId') || '358354';
+    const resourceId = urlParams.get('resourceId') || '67370';
     const assignCampaignId = urlParams.get('campaignId') || '2434';
     const labelId = urlParams.get('labelId') || '48708';
-    const pageName = 'Hebrew Dynamic Partner Page';
-
-    console.log("מערכת שותפים פעילה! הליד יישלח ליוזר: " + userId + " עבור משאב: " + resourceId);
+    
+    window.userId = userId;
+    window.resourceId = resourceId;
+    window.assignCampaignId = assignCampaignId;
+    window.labelId = labelId;
   </script>
 </head>
 <body>
   <div class="pagewrapper-6">
-    <section class="fspherosection-3" style="padding: 40px 20px; text-align: center;">
-      <div class="fspherotextwrapper-3">
-        <h1 class="fspheroheading-3"><strong>חסוך מאות דולרים בטיול הבא שלך, עוד לפני שתזמין!</strong></h1>
-        <h2 class="heading-19">רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה מטיילים חכמים עושים אחרת.</h2>
+    <section class="fspherosection-3" style="background-image: url('https://my.aimmwrlife.com/images/Happy-Girl.png'); background-size: cover; padding: 100px 20px;">
+      <div class="fspherocontentwrapper-3">
+        <div class="fspherotextwrapper-3">
+          <h1 class="fspheroheading-3"><strong>חסוך מאות דולרים בטיול הבא שלך, עוד לפני שתזמין!</strong></h1>
+          <h2 class="heading-19">רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה מטיילים חכמים עושים אחרת.</h2>
+        </div>
       </div>
-      <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" class="hero-img">
     </section>
 
-    <section class="fspsection2-3" style="background-color: #0056A7; color: white; padding: 40px 20px;">
-      <h1 class="heading-20" style="color: white; margin-bottom: 20px;"><strong>למה אתה מבזבז מאות דולרים בכל שנה?</strong></h1>
-      <ul style="list-style: none; padding: 0;">
-        <li class="fsplisttext-3">✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</li>
-        <li class="fsplisttext-3">✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</li>
-        <li class="fsplisttext-3">✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</li>
-      </ul>
+    <section class="fspsection2-3" style="background-color: #0056a7; color: white; padding: 40px 20px;">
+      <div class="div-block-34">
+        <h1 class="heading-20"><strong>למה אתה מבזבז מאות דולרים בכל שנה?</strong></h1>
+        <ul role="list" class="list-4">
+          <li>✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</li>
+          <li>✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</li>
+          <li>✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</li>
+        </ul>
+      </div>
     </section>
 
     <section class="fspcontactformsection-3" style="padding: 40px 20px;">
       <div class="fspcontactformwrapper-3">
-        <h1 class="fspcontactformheading-3" style="font-size: 28px; margin-bottom: 10px; text-align: center;">קבל את המדריך לחיסכון בטיולים - בחינם!</h1>
-        <p style="text-align: center; margin-bottom: 25px;">הכנס פרטים למטה לגישה מיידית:</p>
-        
+        <h1 class="fspcontactformheading-3">קבל את המדריך לחיסכון - בחינם!</h1>
         <form id="rfContactForm">
           <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
           <input type="email" id="contactEmail" placeholder="אימייל" required>
           <input type="tel" id="contactPhone" placeholder="טלפון" required>
-          
           <button id="contactFormSubmitBtn" type="submit" class="submit-btn">שלחו לי את המדריך!</button>
         </form>
-        <p style="text-align: center; margin-top: 15px; font-weight: bold; color: #666;">🔒 המידע מאובטח ואין צורך בכרטיס אשראי</p>
       </div>
     </section>
   </div>
-
-  <script>
-    // הקוד של RapidFunnel מצפה למצוא את המשתנים הללו גלובלית
-    window.assignCampaignId = assignCampaignId;
-    window.labelId = labelId;
-    window.resourceId = resourceId;
-    window.userId = userId;
-  </script>
 </body>
 </html>
