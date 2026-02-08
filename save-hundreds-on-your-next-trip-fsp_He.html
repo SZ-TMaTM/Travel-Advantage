@@ -21,18 +21,13 @@
     .image-box { flex: 1; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 380px; }
     .image-box img { width: 100%; border-radius: 15px; display: block; }
 
-    /* חלק אמצעי - רק הגרסה המורחבת והמתורגמת */
-    .content-area { padding: 80px 5%; text-align: center; max-width: 1000px; margin: 0 auto; }
+    /* חלק אמצעי - גרסה מורחבת בלבד וטקסט גדול */
+    .content-area { padding: 80px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
     
-    .benefits-title { color: #0056A7; font-size: 48px; margin-bottom: 40px; font-weight: 900; }
-    .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 24px; line-height: 1.8; font-weight: bold; margin-bottom: 80px; }
-    .benefits-list li { margin-bottom: 15px; position: relative; padding-right: 50px; }
-    .benefits-list li::before { content: '✔️'; color: #0056A7; position: absolute; right: 0; font-size: 30px; }
-
-    .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-bottom: 45px; text-align: right; }
-    .wasting-list { font-size: 21px; line-height: 1.7; color: #333; list-style: none; padding: 0; text-align: right; }
-    .wasting-list li { margin-bottom: 30px; padding-right: 25px; border-right: 6px solid #ff9d2b; } /* קווים כתומים עבים */
-    .wasting-list li strong { color: #000; font-size: 23px; }
+    .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin-bottom: 50px; text-align: center; }
+    .wasting-list { font-size: 24px; line-height: 1.8; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
+    .wasting-list li { margin-bottom: 35px; padding-right: 30px; border-right: 8px solid #ff9d2b; } /* קווים כתומים עבים */
+    .wasting-list li strong { color: #000; font-size: 26px; }
 
     /* Footer Section */
     .footer-bg {
@@ -46,43 +41,43 @@
     }
     
     .footer-text-area { flex: 1.2; position: relative; }
-    .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
+    .footer-text { color: #ff9d2b; font-size: 58px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    /* חץ לבן מהבהב - צד שמאל */
+    /* חץ לבן עבה ומהבהב - צד שמאל */
     .arrow-container {
       position: absolute;
-      left: 10px; 
-      bottom: -30px;
-      width: 180px;
+      left: -20px; 
+      bottom: -40px;
+      width: 200px;
       z-index: 10;
-      animation: flashArrow 1.5s infinite;
+      animation: flashArrow 1.2s infinite ease-in-out;
     }
 
     @keyframes flashArrow {
       0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); }
-      50% { opacity: 0.3; transform: scale(1.1) scaleX(-1); }
+      50% { opacity: 0.4; transform: scale(1.1) scaleX(-1); }
     }
 
-    /* טופס וכפתור */
+    /* טופס וכפתור גדולים */
     .form-box { 
-      flex: 1; background: white; padding: 45px; border-radius: 35px; min-width: 480px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box; z-index: 5;
+      flex: 1; background: white; padding: 50px; border-radius: 35px; min-width: 500px; 
+      box-shadow: 0 25px 60px rgba(0,0,0,0.6); box-sizing: border-box; z-index: 5;
     }
-    .form-box h3 { color: #0056A7; margin-bottom: 30px; font-size: 32px; text-align: center; font-weight: 900; line-height: 1.2; }
+    .form-box h3 { color: #0056A7; margin-bottom: 35px; font-size: 34px; text-align: center; font-weight: 900; line-height: 1.2; }
     
-    input { width: 100%; padding: 20px; margin-bottom: 18px; border-radius: 12px; border: 2px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
+    input { width: 100%; padding: 22px; margin-bottom: 20px; border-radius: 12px; border: 2px solid #eee; font-size: 20px; text-align: right; box-sizing: border-box; }
     
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 22px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 24px; border: none; border-radius: 12px; font-size: 28px; font-weight: 900; cursor: pointer; transition: 0.3s; }
     .submit-btn:hover { background: #ff9d2b; }
 
-    .no-credit-card { text-align: center; color: #555; font-size: 17px; margin-top: 18px; font-weight: bold; display: block; }
+    .no-credit-card { text-align: center; color: #555; font-size: 18px; margin-top: 20px; font-weight: bold; display: block; }
 
     #rf-user-details { background: #000; color: #fff; padding: 25px; width: 100%; border-top: 5px solid #ff9d2b; }
 
     @media (max-width: 1100px) {
       .footer-container { flex-direction: column !important; align-items: center; }
       .arrow-container { display: none; }
-      .footer-text { font-size: 38px; text-align: center; }
+      .footer-text { font-size: 40px; text-align: center; }
       .form-box { min-width: 100%; margin-top: 30px; }
     }
   </style>
@@ -100,14 +95,6 @@
   </section>
 
   <div class="content-area">
-    <h2 class="benefits-title">למה לשלם יותר כשאפשר פחות?</h2>
-    <ul class="benefits-list">
-      <li>גישה למחירים סיטונאיים שלא פתוחים לקהל הרחב.</li>
-      <li>מערכת הזמנות חכמה, פשוטה ומהירה.</li>
-      <li>תמיכה ושירות אישי לכל אורך הדרך.</li>
-      <li>דילים בלעדיים למלונות, טיסות והשכרת רכב.</li>
-    </ul>
-
     <h3 class="wasting-title">למה מטיילים כמוכם מבזבזים מאות (או אלפי) דולרים בכל שנה?</h3>
     <ul class="wasting-list">
       <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות כדי להיראות כמו חיסכון.</li>
@@ -126,8 +113,8 @@
         
         <div class="arrow-container">
           <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M155 70L185 85L160 95" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M150 65L185 85L155 98" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </div>
