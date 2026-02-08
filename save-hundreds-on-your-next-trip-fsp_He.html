@@ -7,6 +7,7 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
+    /* Hero Section */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -19,11 +20,13 @@
     .image-box { flex: 0 1 350px; }
     .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6), 0 20px 50px rgba(0,0,0,0.5); display: block; }
 
+    /* Middle Section */
     .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
     .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
     .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
     .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
+    /* Footer Section (Background with Form) */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -36,21 +39,33 @@
     .arrow-container { width: 130px; margin-top: 15px; animation: flashArrow 1.2s infinite ease-in-out; }
     @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.05) scaleX(-1); } }
 
+    /* The Floating Form */
     .form-box { 
-      flex: 1; background: white; padding: 15px 35px 35px 35px; border-radius: 35px; min-width: 400px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
+      flex: 1; 
+      background: white; 
+      padding: 15px 35px 35px 35px; 
+      border-radius: 35px; 
+      min-width: 400px; 
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
     }
-    .form-box h3 { color: #0056A7; margin: 0 0 5px 0; font-size: 32px; text-align: center; font-weight: 900; }
-    .form-subtitle { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 20px; font-weight: 900; display: block; }
-    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
+    .form-box h3 { 
+      color: #0056A7; 
+      margin: 0 0 5px 0; 
+      font-size: 32px; 
+      text-align: center; 
+      font-weight: 900; 
+    }
+    .form-subtitle { 
+      color: #0056A7; 
+      font-size: 32px; 
+      text-align: center; 
+      margin-bottom: 20px; 
+      font-weight: 900; 
+      display: block; 
+    }
+    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 2px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; }
     .submit-btn:hover { background: #ff9d2b; }
-
-    /* Footer סוכן דינמי של RapidFunnel */
-    #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
-    .agent-bar { display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; direction: ltr; }
-    .agent-img { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #ff9d2b; object-fit: cover; }
-    .agent-info { text-align: left; }
-    .agent-name { font-weight: bold; font-size: 20px; color: #ff9d2b; display: block; }
   </style>
 </head>
 <body>
@@ -97,7 +112,6 @@
       <div class="form-box">
         <h3>מלאו את הפרטים שלכם...</h3>
         <span class="form-subtitle">כדי לקבל את המדריך בחינם</span>
-        
         <form id="rfContactForm">
           <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
@@ -108,27 +122,6 @@
       </div>
     </div>
   </section>
-
-  <div id="rf-user-details">
-    </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
-  <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
-
-  <script>
-    // Logic to capture Agent ID and resource from URL
-    const urlParams = new URLSearchParams(window.location.search);
-    window.userId = urlParams.get('userId') || '358354'; 
-    window.resourceId = urlParams.get('resourceId') || '67370';
-
-    $(document).ready(function() {
-      // Renders the agent details at the bottom automatically
-      if (typeof renderUserDetails === "function") {
-        renderUserDetails('#rf-user-details');
-      }
-    });
-  </script>
 
 </body>
 </html>
