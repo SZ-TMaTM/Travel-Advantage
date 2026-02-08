@@ -10,12 +10,43 @@
   <link href="https://my.aimmwrlife.com/css/aim-becb63.webflow.css" rel="stylesheet" type="text/css">
   
   <style>
-    body { direction: rtl; text-align: right; font-family: sans-serif; }
-    .fspcontactformwrapper-3 { background-color: rgba(255, 255, 255, 0.9); padding: 20px; border-radius: 15px; }
-    input { width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ccc; text-align: right; }
-    .submit-btn { background-color: #0056A7; color: white; padding: 15px; width: 100%; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
-    /* תיקון לטקסט שבורח הצידה */
-    .fspherotextwrapper-3, .div-block-34 { max-width: 90%; margin: 0 auto; float: none !important; }
+    body { direction: rtl; text-align: right; font-family: sans-serif; overflow-x: hidden; }
+    
+    /* תיקון תמונת הרקע והטקסט מעליה */
+    .fspherosection-3 {
+      background-image: url('https://my.aimmwrlife.com/images/Happy-Girl.png') !important;
+      background-position: center !important;
+      background-size: cover !important;
+      display: flex !important;
+      justify-content: flex-start !important;
+      align-items: center !important;
+      padding-right: 5% !important;
+      min-height: 80vh !important;
+    }
+
+    .fspherotextwrapper-3 {
+      background-color: rgba(255, 255, 255, 0.85); /* רקע לבן שקוף כדי שהטקסט יהיה קריא */
+      padding: 30px;
+      border-radius: 15px;
+      max-width: 500px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .fspheroheading-3 { color: #0056A7 !important; font-size: 32px !important; line-height: 1.2 !important; }
+    .heading-19 { color: #333 !important; font-size: 20px !important; margin-top: 15px !important; }
+
+    /* סידור הטופס */
+    .fspcontactformwrapper-3 {
+      background-color: #ffffff !important;
+      border: 2px solid #0056A7 !important;
+      padding: 30px !important;
+      margin-top: -50px !important; /* גורם לטופס "לעלות" קצת על התמונה */
+      z-index: 10;
+      position: relative;
+    }
+
+    input { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ccc; border-radius: 5px; text-align: right; }
+    .submit-btn { background-color: #0056A7; color: white; padding: 18px; width: 100%; border: none; border-radius: 10px; font-weight: bold; font-size: 20px; cursor: pointer; }
   </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -24,42 +55,33 @@
   
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId') || '358354';
-    const resourceId = urlParams.get('resourceId') || '67370';
-    const assignCampaignId = urlParams.get('campaignId') || '2434';
-    const labelId = urlParams.get('labelId') || '48708';
-    
-    window.userId = userId;
-    window.resourceId = resourceId;
-    window.assignCampaignId = assignCampaignId;
-    window.labelId = labelId;
+    window.userId = urlParams.get('userId') || '358354';
+    window.resourceId = urlParams.get('resourceId') || '67370';
+    window.assignCampaignId = 2434;
+    window.labelId = 48708;
   </script>
 </head>
 <body>
   <div class="pagewrapper-6">
-    <section class="fspherosection-3" style="background-image: url('https://my.aimmwrlife.com/images/Happy-Girl.png'); background-size: cover; padding: 100px 20px;">
-      <div class="fspherocontentwrapper-3">
-        <div class="fspherotextwrapper-3">
-          <h1 class="fspheroheading-3"><strong>חסוך מאות דולרים בטיול הבא שלך, עוד לפני שתזמין!</strong></h1>
-          <h2 class="heading-19">רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה מטיילים חכמים עושים אחרת.</h2>
-        </div>
+    <section class="fspherosection-3">
+      <div class="fspherotextwrapper-3">
+        <h1 class="fspheroheading-3"><strong>חסוך מאות דולרים בטיול הבא שלך, עוד לפני שתזמין!</strong></h1>
+        <h2 class="heading-19">רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה מטיילים חכמים עושים אחרת.</h2>
       </div>
     </section>
 
-    <section class="fspsection2-3" style="background-color: #0056a7; color: white; padding: 40px 20px;">
-      <div class="div-block-34">
-        <h1 class="heading-20"><strong>למה אתה מבזבז מאות דולרים בכל שנה?</strong></h1>
-        <ul role="list" class="list-4">
-          <li>✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</li>
-          <li>✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</li>
-          <li>✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</li>
-        </ul>
+    <section class="fspsection2-3" style="background-color: #0056a7; color: white; padding: 60px 20px; text-align: center;">
+      <h1 class="heading-20" style="color: white; font-size: 28px;"><strong>למה אתה מבזבז מאות דולרים בכל שנה?</strong></h1>
+      <div style="max-width: 800px; margin: 20px auto; text-align: right; display: inline-block;">
+        <p>✔️ חיפוש דילים לוקח שעות - ורוב ה"הנחות" הן פיקטיביות.</p>
+        <p>✔️ הזמנה באתרים שונים גורמת לעמלות נסתרות ומחיר גבוה.</p>
+        <p>✔️ אתה מפספס מחירים של "מקורבים" שרק סוכנים רואים.</p>
       </div>
     </section>
 
-    <section class="fspcontactformsection-3" style="padding: 40px 20px;">
+    <section class="fspcontactformsection-3" style="max-width: 600px; margin: 0 auto; padding: 20px;">
       <div class="fspcontactformwrapper-3">
-        <h1 class="fspcontactformheading-3">קבל את המדריך לחיסכון - בחינם!</h1>
+        <h1 class="fspcontactformheading-3" style="text-align: center; color: #0056A7;">קבל את המדריך לחיסכון - בחינם!</h1>
         <form id="rfContactForm">
           <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
