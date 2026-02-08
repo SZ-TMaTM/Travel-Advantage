@@ -2,94 +2,141 @@
 <html dir="rtl" lang="he">
 <head>
   <meta charset="utf-8">
-  <title>חיסכון בטיולים - Travel Advantage</title>
+  <title>חסוך מאות דולרים בטיול הבא - Travel Advantage</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  
   <style>
-    body, html { margin: 0; padding: 0; font-family: 'Assistant', sans-serif, Arial; background-color: #f4f7f9; }
+    body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: #f0f4f8; }
 
-    /* חלק 1: רקע ים (החלק העליון) */
-    #hero-top {
-      background: url('https://my.aimmwrlife.com/images/Landing-Page-Background-p-2000.jpeg') no-repeat center center !important;
-      background-size: cover !important;
-      width: 100%;
-      min-height: 600px;
+    /* חלק 1: רקע ים עליון */
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
+                  url('https://images.unsplash.com/photo-1506929113675-b55f949b654f?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+      background-size: cover;
+      padding: 60px 5%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 50px 0;
+      min-height: 500px;
     }
 
     .container {
       max-width: 1100px;
-      width: 90%;
+      width: 100%;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 30px;
       flex-wrap: wrap-reverse;
     }
 
-    .hero-text { flex: 1; min-width: 300px; color: white; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); text-align: right; margin: 20px; }
-    .hero-text h1 { font-size: 45px; line-height: 1.1; margin-bottom: 20px; }
-    .hero-text h2 { font-size: 24px; font-weight: 300; }
+    .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 8px rgba(0,0,0,0.7); }
+    .hero-content h1 { font-size: 42px; margin-bottom: 15px; line-height: 1.2; color: #ff9d2b; }
+    .hero-content h2 { font-size: 22px; font-weight: normal; }
 
-    .girl-card { background: white; padding: 15px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 380px; margin: 20px; }
-    .girl-card img { width: 100%; border-radius: 20px; display: block; }
+    .image-box { 
+      background: white; padding: 12px; border-radius: 20px; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3); max-width: 350px; 
+    }
+    .image-box img { width: 100%; border-radius: 15px; display: block; }
 
-    /* חלק 2: פירוט היתרונות (האמצע הלבן) */
-    .section-why {
-      background-color: #f4f7f9;
+    /* חלק 2: האמצע הלבן עם הפירוט */
+    .details-section {
+      background: #ffffff;
       padding: 60px 20px;
       text-align: center;
     }
-    .why-content { max-width: 850px; margin: 0 auto; text-align: right; background: white; padding: 40px; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
-    .why-content h2 { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 30px; }
-    .why-list { list-style: none; padding: 0; font-size: 20px; line-height: 1.8; color: #333; }
-    .why-list li { margin-bottom: 15px; padding-right: 30px; position: relative; }
-    .why-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; }
+    .details-card {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: right;
+      border: 1px solid #e1e8ed;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    .details-card h2 { color: #0056A7; font-size: 30px; margin-bottom: 25px; text-align: center; }
+    .details-list { list-style: none; padding: 0; font-size: 19px; line-height: 1.8; color: #444; }
+    .details-list li { margin-bottom: 12px; padding-right: 35px; position: relative; }
+    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; }
 
-    /* חלק 3: רקע הרים (החלק התחתון) */
-    #footer-bottom {
-      background: url('https://my.aimmwrlife.com/images/Join-Thousands-Background-p-2000.jpeg') no-repeat center center !important;
-      background-size: cover !important;
-      width: 100%;
-      min-height: 600px;
+    /* חלק 3: רקע הרים תחתון */
+    .footer-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+      background-size: cover;
+      padding: 80px 5%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 50px 0;
     }
 
-    .footer-container {
-      max-width: 1100px;
-      width: 90%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
+    .form-container {
+      background: white; padding: 35px; border-radius: 25px; 
+      width: 100%; max-width: 420px; box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    }
+    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 20px; font-size: 24px; }
+    
+    input { 
+      width: 100%; padding: 14px; margin-bottom: 12px; border-radius: 8px; 
+      border: 1px solid #ccc; font-size: 16px; box-sizing: border-box; text-align: right; 
+    }
+    .submit-btn { 
+      background: #0056A7; color: white; width: 100%; padding: 16px; 
+      border: none; border-radius: 8px; font-size: 20px; font-weight: bold; cursor: pointer;
     }
 
-    .footer-text { flex: 1; min-width: 300px; color: white; text-align: right; margin: 20px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
-    .footer-text h2 { font-size: 42px; color: #ff9d2b; line-height: 1.1; }
+    .footer-text { flex: 1; color: white; text-align: right; max-width: 500px; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+    .footer-text h2 { font-size: 38px; line-height: 1.1; }
 
-    .form-box {
-      background: white;
-      padding: 40px;
-      border-radius: 25px;
-      width: 100%;
-      max-width: 450px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-      margin: 20px;
-    }
-    .form-box h3 { color: #0056A7; font-size: 26px; margin-bottom: 20px; text-align: center; margin-top: 0; }
-    input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; box-sizing: border-box; text-align: right; }
-    .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; width: 100%; }
-
-    @media (max-width: 850px) {
-      .hero-text h1, .footer-text h2 { font-size: 30px; text-align: center; }
-      .container, .footer-container { justify-content: center; text-align: center; }
+    @media (max-width: 768px) {
+      .container { flex-direction: column-reverse; text-align: center; }
+      .hero-content, .footer-text { text-align: center; }
+      .hero-content h1 { font-size: 30px; }
     }
   </style>
+</head>
+<body>
+
+  <section class="hero-section">
+    <div class="container">
+      <div class="image-box">
+        <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
+      </div>
+      <div class="hero-content">
+        <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
+        <h2>גלה איך המטיילים החכמים סוגרים חופשות בחצי מחיר תוך דקות.</h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="details-section">
+    <div class="details-card">
+      <h2>למה מטיילים כמוך מבזבזים כסף?</h2>
+      <ul class="details-list">
+        <li>חיפוש דילים לוקח שעות - וההנחות לרוב מנופחות.</li>
+        <li>הזמנה באתרים שונים גורמת לעמלות נסתרות ומחירים גבוהים.</li>
+        <li>פספוס של תעריפי "סוכנים בלבד" שסגורים לקהל הרחב.</li>
+        <li>חוסר במערכת חכמה שמתריעה מתי המחיר באמת הכי נמוך.</li>
+        <li style="font-weight: bold; color: #0056A7;">הטיול הבא שלך יכול לעלות הרבה פחות.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="footer-section">
+    <div class="container">
+      <div class="form-container">
+        <h3>קבלו את המדריך בחינם!</h3>
+        <form id="rfContactForm">
+          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+          <input type="email" id="contactEmail" placeholder="אימייל" required>
+          <input type="tel" id="contactPhone" placeholder="טלפון" required>
+          <button type="submit" class="submit-btn">אני רוצה לחסוך!</button>
+        </form>
+      </div>
+      <div class="footer-text">
+        <h2>הצטרפו לאלפי מטיילים שכבר מטיילים יותר ומשלמים פחות.</h2>
+      </div>
+    </div>
+  </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
@@ -101,51 +148,5 @@
     window.assignCampaignId = 2434;
     window.labelId = 48708;
   </script>
-</head>
-<body>
-
-  <div id="hero-top">
-    <div class="container">
-      <div class="girl-card">
-        <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
-      </div>
-      <div class="hero-text">
-        <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
-        <h2>רוב המטיילים משלמים ביוקר בלי לדעת. גלה למה - ומה המטיילים החכמים עושים אחרת.</h2>
-      </div>
-    </div>
-  </div>
-
-  <div class="section-why">
-    <div class="why-content">
-      <h2>למה מטיילים כמוך מבזבזים מאות (או אלפי) דולרים כל שנה?</h2>
-      <ul class="why-list">
-        <li>חיפוש דילים לוקח שעות - ובכל זאת רוב ה"הנחות" מנופחות.</li>
-        <li>הזמנה במספר אתרים מובילה לתזמון גרוע ועמלות נסתרות.</li>
-        <li>פספוס תעריפים למקורבים בלבד ודילים שלא פורסמו.</li>
-        <li>תשלום יתר פשוט כי אין לך מערכת חכמה לניהול הזמנות.</li>
-        <li style="font-weight: bold;">כל טיול יכול לעלות פחות - אם תדע מה לעשות.</li>
-      </ul>
-    </div>
-  </div>
-
-  <div id="footer-bottom">
-    <div class="footer-container">
-      <div class="form-box">
-        <h3>קבל את המדריך לחיסכון!</h3>
-        <form id="rfContactForm">
-          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
-          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
-          <input type="email" id="contactEmail" placeholder="אימייל" required>
-          <input type="tel" id="contactPhone" placeholder="טלפון" required>
-          <button id="contactFormSubmitBtn" type="submit" class="btn">שלחו לי את המדריך!</button>
-        </form>
-      </div>
-      <div class="footer-text">
-        <h2>הצטרף לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים תוך כדי חיסכון ענק.</h2>
-      </div>
-    </div>
-  </div>
-
 </body>
 </html>
