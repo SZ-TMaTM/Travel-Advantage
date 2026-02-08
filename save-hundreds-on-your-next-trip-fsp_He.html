@@ -7,69 +7,62 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* Hero Section - מותאם לאתר המקורי */
+    /* Hero Section */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; 
-      padding: 60px 5%; 
-      display: flex; 
-      justify-content: center; 
-      min-height: 550px; 
-      align-items: center;
+      background-size: cover; padding: 80px 5%; display: flex; justify-content: center; min-height: 500px; align-items: center;
     }
     
+    /* ה-Container ששומר על הכל במרכז המסך */
     .hero-container { 
-      max-width: 1400px; /* רוחב רחב יותר כמו במקורי */
+      max-width: 1100px; /* צמצום הרוחב כדי שהכל יהיה ממורכז יותר */
       width: 100%; 
       display: flex; 
       align-items: center; 
-      justify-content: space-around; /* פיזור מאוזן בין הטקסט לתמונה */
-      gap: 50px; 
+      justify-content: center; /* ממרכז את הטקסט והתמונה יחד */
+      gap: 60px; 
       flex-wrap: wrap-reverse; 
     }
 
     .hero-content { 
       flex: 1; 
       color: white; 
-      text-align: right; 
+      text-align: right; /* הטקסט עצמו מיושר לימין בתוך הקופסה שלו */
       text-shadow: 2px 4px 15px rgba(0,0,0,0.6); 
     }
 
-    /* כותרת גדולה ומרשימה כמו במקור */
     .hero-content h1 { 
-      font-size: 75px; 
-      margin-bottom: 20px; 
+      font-size: 70px; 
+      margin: 0 0 20px 0; 
       color: #ff9d2b; 
       font-weight: 900; 
       line-height: 1.1; 
     }
     
     .hero-content h2 { 
-      font-size: 34px; 
+      font-size: 32px; 
       font-weight: 600; 
-      line-height: 1.4;
+      line-height: 1.3;
       color: #fff;
+      margin: 0;
     }
 
-    /* קופסת התמונה - בפינות מעוגלות כמו במקורי */
     .image-box { 
-      flex: 0.8; 
-      max-width: 450px;
-      position: relative;
+      flex: 0 1 400px; /* גודל קבוע יותר לתמונה */
     }
     
     .image-box img { 
       width: 100%; 
-      border-radius: 30px; 
-      box-shadow: 0 25px 50px rgba(0,0,0,0.4); 
+      border-radius: 35px; 
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5); 
       display: block; 
     }
 
     /* Middle Content Area */
-    .content-area { padding: 40px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
-    .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-bottom: 30px; line-height: 1.2; }
-    .wasting-list { font-size: 22px; line-height: 1.5; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
+    .content-area { padding: 60px 5%; text-align: center; max-width: 1100px; margin: 0 auto; }
+    .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-bottom: 30px; }
+    .wasting-list { font-size: 22px; line-height: 1.6; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
     .wasting-list li { margin-bottom: 15px; padding-right: 25px; border-right: 8px solid #ff9d2b; }
 
     /* Footer Section */
@@ -78,30 +71,25 @@
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover; padding: 80px 5%; display: flex; justify-content: center;
     }
-    .footer-container { 
-      max-width: 1300px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px;
-    }
-    .footer-text-column { flex: 1.2; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 450px; }
-    .footer-text { color: #ff9d2b; font-size: 62px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
+    .footer-container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; }
+    .footer-text-column { flex: 1; min-width: 300px; display: flex; flex-direction: column; align-items: center; }
+    .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
+    .arrow-container { width: 160px; margin-top: 25px; animation: flashArrow 1.2s infinite ease-in-out; }
     
-    .arrow-container { width: 180px; margin-top: 25px; animation: flashArrow 1.2s infinite ease-in-out; }
     @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.1) scaleX(-1); } }
 
-    .form-box { flex: 1; background: white; padding: 40px; border-radius: 35px; min-width: 480px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box; }
-    .form-box h3 { color: #0056A7; margin-bottom: 25px; font-size: 30px; text-align: center; font-weight: 900; }
+    .form-box { flex: 1; background: white; padding: 40px; border-radius: 35px; min-width: 400px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box; }
+    .form-box h3 { color: #0056A7; margin-bottom: 25px; font-size: 28px; text-align: center; font-weight: 900; }
     input { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 12px; border: 2px solid #eee; font-size: 18px; text-align: right; box-sizing: border-box; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 24px; font-weight: 900; cursor: pointer; transition: 0.3s; }
     .submit-btn:hover { background: #ff9d2b; }
-    .no-credit-card { text-align: center; color: #555; font-size: 17px; margin-top: 15px; font-weight: bold; display: block; }
+    .no-credit-card { text-align: center; color: #555; font-size: 16px; margin-top: 15px; font-weight: bold; display: block; }
 
-    @media (max-width: 1100px) {
-      .hero-section { padding: 40px 5%; }
-      .hero-content h1 { font-size: 45px; text-align: center; }
-      .hero-content h2 { font-size: 24px; text-align: center; }
-      .hero-container { justify-content: center; }
-      .footer-container { flex-direction: column !important; }
-      .footer-text { font-size: 42px; }
-      .arrow-container { display: none; }
+    @media (max-width: 900px) {
+      .hero-content { text-align: center; }
+      .hero-content h1 { font-size: 45px; }
+      .hero-container { gap: 30px; }
+      .footer-text { font-size: 38px; }
       .form-box { min-width: 100%; }
     }
   </style>
@@ -122,24 +110,18 @@
   </section>
 
   <div class="content-area">
-    <h3 class="wasting-title">
-      למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>
-      מבזבזים מאות או אלפי דולרים בכל שנה?
-    </h3>
+    <h3 class="wasting-title">למה מטיילים ברוב העולם... מבזבזים מאות דולרים בכל שנה?</h3>
     <ul class="wasting-list">
-      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות כדי להיראות כמו חיסכון.</li>
-      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לתזמון גרוע, עמלות נסתרות ומחירים גבוהים יותר.</li>
-      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים שלא מפורסמים והטבות מצטברות.</li>
-      <li><strong>תשלום יתר על טיסות ומלונות</strong> — פשוט כי אין לכם מערכת חכמה שבודקת עבורכם.</li>
+      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב הדילים מנופחים.</li>
+      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לעמלות נסתרות ומחירים גבוהים.</li>
+      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים שלא מפורסמים לקהל הרחב.</li>
     </ul>
   </div>
 
   <section class="footer-bg">
     <div class="footer-container">
       <div class="footer-text-column">
-        <div class="footer-text">
-          הצטרפו לאלפי מטיילים<br> שהופכים את הטיולים שלהם<br> לבלתי נשכחים!
-        </div>
+        <div class="footer-text">הצטרפו לאלפי מטיילים<br>שהופכים את הטיולים שלהם<br>לבלתי נשכחים!</div>
         <div class="arrow-container">
           <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -165,13 +147,5 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
-
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    window.userId = urlParams.get('userId') || '358354';
-    window.resourceId = urlParams.get('resourceId') || '67370';
-    window.assignCampaignId = 2434;
-    window.labelId = 48708;
-  </script>
 </body>
 </html>
