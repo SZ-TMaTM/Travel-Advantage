@@ -7,7 +7,6 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* Hero Section */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -20,13 +19,11 @@
     .image-box { flex: 0 1 350px; }
     .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6), 0 20px 50px rgba(0,0,0,0.5); display: block; }
 
-    /* Middle Section */
     .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
     .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
     .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
     .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
-    /* Footer Section */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -39,11 +36,10 @@
     .arrow-container { width: 130px; margin-top: 15px; animation: flashArrow 1.2s infinite ease-in-out; }
     @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.05) scaleX(-1); } }
 
-    /* תיקון הטופס - הסרת שטח לבן והשוואת גדלים */
     .form-box { 
       flex: 1; 
       background: white; 
-      padding: 15px 35px 35px 35px; /* צמצום דרסטי של ה-Padding העליון מ-35 ל-15 */
+      padding: 15px 35px 35px 35px; 
       border-radius: 35px; 
       min-width: 400px; 
       box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
@@ -57,21 +53,22 @@
     }
     .form-subtitle { 
       color: #0056A7; 
-      font-size: 32px; /* הגדלה לגודל זהה לכותרת שמעליה */
+      font-size: 32px; 
       text-align: center; 
       margin-bottom: 20px; 
-      font-weight: 900; /* עובי זהה */
+      font-weight: 900; 
       display: block; 
     }
     input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 2px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; }
+    .submit-btn:hover { background: #ff9d2b; }
   </style>
 </head>
 <body>
 
   <section class="hero-section">
     <div class="hero-container">
-      <div class="image-box"><img src="https://my.aimmwrlife.com/images/Happy-Girl.png"></div>
+      <div class="image-box"><img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler"></div>
       <div class="hero-content">
         <h1>חסכו מאות דולרים<br>בטיול הבא שלכם!</h1>
         <h2>גלו איך המטיילים החכמים...<br>סוגרים חופשות בחצי מחיר תוך דקות.</h2>
