@@ -15,7 +15,7 @@
       padding: 80px 5%;
       display: flex;
       justify-content: center;
-      min-height: 550px;
+      min-height: 500px;
     }
 
     .container {
@@ -34,7 +34,7 @@
 
     .image-box { 
       background: white; padding: 10px; border-radius: 25px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 400px; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 380px; 
     }
     .image-box img { width: 100%; border-radius: 20px; display: block; }
 
@@ -84,18 +84,33 @@
     #rf-user-details {
       background-color: #1a1a1a;
       color: white;
-      min-height: 120px;
       padding: 30px 20px;
+      text-align: center;
       direction: ltr;
     }
-    /* עיצוב פנימי לנתונים שיוזרקו */
-    .rf-user-wrapper { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
-    .rf-user-img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 2px solid white; }
-    .rf-user-info { text-align: left; }
+    .agent-footer-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    .agent-img {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        border: 2px solid #ff9d2b;
+        background: #333;
+    }
+    .agent-info { text-align: left; }
+    .agent-name { font-weight: bold; font-size: 18px; display: block; color: #ff9d2b; }
+    .agent-contact { font-size: 14px; color: #ccc; }
 
     @media (max-width: 768px) {
       .container { flex-direction: column-reverse; text-align: center; }
       .hero-content, .footer-text { text-align: center; }
+      .agent-footer-container { flex-direction: column; }
     }
   </style>
 </head>
@@ -144,8 +159,13 @@
   </section>
 
   <div id="rf-user-details">
-    <div class="rf-user-wrapper" id="rf-user-content">
-        </div>
+      <div class="agent-footer-container">
+          <img id="display-agent-img" class="agent-img" src="https://rapidfunnel.com/wp-content/uploads/2021/01/user-icon.png" alt="Agent">
+          <div class="agent-info">
+              <span id="display-agent-name" class="agent-name">טוען פרטי סוכן...</span>
+              <span id="display-agent-phone" class="agent-contact"></span>
+          </div>
+      </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -155,19 +175,30 @@
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     
-    // שליפת הנתונים מה-URL
-    window.userId = urlParams.get('userId'); 
-    window.resourceId = urlParams.get('resourceId');
+    // הגדרת משתני מערכת
+    window.userId = urlParams.get('userId') || '358354'; 
+    window.resourceId = urlParams.get('resourceId') || '67370';
+    window.assignCampaignId = 2434;
+    window.labelId = 48708;
 
     $(document).ready(function() {
-        if (window.userId) {
-            // פונקציית העזר של RapidFunnel להזרקת נתונים
-            setTimeout(function() {
-                if (typeof renderUserDetails === "function") {
-                    renderUserDetails('#rf-user-content');
-                }
-            }, 1000);
+        // אם הסקריפט של RapidFunnel מצליח לעבוד - הוא ימלא את הפרטים
+        if (typeof renderUserDetails === "function") {
+            renderUserDetails('#rf-user-details');
         }
+
+        // הגנה: אם אחרי 2 שניות הפרטים עדיין לא נטענו, נציג ידנית לפי ה-userId
+        setTimeout(function() {
+            const currentName = $('#display-agent-name').text();
+            if (currentName === "טוען פרטי סוכן..." || currentName === "") {
+                if (window.userId === '358354') {
+                    $('#display-agent-name').text('Your Name'); // החלף לשמך
+                    $('#display-agent-phone').text('Contact via Portal');
+                } else {
+                    $('#display-agent-name').text('Authorized Agent #' + window.userId);
+                }
+            }
+        }, 2000);
     });
   </script>
 </body>
