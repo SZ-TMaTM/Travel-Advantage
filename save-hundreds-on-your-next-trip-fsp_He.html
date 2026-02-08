@@ -27,7 +27,7 @@
     .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
     .wasting-list li { margin-bottom: 12px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
-    /* Footer Image Section + Form (חזרה למקור) */
+    /* Form Section with Arrow */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -46,26 +46,29 @@
     input { width: 100%; padding: 15px; margin-bottom: 10px; border-radius: 10px; border: 1px solid #ccc; font-size: 18px; text-align: right; box-sizing: border-box; }
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 18px; border: none; border-radius: 10px; font-size: 24px; font-weight: 900; cursor: pointer; }
 
-    /* --- RapidFunnel Footer Fix (ממורכז ורוחבי) --- */
-    .rf-footer-main { background-color: #000; color: #fff; padding: 50px 0 20px 0; direction: ltr; }
-    .rf-footer-content { max-width: 800px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; }
+    /* --- RapidFunnel Agent Footer Fix (1:1 למקור) --- */
+    .rf-footer-main { background-color: #000; color: #fff; padding: 60px 0 30px 0; direction: ltr; }
+    .rf-footer-content { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 50px; }
     
-    .rf-profile-side { flex: 0 0 130px; }
-    .rf-profile-img { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
+    .rf-profile-side { flex: 0 0 160px; }
+    .rf-profile-img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; }
 
     .rf-info-side { flex: 1; text-align: left; }
-    .rf-name { font-size: 26px; font-weight: bold; margin-bottom: 8px; }
-    .rf-detail { font-size: 17px; margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
+    .rf-name { font-size: 32px; font-weight: bold; margin-bottom: 12px; }
+    .rf-detail { font-size: 20px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; color: #eee; }
     .rf-detail a { color: #fff; text-decoration: none; }
 
-    .rf-book-btn { background-color: #fff; color: #000; padding: 8px 25px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; margin: 12px 0; }
-    .rf-socials { display: flex; gap: 10px; }
-    .rf-social-icon { width: 35px; height: 35px; border: 1px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; }
+    .rf-book-btn { background-color: #fff; color: #000; padding: 12px 35px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin: 20px 0; font-size: 18px; }
+    
+    /* 6 רשתות חברתיות */
+    .rf-socials { display: flex; gap: 12px; margin-top: 5px; }
+    .rf-social-icon { width: 42px; height: 42px; border: 1px solid #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; text-decoration: none; font-size: 20px; transition: 0.3s; }
+    .rf-social-icon:hover { background: #fff; color: #000; }
 
-    .rf-bottom-bar { background-color: #111; padding: 25px; border-top: 1px solid #222; text-align: center; color: #888; margin-top: 30px; }
-    .rf-bottom-links { list-style: none; padding: 0; margin: 0 0 15px 0; display: flex; justify-content: center; gap: 15px; font-size: 14px; }
-    .rf-bottom-links a { color: #888; text-decoration: none; }
-    .rf-footer-logo img { width: 200px; }
+    .rf-bottom-bar { background-color: #111; padding: 30px; border-top: 1px solid #222; text-align: center; color: #999; margin-top: 40px; }
+    .rf-bottom-links { list-style: none; padding: 0; margin: 0 0 15px 0; display: flex; justify-content: center; gap: 20px; font-size: 15px; }
+    .rf-bottom-links a { color: #999; text-decoration: none; }
+    .rf-footer-logo img { width: 220px; opacity: 0.8; }
   </style>
 </head>
 <body>
@@ -132,11 +135,14 @@
         <div class="rf-detail"><i class="fa fa-envelope"></i> <a id="email" href="#">[email]</a></div>
         <div class="rf-detail"><i class="fa fa-phone"></i> <a id="phoneNumber" href="#">[phoneNumber]</a></div>
         <a id="customBookingLink" href="#" class="rf-book-btn">Book Me</a>
+        
         <div class="rf-socials">
+          <a href="#" class="rf-social-icon"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="rf-social-icon"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="rf-social-icon"><i class="fab fa-tiktok"></i></a>
+          <a href="#" class="rf-social-icon"><i class="fab fa-linkedin-in"></i></a>
           <a href="#" class="rf-social-icon"><i class="fab fa-whatsapp"></i></a>
           <a href="#" class="rf-social-icon"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" class="rf-social-icon"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="rf-social-icon"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     </div>
@@ -145,14 +151,14 @@
       <ul class="rf-bottom-links">
         <li>Copyright 2026</li>
         <li>|</li>
-        <li><a href="https://rapidfunnel.com/terms-conditions/">Terms and Conditions</a></li>
+        <li><a href="#">Terms and Conditions</a></li>
         <li>|</li>
-        <li><a href="https://rapidfunnel.com/privacy_policy_terms/">Privacy Policy</a></li>
+        <li><a href="#">Privacy Policy</a></li>
       </ul>
       <div class="rf-footer-logo">
         <img src="https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg" alt="RapidFunnel">
       </div>
-      <p style="margin-top:10px; font-size: 12px;">Powered by RapidFunnel</p>
+      <p style="margin-top:15px; font-size: 13px;">Powered by RapidFunnel</p>
     </div>
   </footer>
 
