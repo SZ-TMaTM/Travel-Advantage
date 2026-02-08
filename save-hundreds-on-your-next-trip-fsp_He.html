@@ -6,70 +6,71 @@
   <meta content="width=device-width, initial-scale=1" name="viewport">
   
   <style>
-    body, html { margin: 0; padding: 0; font-family: 'Assistant', sans-serif, Arial; overflow-x: hidden; }
+    body, html { margin: 0; padding: 0; font-family: 'Assistant', sans-serif, Arial; background-color: #f4f7f9; }
 
     /* חלק 1: רקע ים (החלק העליון) */
-    .section-hero {
-      background-image: url('https://my.aimmwrlife.com/images/Landing-Page-Background-p-2000.jpeg');
-      background-size: cover;
-      background-position: center;
-      padding: 80px 5%;
+    #hero-top {
+      background: url('https://my.aimmwrlife.com/images/Landing-Page-Background-p-2000.jpeg') no-repeat center center !important;
+      background-size: cover !important;
+      width: 100%;
+      min-height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 50px 0;
     }
 
     .container {
       max-width: 1100px;
-      width: 100%;
+      width: 90%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap-reverse;
     }
 
-    .hero-text { flex: 1; max-width: 550px; color: white; text-shadow: 2px 2px 10px rgba(0,0,0,0.6); text-align: right; }
+    .hero-text { flex: 1; min-width: 300px; color: white; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); text-align: right; margin: 20px; }
     .hero-text h1 { font-size: 45px; line-height: 1.1; margin-bottom: 20px; }
-    .hero-text h2 { font-size: 22px; font-weight: 300; }
+    .hero-text h2 { font-size: 24px; font-weight: 300; }
 
-    .girl-card { background: white; padding: 15px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 380px; }
+    .girl-card { background: white; padding: 15px; border-radius: 25px; box-shadow: 0 15px 40px rgba(0,0,0,0.3); max-width: 380px; margin: 20px; }
     .girl-card img { width: 100%; border-radius: 20px; display: block; }
 
-    /* חלק 2: פירוט היתרונות (רקע בהיר באמצע) */
+    /* חלק 2: פירוט היתרונות (האמצע הלבן) */
     .section-why {
       background-color: #f4f7f9;
-      padding: 80px 20px;
+      padding: 60px 20px;
       text-align: center;
     }
-
-    .why-content { max-width: 850px; margin: 0 auto; text-align: right; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+    .why-content { max-width: 850px; margin: 0 auto; text-align: right; background: white; padding: 40px; border-radius: 25px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
     .why-content h2 { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 30px; }
-    .why-list { list-style: none; padding: 0; font-size: 20px; line-height: 1.6; color: #333; }
+    .why-list { list-style: none; padding: 0; font-size: 20px; line-height: 1.8; color: #333; }
     .why-list li { margin-bottom: 15px; padding-right: 30px; position: relative; }
     .why-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; }
 
-    /* חלק 3: רקע הרים (החלק התחתון עם הטופס) */
-    .section-footer {
-      background-image: url('https://my.aimmwrlife.com/images/Join-Thousands-Background-p-2000.jpeg');
-      background-size: cover;
-      background-position: center;
-      padding: 100px 5%;
+    /* חלק 3: רקע הרים (החלק התחתון) */
+    #footer-bottom {
+      background: url('https://my.aimmwrlife.com/images/Join-Thousands-Background-p-2000.jpeg') no-repeat center center !important;
+      background-size: cover !important;
+      width: 100%;
+      min-height: 600px;
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 50px 0;
     }
 
     .footer-container {
       max-width: 1100px;
-      width: 100%;
+      width: 90%;
       display: flex;
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
     }
 
-    .footer-text { flex: 1; max-width: 500px; color: white; text-align: right; margin-bottom: 30px; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-    .footer-text h2 { font-size: 40px; color: #ff9d2b; line-height: 1.1; }
+    .footer-text { flex: 1; min-width: 300px; color: white; text-align: right; margin: 20px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
+    .footer-text h2 { font-size: 42px; color: #ff9d2b; line-height: 1.1; }
 
     .form-box {
       background: white;
@@ -77,18 +78,16 @@
       border-radius: 25px;
       width: 100%;
       max-width: 450px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      margin: 20px;
     }
-
     .form-box h3 { color: #0056A7; font-size: 26px; margin-bottom: 20px; text-align: center; margin-top: 0; }
     input { width: 100%; padding: 15px; margin-bottom: 15px; border-radius: 10px; border: 1px solid #ddd; font-size: 16px; box-sizing: border-box; text-align: right; }
-    .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 10px; font-size: 22px; font-weight: bold; cursor: pointer; transition: 0.3s; }
-    .btn:hover { background-color: #003d7a; }
+    .btn { background-color: #0056A7; color: white; padding: 20px; width: 100%; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; width: 100%; }
 
     @media (max-width: 850px) {
       .hero-text h1, .footer-text h2 { font-size: 30px; text-align: center; }
       .container, .footer-container { justify-content: center; text-align: center; }
-      .hero-text, .footer-text { text-align: center; }
     }
   </style>
 
@@ -105,7 +104,7 @@
 </head>
 <body>
 
-  <div class="section-hero">
+  <div id="hero-top">
     <div class="container">
       <div class="girl-card">
         <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
@@ -121,16 +120,16 @@
     <div class="why-content">
       <h2>למה מטיילים כמוך מבזבזים מאות (או אלפי) דולרים כל שנה?</h2>
       <ul class="why-list">
-        <li>חיפוש דילים לוקח שעות - ובכל זאת רוב ה"הנחות" מנופחות כדי להיראות כמו חיסכון.</li>
-        <li>הזמנה במספר אתרים מובילה לתזמון גרוע, עמלות נסתרות ומחירים גבוהים יותר.</li>
-        <li>פספוס תעריפים למקורבים בלבד, דילים שלא פורסמו והטבות שנצברות שרוב המטיילים לעולם לא רואים.</li>
-        <li>תשלום יתר על טיסות, מלונות, קרוזים והשכרת רכב פשוט כי אין מערכת חכמה.</li>
-        <li style="font-weight: bold;">כל טיול יכול לעלות פחות - אם היית יודע מה לעשות לפני ההזמנה.</li>
+        <li>חיפוש דילים לוקח שעות - ובכל זאת רוב ה"הנחות" מנופחות.</li>
+        <li>הזמנה במספר אתרים מובילה לתזמון גרוע ועמלות נסתרות.</li>
+        <li>פספוס תעריפים למקורבים בלבד ודילים שלא פורסמו.</li>
+        <li>תשלום יתר פשוט כי אין לך מערכת חכמה לניהול הזמנות.</li>
+        <li style="font-weight: bold;">כל טיול יכול לעלות פחות - אם תדע מה לעשות.</li>
       </ul>
     </div>
   </div>
 
-  <div class="section-footer">
+  <div id="footer-bottom">
     <div class="footer-container">
       <div class="form-box">
         <h3>קבל את המדריך לחיסכון!</h3>
