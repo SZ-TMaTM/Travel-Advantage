@@ -7,64 +7,54 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* Hero Section - התמונה שחזרה */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 50px 5%; display: flex; justify-content: center; align-items: center;
+      background-size: cover; padding: 40px 5%; display: flex; justify-content: center; align-items: center;
     }
     .hero-container { max-width: 1100px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 30px; flex-wrap: wrap-reverse; }
     .hero-content { flex: 1; color: white; text-align: center; text-shadow: 2px 4px 15px rgba(0,0,0,0.8); }
     .hero-content h1 { font-size: 65px; margin: 0 0 10px 0; color: #ff9d2b; font-weight: 900; line-height: 1.1; }
     .hero-content h2 { font-size: 28px; font-weight: 600; line-height: 1.3; color: #fff; margin: 0; }
     .image-box { flex: 0 1 350px; }
-    .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6); display: block; }
+    .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6), 0 20px 50px rgba(0,0,0,0.5); display: block; }
 
-    /* Middle List Section */
-    .content-area { padding: 40px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
-    .wasting-title { color: #0056A7; font-size: 42px; font-weight: 900; margin-bottom: 25px; }
-    .wasting-list { font-size: 26px; line-height: 1.6; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; }
-    .wasting-list li { margin-bottom: 12px; padding-right: 20px; border-right: 8px solid #ff9d2b; }
-    .wasting-list b { font-weight: 900; color: #000; }
+    .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
+    .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
+    .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
+    .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
-    /* Footer / Form Area */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 80px 5%; display: flex; justify-content: center;
+      background-size: cover; padding: 50px 5%; display: flex; justify-content: center;
     }
-    .footer-container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
-
-    /* טקסט ימני עם חץ צמוד לשמאל */
-    .footer-text-side { 
-      flex: 1.2; color: #ff9d2b; font-size: 48px; font-weight: 900; text-align: center; 
-      text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; min-width: 300px;
-      position: relative; padding-bottom: 60px; /* רווח לחץ */
-    }
-
-    .arrow-container {
-      position: absolute;
-      left: 0; /* נצמד לצד שמאל של הטקסט (קרוב לטופס) */
-      bottom: -20px;
-      width: 130px;
-      transform: scaleX(-1); /* מצביע שמאלה */
-      animation: nudgeLeft 1.5s infinite ease-in-out;
-    }
-    @keyframes nudgeLeft {
-      0%, 100% { transform: scaleX(-1) translateX(0); }
-      50% { transform: scaleX(-1) translateX(15px); }
-    }
-
-    /* Form Box */
-    .form-box { 
-      flex: 1; background: rgba(255, 255, 255, 0.98); padding: 40px; border-radius: 40px; 
-      min-width: 380px; box-shadow: 0 25px 60px rgba(0,0,0,0.6); 
-    }
-    .form-box h3 { color: #0056A7; margin: 0 0 5px 0; font-size: 30px; text-align: center; font-weight: 900; }
-    .form-box p { color: #0056A7; text-align: center; margin-bottom: 25px; font-weight: 700; font-size: 22px; }
+    .footer-container { max-width: 1300px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
     
-    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #ddd; font-size: 18px; text-align: right; box-sizing: border-box; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 24px; font-weight: 900; cursor: pointer; }
+    /* עמודת הטקסט עם החץ */
+    .footer-text-column { flex: 1.5; display: flex; flex-direction: column; align-items: center; min-width: 550px; position: relative; }
+    .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
+    
+    /* מיקום החץ - צמוד לצד שמאל של עמודת הטקסט */
+    .arrow-container { 
+      position: absolute;
+      left: 0; 
+      bottom: -60px;
+      width: 130px; 
+      animation: flashArrow 1.2s infinite ease-in-out; 
+    }
+    @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.05) scaleX(-1); } }
+
+    .form-box { 
+      flex: 1; background: white; padding: 15px 35px 35px 35px; border-radius: 35px; min-width: 400px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
+    }
+    .form-box h3 { color: #0056A7; margin: 0 0 5px 0; font-size: 32px; text-align: center; font-weight: 900; }
+    .form-subtitle { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 20px; font-weight: 900; display: block; }
+    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
+    .submit-btn:hover { background: #ff9d2b; }
+
+    #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
   </style>
 </head>
 <body>
@@ -80,43 +70,66 @@
   </section>
 
   <div class="content-area">
-    <h3 class="wasting-title">למה מטיילים ברוב העולם... מבזבזים מאות או אלפי דולרים בכל שנה?</h3>
+    <h3 class="wasting-title">
+      למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>
+      מבזבזים מאות או אלפי דולרים בכל שנה?
+    </h3>
     <ul class="wasting-list">
-      <li><b>חיפוש דילים לוקח שעות</b> — ועדיין רוב ה"הנחות" מנופחות.</li>
-      <li><b>הזמנה דרך מספר אתרים</b> — מובילה לעמלות נסתרות.</li>
-      <li><b>פספוס תעריפים למקורבים בלבד</b> — דילים והטבות שרובכם לא רואים.</li>
-      <li><b>תשלום יתר על טיסות ומלונות</b> — כי אין לכם מערכת חכמה.</li>
+      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות.</li>
+      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לעמלות נסתרות ומחירים גבוהים.</li>
+      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים והטבות שרובכם לא רואים.</li>
+      <li><strong>תשלום יתר על טיסות ומלונות</strong> — כי אין לכם מערכת חכמה שבודקת עבורכם.</li>
     </ul>
   </div>
 
   <section class="footer-bg">
     <div class="footer-container">
-      
-      <div class="footer-text-side">
-        הצטרפו לאלפי מטיילים<br>שהופכים את הטיולים שלהם<br>לבלתי נשכחים!
-        
+      <div class="footer-text-column">
+        <div class="footer-text">
+          הצטרפו לאלפי מטיילים<br>
+          שהופכים את הטיולים שלהם<br>
+          לבלתי נשכחים!
+        </div>
         <div class="arrow-container">
           <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M150 65L185 85L155 98" stroke="white" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M150 65L185 85L155 98" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
       </div>
       
       <div class="form-box">
         <h3>מלאו את הפרטים שלכם...</h3>
-        <p>כדי לקבל את המדריך בחינם</p>
+        <span class="form-subtitle">כדי לקבל את המדריך בחינם</span>
+        
         <form id="rfContactForm">
-          <input type="text" placeholder="שם פרטי" required>
-          <input type="text" placeholder="שם משפחה" required>
-          <input type="email" placeholder="אימייל" required>
-          <input type="tel" placeholder="טלפון" required>
+          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+          <input type="email" id="contactEmail" placeholder="אימייל" required>
+          <input type="tel" id="contactPhone" placeholder="טלפון" required>
           <button type="submit" class="submit-btn">גם אני רוצה לחסוך כסף - עכשיו!</button>
         </form>
       </div>
-
     </div>
   </section>
+
+  <div id="rf-user-details"></div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
+  <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    window.userId = urlParams.get('userId') || '358354'; 
+    window.resourceId = urlParams.get('resourceId') || '67370';
+
+    $(document).ready(function() {
+      if (typeof renderUserDetails === "function") {
+        renderUserDetails('#rf-user-details');
+      }
+    });
+  </script>
 
 </body>
 </html>
