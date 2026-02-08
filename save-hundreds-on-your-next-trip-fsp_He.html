@@ -37,16 +37,17 @@
       justify-content: space-between; gap: 40px; position: relative;
     }
     
-    .footer-text-area { flex: 1.2; position: relative; display: flex; flex-direction: column; align-items: flex-end; }
+    .footer-text-area { flex: 1.2; position: relative; }
     .footer-text { color: #ff9d2b; font-size: 50px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    /* חץ ממוקם מתחת לכיתוב כדי שלא יסתיר אותו */
+    /* החזרת החץ לצד שמאל מתחת לכיתוב */
     .arrow-container {
-      margin-top: 20px; /* נותן מרווח מתחת לטקסט */
+      position: absolute;
+      left: -20px; 
+      bottom: -40px;
       width: 180px;
       z-index: 10;
       animation: flashArrow 1.2s infinite ease-in-out;
-      align-self: center; /* ממרכז את החץ ביחס לטקסט שמעליו */
     }
 
     @keyframes flashArrow {
@@ -71,8 +72,8 @@
 
     @media (max-width: 1100px) {
       .footer-container { flex-direction: column !important; align-items: center; }
+      .arrow-container { display: none; }
       .footer-text { font-size: 38px; text-align: center; }
-      .footer-text-area { align-items: center; }
       .form-box { min-width: 100%; margin-top: 20px; }
     }
   </style>
