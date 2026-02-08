@@ -7,7 +7,7 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* חלק עליון */
+    /* חלק עליון - כותרת ענקית */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -20,60 +20,59 @@
     .image-box { flex: 1; background: white; padding: 15px; border-radius: 35px; box-shadow: 0 30px 70px rgba(0,0,0,0.5); max-width: 480px; }
     .image-box img { width: 100%; border-radius: 25px; display: block; }
 
-    /* חלק אמצעי */
+    /* חלק אמצעי - יתרונות ענקיים */
     .benefits-section { padding: 120px 5%; text-align: center; background: #ffffff; }
     .benefits-section h2 { color: #0056A7; font-size: 65px; margin-bottom: 60px; font-weight: 900; }
     .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 38px; line-height: 1.8; font-weight: bold; }
-    .benefits-list li { margin-bottom: 25px; }
     .benefits-list li::before { content: '✔️'; color: #0056A7; margin-left: 25px; font-size: 45px; }
 
-    /* חלק תחתון - הרים עם חץ מצביע */
+    /* חלק תחתון - הרים וטופס */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover; padding: 150px 5%; display: flex; justify-content: center;
     }
     .footer-container { 
-      max-width: 1300px; width: 100%; display: flex; align-items: center; 
-      justify-content: space-between; gap: 40px; position: relative;
+      max-width: 1400px; width: 100%; display: flex; align-items: center; 
+      justify-content: space-between; gap: 20px; position: relative;
     }
     
     .footer-text { flex: 1.5; color: #ff9d2b; font-size: 70px; font-weight: 900; text-align: right; text-shadow: 4px 4px 25px rgba(0,0,0,1); line-height: 1.1; }
     
-    /* החץ המצביע */
+    /* החץ הלבן, הגדול והמעוגל */
     .arrow-container {
-      flex: 0.5;
+      flex: 0.6;
       display: flex;
       justify-content: center;
       align-items: center;
-      animation: bounce 2s infinite;
+      animation: pointArrow 1.5s infinite ease-in-out;
     }
     .arrow-container img {
-      width: 120px; /* גודל החץ */
-      transform: rotate(180deg); /* הפיכת החץ שיצביע לטופס */
-      filter: drop-shadow(0px 0px 10px rgba(255,157,43,0.8));
+      width: 180px; /* חץ גדול יותר */
+      filter: brightness(0) invert(1); /* הופך את החץ ללבן בוהק */
+      transform: scaleX(-1) rotate(-10deg); /* הופך אותו שיצביע לטופס בזווית מעוגלת */
     }
 
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% {transform: translateX(0);}
-      40% {transform: translateX(-20px);}
-      60% {transform: translateX(-10px);}
+    @keyframes pointArrow {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-30px); }
     }
 
     .form-box { 
-      flex: 1; background: white; padding: 60px; border-radius: 40px; min-width: 450px; 
+      flex: 1; background: white; padding: 60px; border-radius: 40px; min-width: 480px; 
       box-shadow: 0 25px 60px rgba(0,0,0,0.6); box-sizing: border-box;
     }
-    .form-box h3 { color: #0056A7; margin-top: 0; margin-bottom: 40px; font-size: 45px; text-align: center; font-weight: bold; }
+    .form-box h3 { color: #0056A7; margin-bottom: 40px; font-size: 45px; text-align: center; font-weight: bold; }
     input { width: 100%; padding: 25px; margin-bottom: 25px; border-radius: 20px; border: 3px solid #eee; font-size: 24px; text-align: right; box-sizing: border-box; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 25px; border: none; border-radius: 20px; font-size: 32px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 25px; border: none; border-radius: 20px; font-size: 32px; font-weight: bold; cursor: pointer; }
 
     #rf-user-details { background: #000; color: #fff; padding: 40px; width: 100%; border-top: 8px solid #ff9d2b; }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
       .footer-container { flex-direction: column !important; text-align: center; }
-      .arrow-container { transform: rotate(90deg); margin: 20px 0; }
-      .footer-text { text-align: center; font-size: 50px; order: -1; }
+      .arrow-container { transform: rotate(90deg); margin: 40px 0; }
+      .footer-text { text-align: center; font-size: 50px; }
+      .form-box { min-width: 100%; }
     }
   </style>
 </head>
@@ -105,7 +104,7 @@
       </div>
 
       <div class="arrow-container">
-        <img src="https://cdn-icons-png.flaticon.com/512/545/545682.png" alt="arrow">
+        <img src="https://cdn-icons-png.flaticon.com/512/545/545682.png" alt="חץ לבן מעוגל">
       </div>
 
       <div class="form-box">
