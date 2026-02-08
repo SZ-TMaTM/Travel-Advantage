@@ -31,11 +31,9 @@
     }
     .footer-container { max-width: 1300px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
     
-    /* עמודת הטקסט עם החץ */
     .footer-text-column { flex: 1.5; display: flex; flex-direction: column; align-items: center; min-width: 550px; position: relative; }
     .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    /* מיקום החץ - צמוד לצד שמאל של עמודת הטקסט */
     .arrow-container { 
       position: absolute;
       left: 0; 
@@ -54,7 +52,9 @@
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
     .submit-btn:hover { background: #ff9d2b; }
 
+    /* עיצוב הפוטרים של RapidFunnel */
     #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
+    .rf-footer-gray { background-color: #333; color: #ccc; padding: 15px; text-align: center; font-size: 14px; direction: ltr; }
   </style>
 </head>
 <body>
@@ -114,6 +114,10 @@
   </section>
 
   <div id="rf-user-details"></div>
+
+  <div class="rf-footer-gray">
+    © 2026 RapidFunnel. All rights reserved. | <a href="#" style="color: #ccc; text-decoration: underline;">Privacy Policy</a>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
