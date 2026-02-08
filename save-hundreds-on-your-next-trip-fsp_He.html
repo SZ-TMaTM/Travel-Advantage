@@ -1,127 +1,4 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="he">
-<head>
-  <meta charset="utf-8">
-  <title>חסוך מאות דולרים בטיול הבא - Travel Advantage</title>
-  <meta content="width=device-width, initial-scale=1" name="viewport">
-  <style>
-    body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; }
-
-    /* חלק 1: רקע ים עליון - תיקון נתיב התמונה */
-    .hero-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), 
-                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover;
-      padding: 80px 5%;
-      display: flex;
-      justify-content: center;
-      min-height: 550px;
-    }
-
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      flex-wrap: wrap-reverse;
-    }
-
-    .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-    .hero-content h1 { font-size: 48px; margin-bottom: 20px; line-height: 1.1; color: #ff9d2b; font-weight: bold; }
-    .hero-content h2 { font-size: 26px; font-weight: normal; line-height: 1.4; color: white; }
-
-    .image-box { 
-      background: white; padding: 10px; border-radius: 25px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 400px; 
-    }
-    .image-box img { width: 100%; border-radius: 20px; display: block; }
-
-    /* חלק 2: האמצע - ביטול ה"קובייה" ופריסה רחבה */
-    .details-section {
-      background: #ffffff;
-      padding: 80px 5%;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-    }
-    .details-content {
-      max-width: 1000px; /* רחב יותר מהקוד הקודם */
-      width: 100%;
-      text-align: right;
-    }
-    .details-content h2 { color: #0056A7; font-size: 36px; margin-bottom: 40px; text-align: center; font-weight: bold; }
-    .details-list { list-style: none; padding: 0; font-size: 22px; line-height: 2; color: #333; }
-    .details-list li { margin-bottom: 15px; padding-right: 45px; position: relative; }
-    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; font-size: 24px; }
-
-    /* חלק 3: רקע הרים תחתון (שכבר עובד לך) */
-    .footer-section {
-      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover;
-      padding: 100px 5%;
-      display: flex;
-      justify-content: center;
-    }
-
-    .form-container {
-      background: white; padding: 40px; border-radius: 30px; 
-      width: 100%; max-width: 450px; box-shadow: 0 15px 45px rgba(0,0,0,0.4);
-    }
-    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 25px; font-size: 28px; margin-top: 0; }
-    
-    input { 
-      width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; 
-      border: 1px solid #ddd; font-size: 17px; box-sizing: border-box; text-align: right; 
-    }
-    .submit-btn { 
-      background: #0056A7; color: white; width: 100%; padding: 18px; 
-      border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer;
-      transition: background 0.3s;
-    }
-    .submit-btn:hover { background: #004485; }
-
-    .footer-text { flex: 1; color: white; text-align: right; max-width: 550px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
-    .footer-text h2 { font-size: 42px; line-height: 1.1; color: #ff9d2b; }
-
-    @media (max-width: 768px) {
-      .container { flex-direction: column-reverse; text-align: center; }
-      .hero-content, .footer-text { text-align: center; }
-      .hero-content h1 { font-size: 34px; }
-      .details-list { font-size: 18px; }
-    }
-  </style>
-</head>
-<body>
-
-  <section class="hero-section">
-    <div class="container">
-      <div class="image-box">
-        <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
-      </div>
-      <div class="hero-content">
-        <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
-        <h2>גלה איך המטיילים החכמים סוגרים חופשות בחצי מחיר תוך דקות.</h2>
-      </div>
-    </div>
-  </section>
-
-  <section class="details-section">
-    <div class="details-content">
-      <h2>למה מטיילים כמוך מבזבזים מאות (או אלפי) דולרים כל שנה?</h2>
-      <ul class="details-list">
-        <li>חיפוש דילים לוקח שעות - ובכל זאת רוב ה"הנחות" מנופחות.</li>
-        <li>הזמנה במספר אתרים מובילה לתזמון גרוע ועמלות נסתרות.</li>
-        <li>פספוס תעריפים למקורבים בלבד ודילים שלא פורסמו.</li>
-        <li>תשלום יתר פשוט כי אין לך מערכת חכמה לניהול הזמנות.</li>
-        <li style="font-weight: bold; color: #0056A7;">כל טיול יכול לעלות פחות - אם תדע מה לעשות.</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="footer-section">
+<section class="footer-section">
     <div class="container">
       <div class="form-container">
         <h3>קבל את המדריך בחינם!</h3>
@@ -139,15 +16,26 @@
     </div>
   </section>
 
+  <div id="rf-user-details"></div>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
+  
   <script>
+    // הגדרות דינמיות - המערכת תמשוך את הפרטים לפי ה-URL
     const urlParams = new URLSearchParams(window.location.search);
-    window.userId = urlParams.get('userId') || '358354';
+    window.userId = urlParams.get('userId') || '358354'; 
     window.resourceId = urlParams.get('resourceId') || '67370';
     window.assignCampaignId = 2434;
     window.labelId = 48708;
+
+    // פקודה שמפעילה את הצגת פרטי הסוכן בתחתית
+    $(document).ready(function() {
+        if (typeof renderUserDetails === "function") {
+            renderUserDetails('#rf-user-details');
+        }
+    });
   </script>
 </body>
 </html>
