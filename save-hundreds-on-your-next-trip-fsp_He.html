@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <title>Travel Advantage</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
+    /* Hero Section */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -20,46 +20,51 @@
     .image-box { flex: 0 1 350px; }
     .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6), 0 20px 50px rgba(0,0,0,0.5); display: block; }
 
+    /* Middle Section */
     .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
     .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
     .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
     .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
+    /* Footer Section */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover; padding: 50px 5%; display: flex; justify-content: center;
     }
     .footer-container { max-width: 1300px; width: 100%; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
-    .footer-text-column { flex: 1.5; display: flex; flex-direction: column; align-items: center; min-width: 550px; position: relative; }
+    .footer-text-column { flex: 1.5; display: flex; flex-direction: column; align-items: center; min-width: 550px; }
     .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    .arrow-container { 
-      position: absolute; left: 0; bottom: -60px; width: 130px; 
-      animation: flashArrow 1.2s infinite ease-in-out; 
-    }
+    .arrow-container { width: 130px; margin-top: 15px; animation: flashArrow 1.2s infinite ease-in-out; }
     @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.05) scaleX(-1); } }
 
-    .form-box { flex: 1; background: white; padding: 15px 35px 35px 35px; border-radius: 35px; min-width: 400px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); }
-    .form-box h3 { color: #0056A7; margin: 0 0 5px 0; font-size: 32px; text-align: center; font-weight: 900; }
-    .form-subtitle { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 20px; font-weight: 900; display: block; }
-    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
-    .submit-btn:hover { background: #ff9d2b; }
-
-    /* עיצוב פוטר RapidFunnel מקורי (הועתק מהמקור) */
-    .rapidfunnel-components--footer_section { background-color: #000; color: #fff; padding: 40px 0 0 0; direction: ltr; text-align: center; }
-    .rapidfunnel-components--profileimage { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 15px; border: 2px solid #fff; }
-    .rapidfunnel-components--namediv { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #fff; }
-    .rapidfunnel-components--user_info_text { margin-bottom: 8px; font-size: 16px; display: flex; align-items: center; justify-content: center; gap: 10px; }
-    .rapidfunnel-components--link_standard { color: #fff; text-decoration: none; }
-    .rapidfunnel-components--book_me_button_centered { background-color: #fff; color: #000; padding: 10px 30px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; margin: 20px 0; }
-    .footer-btn-socials { width: 45px; height: 45px; border: 1px solid white; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin: 0 5px; color: white; text-decoration: none; }
-    
-    .rapidfunnel-components--footerbottom { background-color: #111; padding: 20px; border-top: 1px solid #222; font-size: 14px; color: #888; }
-    .rapidfunnel-components--footer_bottom { list-style: none; padding: 0; margin: 0; display: flex; justify-content: center; gap: 15px; }
-    .rapidfunnel-components--link_standard_light { color: #888; text-decoration: none; }
-    .footer-logo img { width: 200px; height: auto; margin-top: 15px; }
+    /* תיקון הטופס - הסרת שטח לבן והשוואת גדלים */
+    .form-box { 
+      flex: 1; 
+      background: white; 
+      padding: 15px 35px 35px 35px; /* צמצום דרסטי של ה-Padding העליון מ-35 ל-15 */
+      border-radius: 35px; 
+      min-width: 400px; 
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7); 
+    }
+    .form-box h3 { 
+      color: #0056A7; 
+      margin: 0 0 5px 0; 
+      font-size: 32px; 
+      text-align: center; 
+      font-weight: 900; 
+    }
+    .form-subtitle { 
+      color: #0056A7; 
+      font-size: 32px; /* הגדלה לגודל זהה לכותרת שמעליה */
+      text-align: center; 
+      margin-bottom: 20px; 
+      font-weight: 900; /* עובי זהה */
+      display: block; 
+    }
+    input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 2px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -75,7 +80,10 @@
   </section>
 
   <div class="content-area">
-    <h3 class="wasting-title">למה מטיילים ברוב העולם... מבזבזים מאות או אלפי דולרים בכל שנה?</h3>
+    <h3 class="wasting-title">
+      למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>
+      מבזבזים מאות או אלפי דולרים בכל שנה?
+    </h3>
     <ul class="wasting-list">
       <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות.</li>
       <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לעמלות נסתרות ומחירים גבוהים.</li>
@@ -87,7 +95,11 @@
   <section class="footer-bg">
     <div class="footer-container">
       <div class="footer-text-column">
-        <div class="footer-text">הצטרפו לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים!</div>
+        <div class="footer-text">
+          הצטרפו לאלפי מטיילים<br>
+          שהופכים את הטיולים שלהם<br>
+          לבלתי נשכחים!
+        </div>
         <div class="arrow-container">
           <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
@@ -95,6 +107,7 @@
           </svg>
         </div>
       </div>
+      
       <div class="form-box">
         <h3>מלאו את הפרטים שלכם...</h3>
         <span class="form-subtitle">כדי לקבל את המדריך בחינם</span>
@@ -109,66 +122,5 @@
     </div>
   </section>
 
-  <div class="rapidfunnel-components--footer_section">
-    <img src="https://d3e54v103j8qbb.cloudfront.net/plugins/Basic/assets/placeholder.60f9b1840c.svg" id="profileImage" class="rapidfunnel-components--profileimage">
-    <div class="rapidfunnel-components--namediv">
-      <span class="firstName">[firstName]</span> <span class="lastName">[lastName]</span>
-    </div>
-    <div class="rapidfunnel-components--user_info_text">
-      <span class="fa fa-envelope"></span>
-      <a id="email" href="#" class="rapidfunnel-components--link_standard">[email]</a>
-    </div>
-    <div class="rapidfunnel-components--user_info_text">
-      <span class="fa fa-phone"></span>
-      <a id="phoneNumber" href="#" class="rapidfunnel-components--link_standard">[phoneNumber]</a>
-    </div>
-    <a id="customBookingLink" href="#" class="rapidfunnel-components--book_me_button_centered">Book Me</a>
-    
-    <div class="rf-social-icons">
-      <a href="#" class="footer-btn-socials"><span class="fab fa-twitter"></span></a>
-      <a href="#" class="footer-btn-socials"><span class="fab fa-instagram"></span></a>
-      <a href="#" class="footer-btn-socials"><span class="fab fa-tiktok"></span></a>
-      <a href="#" class="footer-btn-socials"><span class="fab fa-linkedin"></span></a>
-      <a href="#" class="footer-btn-socials"><span class="fab fa-whatsapp"></span></a>
-      <a href="#" class="footer-btn-socials"><span class="fab fa-facebook-f"></span></a>
-    </div>
-
-    <div class="rapidfunnel-components--footerbottom" style="margin-top:40px;">
-      <ul class="rapidfunnel-components--footer_bottom">
-        <li>Copyright 2024</li>
-        <li>|</li>
-        <li><a href="https://rapidfunnel.com/terms-conditions/" class="rapidfunnel-components--link_standard_light">Terms and Conditions</a></li>
-        <li>|</li>
-        <li><a href="https://rapidfunnel.com/privacy_policy_terms/" class="rapidfunnel-components--link_standard_light">Privacy Policy</a></li>
-      </ul>
-      <div class="footer-logo">
-        <a href="https://www.rapidfunnel.com/powered-by-rapidfunnel/" target="_blank">
-          <img src="https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg" id="footer-logo">
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
-  <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
-
-  <script>
-    const urlParams = new URLSearchParams(window.location.search);
-    window.userId = urlParams.get('userId') || '358354'; 
-
-    // סקריפט לוגו Hover מהמקור
-    document.addEventListener("DOMContentLoaded", function() {
-      var logo = document.getElementById("footer-logo");
-      if(logo) {
-        logo.addEventListener("mouseenter", function() {
-          logo.src = "https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d84985c878f8e87a8981_RF%20LOGO%20FOOTER%20(HOVER).svg";
-        });
-        logo.addEventListener("mouseleave", function() {
-          logo.src = "https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg";
-        });
-      }
-    });
-  </script>
 </body>
 </html>
