@@ -7,83 +7,79 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* חלק עליון */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover; padding: 80px 5%; display: flex; justify-content: center; min-height: 550px; align-items: center;
+      background-size: cover; padding: 60px 5%; display: flex; justify-content: center; min-height: 500px; align-items: center;
     }
-    .hero-container { max-width: 1300px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
-    .hero-content { flex: 1.5; color: white; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,0.8); }
-    .hero-content h1 { font-size: 70px; margin-bottom: 20px; color: #ff9d2b; font-weight: 900; line-height: 1.1; }
-    .hero-content h2 { font-size: 36px; font-weight: bold; line-height: 1.3; }
-    .image-box { flex: 1; background: white; padding: 10px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); max-width: 400px; }
-    .image-box img { width: 100%; border-radius: 20px; display: block; }
+    .hero-container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap-reverse; }
+    .hero-content { flex: 1.5; color: white; text-align: right; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+    .hero-content h1 { font-size: 65px; margin-bottom: 20px; color: #ff9d2b; font-weight: 900; line-height: 1.1; }
+    .hero-content h2 { font-size: 32px; font-weight: bold; }
 
-    /* חלק אמצעי - צמוד ומהודק */
-    .benefits-section { padding: 50px 5%; text-align: center; background: #ffffff; }
-    .benefits-section h2 { color: #0056A7; font-size: 50px; margin-bottom: 30px; font-weight: 900; }
-    .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 28px; line-height: 1.5; font-weight: bold; }
-    .benefits-list li { margin-bottom: 10px; }
-    .benefits-list li::before { content: '✔️'; color: #0056A7; margin-left: 15px; font-size: 32px; }
+    .image-box { flex: 1; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 380px; }
+    .image-box img { width: 100%; border-radius: 15px; display: block; }
 
-    /* חלק תחתון */
+    /* חלק אמצעי מורחב לפי התמונות */
+    .benefits-section { padding: 50px 5%; text-align: center; background: #f9f9f9; }
+    .benefits-section h2 { color: #0056A7; font-size: 45px; margin-bottom: 30px; font-weight: 900; }
+    .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 24px; line-height: 1.6; font-weight: bold; max-width: 800px; }
+    .benefits-list li { margin-bottom: 15px; position: relative; padding-right: 40px; }
+    .benefits-list li::before { content: '✔️'; color: #0056A7; position: absolute; right: 0; font-size: 26px; }
+
+    /* פסקה מורחבת - למה מטיילים מבזבזים כסף */
+    .wasting-money-section { padding: 50px 5%; background: white; text-align: right; max-width: 1000px; margin: 0 auto; }
+    .wasting-money-section h3 { color: #0056A7; font-size: 38px; font-weight: 900; margin-bottom: 25px; }
+    .wasting-list { font-size: 22px; line-height: 1.5; color: #333; list-style: none; padding: 0; }
+    .wasting-list li { margin-bottom: 20px; padding-right: 20px; border-right: 5px solid #ff9d2b; }
+
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
       background-size: cover; padding: 100px 5%; display: flex; justify-content: center;
     }
     .footer-container { 
-      max-width: 1400px; width: 100%; display: flex; align-items: flex-start; 
+      max-width: 1300px; width: 100%; display: flex; align-items: center; 
       justify-content: space-between; gap: 20px; position: relative;
     }
     
-    .footer-text-area { flex: 1.5; position: relative; }
-    .footer-text { color: #ff9d2b; font-size: 65px; font-weight: 900; text-align: right; text-shadow: 4px 4px 20px rgba(0,0,0,1); line-height: 1.1; }
+    .footer-text-area { flex: 1.2; position: relative; }
+    .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    /* החץ */
     .arrow-svg-container {
       position: absolute;
       right: 50px;
-      top: 100%; 
-      width: 280px;
+      top: 110%; 
+      width: 200px;
       z-index: 10;
-      animation: pointToForm 2.5s infinite ease-in-out;
+      animation: pointToForm 2s infinite ease-in-out;
     }
 
     @keyframes pointToForm {
-      0%, 100% { transform: translateX(0) rotate(0deg); }
-      50% { transform: translateX(-40px) rotate(-5deg); }
+      0%, 100% { transform: translateX(0) rotate(-10deg); }
+      50% { transform: translateX(-30px) rotate(-15deg); }
     }
 
     .form-box { 
-      flex: 1; background: white; padding: 50px; border-radius: 40px; min-width: 500px; 
-      box-shadow: 0 25px 60px rgba(0,0,0,0.6); box-sizing: border-box; z-index: 5;
+      flex: 1; background: white; padding: 40px; border-radius: 35px; min-width: 480px; 
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6); box-sizing: border-box; z-index: 5;
     }
-    .form-box h3 { color: #0056A7; margin-bottom: 30px; font-size: 32px; text-align: center; font-weight: bold; line-height: 1.3; }
+    .form-box h3 { color: #0056A7; margin-bottom: 25px; font-size: 28px; text-align: center; font-weight: bold; }
     
-    input { width: 100%; padding: 20px; margin-bottom: 20px; border-radius: 15px; border: 2px solid #eee; font-size: 20px; text-align: right; box-sizing: border-box; }
+    input { width: 100%; padding: 18px; margin-bottom: 15px; border-radius: 12px; border: 2px solid #eee; font-size: 18px; text-align: right; box-sizing: border-box; }
     
-    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 22px; border: none; border-radius: 15px; font-size: 28px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 24px; font-weight: bold; cursor: pointer; transition: 0.3s; }
     .submit-btn:hover { background: #ff9d2b; }
 
-    /* הכיתוב מתחת לטופס */
-    .no-credit-card {
-      text-align: center;
-      color: #666;
-      font-size: 18px;
-      margin-top: 15px;
-      font-weight: bold;
-      display: block;
-    }
+    .no-credit-card { text-align: center; color: #555; font-size: 16px; margin-top: 12px; font-weight: bold; display: block; }
 
-    #rf-user-details { background: #000; color: #fff; padding: 30px; width: 100%; border-top: 5px solid #ff9d2b; }
+    #rf-user-details { background: #000; color: #fff; padding: 25px; width: 100%; border-top: 5px solid #ff9d2b; }
 
-    @media (max-width: 1200px) {
-      .footer-container { flex-direction: column !important; align-items: center; text-align: center; }
+    @media (max-width: 1100px) {
+      .footer-container { flex-direction: column !important; align-items: center; }
       .arrow-svg-container { display: none; }
-      .footer-text { font-size: 45px; text-align: center; }
-      .form-box { min-width: 100%; margin-top: 40px; }
+      .footer-text { font-size: 38px; text-align: center; }
+      .form-box { min-width: 100%; margin-top: 30px; }
     }
   </style>
 </head>
@@ -102,9 +98,20 @@
   <section class="benefits-section">
     <h2>למה לשלם יותר כשאפשר פחות?</h2>
     <ul class="benefits-list">
-      <li>חיסכון של עד 70% על מלונות ונופשים</li>
-      <li>גישה למחירים סיטונאיים לטיסות והשכרת רכב</li>
-      <li>מערכת הזמנות חכמה שחוסכת לכם זמן וכסף</li>
+      <li>גישה למחירים סיטונאיים שלא פתוחים לקהל הרחב.</li>
+      <li>מערכת הזמנות חכמה, פשוטה ומהירה.</li>
+      <li>תמיכה ושירות אישי לכל אורך הדרך.</li>
+      <li>דילים בלעדיים למלונות, טיסות והשכרת רכב.</li>
+    </ul>
+  </section>
+
+  <section class="wasting-money-section">
+    <h3>למה מטיילים כמוכם מבזבזים מאות (או אלפי) דולרים בכל שנה?</h3>
+    <ul class="wasting-list">
+      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות כדי להיראות כמו חיסכון.</li>
+      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לתזמון גרוע, עמלות נסתרות ומחירים גבוהים יותר.</li>
+      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים שלא מפורסמים והטבות מצטברות שרוב המטיילים לעולם לא רואים.</li>
+      <li><strong>תשלום יתר על טיסות ומלונות</strong> — פשוט כי אין לכם מערכת חכמה שבודקת הכל עבורכם.</li>
     </ul>
   </section>
 
@@ -130,8 +137,8 @@
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
           <input type="email" id="contactEmail" placeholder="אימייל" required>
           <input type="tel" id="contactPhone" placeholder="טלפון" required>
-          <button type="submit" class="submit-btn">אני רוצה לחסוך כסף - עכשיו!</button>
-          <span class="no-credit-card">אין צורך בכרטיס אשראי</span>
+          <button type="submit" class="submit-btn">גם אני רוצה לחסוך כסף עכשיו</button>
+          <span class="no-credit-card">* אין צורך בכרטיס אשראי</span>
         </form>
       </div>
     </div>
