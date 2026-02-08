@@ -20,14 +20,12 @@
     .image-box { flex: 1; background: white; padding: 10px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.5); max-width: 380px; }
     .image-box img { width: 100%; border-radius: 15px; display: block; }
 
-    /* חלק אמצעי מורחב לפי התמונות */
     .benefits-section { padding: 50px 5%; text-align: center; background: #f9f9f9; }
     .benefits-section h2 { color: #0056A7; font-size: 45px; margin-bottom: 30px; font-weight: 900; }
     .benefits-list { list-style: none; padding: 0; display: inline-block; text-align: right; font-size: 24px; line-height: 1.6; font-weight: bold; max-width: 800px; }
     .benefits-list li { margin-bottom: 15px; position: relative; padding-right: 40px; }
     .benefits-list li::before { content: '✔️'; color: #0056A7; position: absolute; right: 0; font-size: 26px; }
 
-    /* פסקה מורחבת - למה מטיילים מבזבזים כסף */
     .wasting-money-section { padding: 50px 5%; background: white; text-align: right; max-width: 1000px; margin: 0 auto; }
     .wasting-money-section h3 { color: #0056A7; font-size: 38px; font-weight: 900; margin-bottom: 25px; }
     .wasting-list { font-size: 22px; line-height: 1.5; color: #333; list-style: none; padding: 0; }
@@ -46,18 +44,19 @@
     .footer-text-area { flex: 1.2; position: relative; }
     .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: right; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
+    /* חץ צמוד לטופס בצד שמאל */
     .arrow-svg-container {
       position: absolute;
-      right: 50px;
+      left: 480px; /* מיקום קרוב מאוד לטופס */
       top: 110%; 
-      width: 200px;
+      width: 180px;
       z-index: 10;
       animation: pointToForm 2s infinite ease-in-out;
     }
 
     @keyframes pointToForm {
       0%, 100% { transform: translateX(0) rotate(-10deg); }
-      50% { transform: translateX(-30px) rotate(-15deg); }
+      50% { transform: translateX(-20px) rotate(-15deg); }
     }
 
     .form-box { 
@@ -98,20 +97,19 @@
   <section class="benefits-section">
     <h2>למה לשלם יותר כשאפשר פחות?</h2>
     <ul class="benefits-list">
-      <li>גישה למחירים סיטונאיים שלא פתוחים לקהל הרחב.</li>
-      <li>מערכת הזמנות חכמה, פשוטה ומהירה.</li>
+      <li>גישה למחירים סיטונאיים בלעדיים.</li>
+      <li>מערכת הזמנות חכמה ופשוטה.</li>
       <li>תמיכה ושירות אישי לכל אורך הדרך.</li>
-      <li>דילים בלעדיים למלונות, טיסות והשכרת רכב.</li>
     </ul>
   </section>
 
   <section class="wasting-money-section">
-    <h3>למה מטיילים כמוכם מבזבזים מאות (או אלפי) דולרים בכל שנה?</h3>
+    <h3>Why Travelers Like You Are Wasting Hundreds (or Thousands) Each Year</h3>
     <ul class="wasting-list">
-      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות כדי להיראות כמו חיסכון.</li>
-      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לתזמון גרוע, עמלות נסתרות ומחירים גבוהים יותר.</li>
-      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים שלא מפורסמים והטבות מצטברות שרוב המטיילים לעולם לא רואים.</li>
-      <li><strong>תשלום יתר על טיסות ומלונות</strong> — פשוט כי אין לכם מערכת חכמה שבודקת הכל עבורכם.</li>
+      <li><strong>Searching for deals takes hours</strong> — yet most “discounts” are marked up to look like savings.</li>
+      <li><strong>Booking across multiple sites</strong> — leads to poor timing, hidden fees, and higher prices.</li>
+      <li><strong>Missing out on insider-only rates</strong> — unpublished deals, and stacked rewards most travelers never see.</li>
+      <li><strong>Overpaying for flights, hotels, cruises</strong> — simply because there’s no smart system.</li>
     </ul>
   </section>
 
@@ -137,7 +135,7 @@
           <input type="text" id="contactLastName" placeholder="שם משפחה" required>
           <input type="email" id="contactEmail" placeholder="אימייל" required>
           <input type="tel" id="contactPhone" placeholder="טלפון" required>
-          <button type="submit" class="submit-btn">גם אני רוצה לחסוך כסף עכשיו</button>
+          <button type="submit" class="submit-btn">גם אני רוצה לחסוך כסף - עכשיו!</button>
           <span class="no-credit-card">* אין צורך בכרטיס אשראי</span>
         </form>
       </div>
