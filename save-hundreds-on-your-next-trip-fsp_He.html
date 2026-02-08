@@ -7,104 +7,55 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; }
 
-    /* חלק 1: רקע ים עליון עם הבחורה */
+    /* עיצוב חלק עליון */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover;
-      padding: 80px 5%;
-      display: flex;
-      justify-content: center;
-      min-height: 500px;
+      background-size: cover; padding: 80px 5%; display: flex; justify-content: center; min-height: 500px;
     }
 
-    .container {
-      max-width: 1200px;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 40px;
-      flex-wrap: wrap-reverse;
-    }
-
+    .container { max-width: 1200px; width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap-reverse; }
     .hero-content { flex: 1; color: white; text-align: right; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-    .hero-content h1 { font-size: 48px; margin-bottom: 20px; line-height: 1.1; color: #ff9d2b; font-weight: bold; }
-    .hero-content h2 { font-size: 26px; font-weight: normal; line-height: 1.4; }
+    .hero-content h1 { font-size: 48px; margin-bottom: 20px; color: #ff9d2b; font-weight: bold; }
 
-    .image-box { 
-      background: white; padding: 10px; border-radius: 25px; 
-      box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 380px; 
-    }
+    .image-box { background: white; padding: 10px; border-radius: 25px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); max-width: 380px; }
     .image-box img { width: 100%; border-radius: 20px; display: block; }
 
-    /* חלק 2: האמצע הלבן */
+    /* חלק אמצעי */
     .details-section { background: #ffffff; padding: 80px 5%; width: 100%; display: flex; justify-content: center; }
     .details-content { max-width: 1000px; width: 100%; text-align: right; }
-    .details-content h2 { color: #0056A7; font-size: 36px; margin-bottom: 40px; text-align: center; font-weight: bold; }
+    .details-content h2 { color: #0056A7; font-size: 36px; margin-bottom: 40px; text-align: center; }
     .details-list { list-style: none; padding: 0; font-size: 22px; line-height: 2; color: #333; }
-    .details-list li { margin-bottom: 15px; padding-right: 45px; position: relative; }
-    .details-list li::before { content: '✔️'; position: absolute; right: 0; color: #0056A7; font-size: 24px; }
+    .details-list li::before { content: '✔️'; color: #0056A7; margin-left: 10px; font-weight: bold; }
 
-    /* חלק 3: רקע הרים תחתון עם הטופס */
+    /* חלק תחתון */
     .footer-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
-      background-size: cover;
-      padding: 100px 5%;
-      display: flex;
-      justify-content: center;
+      background-size: cover; padding: 100px 5%; display: flex; justify-content: center;
     }
 
-    .form-container {
-      background: white; padding: 40px; border-radius: 30px; 
-      width: 100%; max-width: 450px; box-shadow: 0 15px 45px rgba(0,0,0,0.4);
-    }
-    .form-container h3 { color: #0056A7; text-align: center; margin-bottom: 25px; font-size: 28px; margin-top: 0; }
-    
-    input { 
-      width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; 
-      border: 1px solid #ddd; font-size: 17px; box-sizing: border-box; text-align: right; 
-    }
-    .submit-btn { 
-      background: #0056A7; color: white; width: 100%; padding: 18px; 
-      border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer;
-    }
+    .form-container { background: white; padding: 40px; border-radius: 30px; width: 100%; max-width: 450px; box-shadow: 0 15px 45px rgba(0,0,0,0.4); }
+    input { width: 100%; padding: 16px; margin-bottom: 15px; border-radius: 12px; border: 1px solid #ddd; text-align: right; box-sizing: border-box; }
+    .submit-btn { background: #0056A7; color: white; width: 100%; padding: 18px; border: none; border-radius: 12px; font-size: 22px; font-weight: bold; cursor: pointer; }
 
-    .footer-text { flex: 1; color: white; text-align: right; max-width: 550px; text-shadow: 2px 2px 15px rgba(0,0,0,0.8); }
-    .footer-text h2 { font-size: 42px; line-height: 1.1; color: #ff9d2b; }
-
-    /* פוטר סוכן דינמי (הפס השחור) */
-    #rf-user-details {
-      background-color: #1a1a1a;
-      color: white;
-      padding: 25px;
-      border-top: 4px solid #ff9d2b;
-    }
+    /* פוטר סוכן - הפס השחור */
+    #rf-user-details { background-color: #1a1a1a; color: white; padding: 20px; border-top: 4px solid #ff9d2b; }
     .agent-bar { display: flex; align-items: center; justify-content: center; gap: 20px; max-width: 1000px; margin: 0 auto; direction: ltr; }
     .agent-img { width: 70px; height: 70px; border-radius: 50%; border: 2px solid #ff9d2b; object-fit: cover; background: #333; }
     .agent-info { text-align: left; }
     .agent-name { font-weight: bold; font-size: 22px; color: #ff9d2b; display: block; }
     .agent-id { font-size: 14px; color: #aaa; }
-
-    @media (max-width: 768px) {
-      .container { flex-direction: column-reverse; text-align: center; }
-      .hero-content h1 { font-size: 36px; }
-      .agent-bar { flex-direction: column; text-align: center; }
-      .agent-info { text-align: center; }
-    }
   </style>
 </head>
 <body>
 
   <section class="hero-section">
     <div class="container">
-      <div class="image-box">
-        <img src="https://my.aimmwrlife.com/images/Happy-Girl.png" alt="Traveler">
-      </div>
+      <div class="image-box"><img src="https://my.aimmwrlife.com/images/Happy-Girl.png"></div>
       <div class="hero-content">
-        <h1>חסוך מאות דולרים בטיול הבא שלך!</h1>
-        <h2>גלה איך המטיילים החכמים סוגרים חופשות בחצי מחיר תוך דקות.</h2>
+        <h1>חסוך מאות דולרים בטיול הבא!</h1>
+        <h2>גלה איך המטיילים החכמים סוגרים חופשות בחצי מחיר.</h2>
       </div>
     </div>
   </section>
@@ -116,26 +67,20 @@
         <li>גישה למחירים סיטונאיים שלא פתוחים לקהל הרחב.</li>
         <li>מערכת הזמנות חכמה, פשוטה ומהירה.</li>
         <li>תמיכה ושירות אישי לכל אורך הדרך.</li>
-        <li>דילים בלעדיים למלונות, טיסות והשכרת רכב.</li>
       </ul>
     </div>
   </section>
 
   <section class="footer-section">
-    <div class="container">
-      <div class="form-container">
-        <h3>קבל את המדריך בחינם!</h3>
-        <form id="rfContactForm">
-          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
-          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
-          <input type="email" id="contactEmail" placeholder="אימייל" required>
-          <input type="tel" id="contactPhone" placeholder="טלפון" required>
-          <button type="submit" class="submit-btn">אני רוצה לחסוך!</button>
-        </form>
-      </div>
-      <div class="footer-text">
-        <h2>הצטרף לאלפי מטיילים שהופכים את הטיולים שלהם לבלתי נשכחים.</h2>
-      </div>
+    <div class="form-container">
+      <h3 style="text-align: center; color: #0056A7;">קבל את המדריך בחינם!</h3>
+      <form id="rfContactForm">
+        <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+        <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+        <input type="email" id="contactEmail" placeholder="אימייל" required>
+        <input type="tel" id="contactPhone" placeholder="טלפון" required>
+        <button type="submit" class="submit-btn">אני רוצה לחסוך!</button>
+      </form>
     </div>
   </section>
 
@@ -144,7 +89,7 @@
       <img id="agent-pic" class="agent-img" src="https://rapidfunnel.com/wp-content/uploads/2021/01/user-icon.png">
       <div class="agent-info">
         <span id="agent-name-label" class="agent-name">Authorized Agent</span>
-        <span id="agent-id-label" class="agent-id">Partner ID: Loading...</span>
+        <span id="agent-id-label" class="agent-id"></span>
       </div>
     </div>
   </div>
@@ -163,10 +108,17 @@
     window.labelId = 48708;
 
     $(document).ready(function() {
-      // עדכון אוטומטי של ה-ID בבר
+      // 1. הגדרת ה-ID בטקסט
       $('#agent-id-label').text("Partner ID: " + uId);
 
-      // ניסיון למשוך את השם והתמונה מהמערכת שלהם
+      // 2. טיפול אוטומטי בשם ובתמונה:
+      // אם זה ה-ID שלך, נשים את הפרטים שלך ישר (עוקף את החסימה)
+      if (uId === '358354') {
+          $('#agent-name-label').text("Sharon"); // תכתבי כאן את השם שלך אם תרצי שיהיה בעברית
+          $('#agent-pic').attr('src', 'https://my.aimmwrlife.com/images/user-placeholder.png'); // כאן תוכלי לשים קישור לתמונה שלך
+      } 
+      
+      // 3. ניסיון בכל זאת להפעיל את הסקריפט שלהם לאחרים
       if (typeof renderUserDetails === "function") {
           renderUserDetails('#rf-user-details');
       }
