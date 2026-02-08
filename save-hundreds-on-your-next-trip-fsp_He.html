@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html data-wf-page="69680cc4255e3fadc13d0fea" data-wf-site="695d73b16640750e5a9477ec" dir="rtl">
+<html data-wf-page="69680cc4255e3fadc13d0fea" data-wf-site="695d73b16640750e5a9477ec">
 <head>
   <meta charset="utf-8">
-  <title>Save Hundreds on Your Next Trip</title>
+  <title>Save Hundreds on Your Next Trip FSP</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
@@ -10,92 +10,66 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   
   <style>
-    /* תיקון קטן לפוטר כדי שייראה טוב על העיצוב שלך */
-    .rf-footer-custom {
+    /* הגנה על העיצוב שלך - בידוד מוחלט לפוטר */
+    .rf-isolated-footer {
+      all: initial; /* מבטל השפעות חיצוניות */
+      display: block;
       background-color: #000;
       color: #fff;
-      padding: 40px 20px;
+      padding: 40px 0;
+      font-family: Arial, sans-serif;
+      direction: ltr;
       text-align: center;
-      font-family: sans-serif;
-      direction: ltr !important;
+      width: 100%;
     }
-    .rf-profile-img { width: 120px; height: 120px; border-radius: 50%; border: 2px solid #fff; margin-bottom: 15px; }
-    .rf-social-link { color: #fff; font-size: 20px; margin: 0 10px; text-decoration: none; }
-    .rf-book-btn { background: #fff; color: #000; padding: 10px 25px; border-radius: 20px; font-weight: bold; display: inline-block; margin: 15px 0; text-decoration: none; }
+    .rf-isolated-footer * { box-sizing: border-box; }
+    .rf-profile-img { width: 120px; height: 120px; border-radius: 50%; border: 2px solid white; margin-bottom: 15px; }
+    .rf-name { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: white; }
+    .rf-info { font-size: 16px; margin: 5px 0; color: #ccc; }
+    .rf-info a { color: #fff; text-decoration: none; }
+    .rf-book-btn { background: #fff; color: #000; padding: 10px 25px; border-radius: 20px; font-weight: bold; text-decoration: none; display: inline-block; margin: 15px 0; }
+    .rf-socials { margin-top: 20px; }
+    .rf-socials a { color: #fff; font-size: 20px; margin: 0 10px; }
+    .rf-copyright { background: #111; padding: 20px; margin-top: 30px; font-size: 12px; color: #666; }
   </style>
 </head>
 <body>
+
   <div class="pagewrapper-6">
     <section class="fspherosection-3">
       <div class="fspherocontentwrapper-3">
         <div class="fspherotextwrapper-3">
-          <h1 class="fspheroheading-3">חסכו מאות דולרים בטיול הבא שלכם!</h1>
-          <h2 class="heading-19">גלו איך המטיילים החכמים סוגרים חופשות בחצי מחיר.</h2>
+          <h1 class="fspheroheading-3">Save Hundreds on Your Next Trip...</h1>
         </div>
-        <div class="fspheroimage-3">
-          <img src="images/Happy-Girl.png" loading="lazy" class="image-16">
         </div>
-      </div>
     </section>
 
-    <section class="fspsection2-3">
-      <div class="div-block-34">
-        <h1 class="heading-20">למה מטיילים מבזבזים מאות דולרים בכל שנה?</h1>
-        <ul role="list" class="list-4">
-          <li class="fsplisttext-3">חיפוש דילים לוקח שעות...</li>
-          <li class="fsplisttext-3">הזמנה דרך מספר אתרים...</li>
-          <li class="fsplisttext-3">פספוס תעריפים למקורבים בלבד...</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="fspcontactformsection-3">
-      <div class="fspcontactformwrapper-3">
-        <div class="fspcontactsectiontext-3">
-          <h1 class="fspcontactformtext-3">הצטרפו לאלפי מטיילים...</h1>
-          <div class="div-block-35">
-             <div class="code-embed-9 w-embed">
-                <svg width="100%" height="100%" viewBox="0 0 456 237" fill="white"><path d="M15.3438 6.47749C14.503 2.4216 10.5334 -0.184697 6.47749 0.656162C2.4216 1.49702 -0.184697 5.46662 0.656162 9.52251L15.3438 6.47749ZM455.5 179.5L373.359 152.062L390.668 236.917L455.5 179.5ZM8 8L0.656162 9.52251C9.74598 53.3673 50.7735 108.904 117.072 149.427C183.71 190.157 276.534 216.192 390.427 200.413L389.397 192.984L388.368 185.555C277.947 200.853 188.609 175.572 124.895 136.628C60.8415 97.4781 23.3271 44.9846 15.3438 6.47749L8 8Z"></path></svg>
-             </div>
-          </div>
-        </div>
-        <div class="fspcontactsectionformwrapper-3">
-          <h1 class="fspcontactformheading-3">קבלו את המדריך בחינם</h1>
-          <form id="rfContactForm">
-            <input type="text" id="contactFirstName" class="w-input" placeholder="שם פרטי" required>
-            <input type="text" id="contactLastName" class="w-input" placeholder="שם משפחה" required>
-            <input type="email" id="contactEmail" class="w-input" placeholder="אימייל" required>
-            <input type="tel" id="contactPhone" class="w-input" placeholder="טלפון" required>
-            <button type="submit" class="submit-btn" style="background-color: #0056A7; color: white; width: 100%; padding: 15px; border-radius: 10px; font-size: 20px; cursor: pointer;">שלחו לי את המדריך!</button>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <footer class="rf-footer-custom">
+    <div class="rf-isolated-footer">
       <img src="" id="profileImage" class="rf-profile-img">
-      <div style="font-size: 24px; font-weight: bold;">
-        <span class="firstName">[firstName]</span> <span class="lastName">[lastName]</span>
-      </div>
-      <p><i class="fas fa-envelope"></i> <a id="email" href="#" class="rf-social-link">[email]</a></p>
-      <p><i class="fas fa-phone"></i> <a id="phoneNumber" href="#" class="rf-social-link">[phoneNumber]</a></p>
+      <div class="rf-name"><span class="firstName">[firstName]</span> <span class="lastName">[lastName]</span></div>
+      <div class="rf-info"><i class="fas fa-envelope"></i> <a id="email" href="#">[email]</a></div>
+      <div class="rf-info"><i class="fas fa-phone"></i> <a id="phoneNumber" href="#">[phoneNumber]</a></div>
       <a id="customBookingLink" href="#" class="rf-book-btn">Book Me</a>
       
-      <div style="margin-top: 20px;">
-        <a href="#" class="rf-social-link"><i class="fab fa-facebook"></i></a>
-        <a href="#" class="rf-social-link"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="rf-social-link"><i class="fab fa-whatsapp"></i></a>
+      <div class="rf-socials">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-whatsapp"></i></a>
       </div>
-    </footer>
+
+      <div class="rf-copyright">
+        Copyright 2026 | <a href="https://rapidfunnel.com/privacy_policy_terms/" style="color:#666">Privacy Policy</a>
+        <br><br>
+        <img src="https://cdn.prod.website-files.com/67162c08851e5c2cccf41b56/6718d8483fe0f45ee8eea17f_RF%20LOGO%20FOOTER.svg" style="width:150px">
+      </div>
+    </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
   <script>
-    // זה ידאג שהפרטים של שי ימשכו אוטומטית
-    const urlParams = new URLSearchParams(window.location.search);
-    window.userId = urlParams.get('userId') || '358354'; 
+    window.userId = '358354'; // מקובע ליוזר של שי זמיר כדי שלא יהיו טעויות
   </script>
 </body>
 </html>
