@@ -8,7 +8,7 @@
   <style>
     body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
     
-    /* Hero Section */
+    /* Hero Section - ללא שינוי */
     .hero-section {
       background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
                   url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -21,13 +21,13 @@
     .image-box { flex: 0 1 350px; }
     .image-box img { width: 100%; border-radius: 35px; border: 8px solid white; box-shadow: 0 0 35px 10px rgba(255, 255, 255, 0.6), 0 20px 50px rgba(0,0,0,0.5); display: block; }
 
-    /* Middle List */
+    /* Content Area - ללא שינוי */
     .content-area { padding: 15px 5% 25px 5%; text-align: center; max-width: 1200px; margin: 0 auto; }
     .wasting-title { color: #0056A7; font-size: 48px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
     .wasting-list { font-size: 28px; line-height: 1.4; color: #333; list-style: none; padding: 0; text-align: right; display: inline-block; margin: 0; }
     .wasting-list li { margin-bottom: 8px; padding-right: 20px; border-right: 10px solid #ff9d2b; }
 
-    /* Footer Bg */
+    /* Footer Background Section - ללא שינוי */
     .footer-bg {
       background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
                   url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
@@ -37,46 +37,101 @@
     .footer-text-column { flex: 1.5; display: flex; flex-direction: column; align-items: center; min-width: 550px; position: relative; }
     .footer-text { color: #ff9d2b; font-size: 55px; font-weight: 900; text-align: center; text-shadow: 3px 3px 15px rgba(0,0,0,1); line-height: 1.1; }
     
-    .arrow-container { position: absolute; left: 0; bottom: -60px; width: 130px; animation: flashArrow 1.2s infinite ease-in-out; }
+    .arrow-container { 
+      position: absolute; left: 0; bottom: -60px; width: 130px; 
+      animation: flashArrow 1.2s infinite ease-in-out; 
+    }
     @keyframes flashArrow { 0%, 100% { opacity: 1; transform: scale(1) scaleX(-1); } 50% { opacity: 0.4; transform: scale(1.05) scaleX(-1); } }
 
-    /* Form */
+    /* Form Box - ללא שינוי */
     .form-box { flex: 1; background: white; padding: 15px 35px 35px 35px; border-radius: 35px; min-width: 400px; box-shadow: 0 25px 60px rgba(0,0,0,0.7); }
     .form-box h3 { color: #0056A7; margin: 0 0 5px 0; font-size: 32px; text-align: center; font-weight: 900; }
     .form-subtitle { color: #0056A7; font-size: 32px; text-align: center; margin-bottom: 20px; font-weight: 900; display: block; }
     input { width: 100%; padding: 16px; margin-bottom: 12px; border-radius: 12px; border: 1px solid #eee; font-size: 19px; text-align: right; box-sizing: border-box; }
     .submit-btn { background: #0056A7; color: white; width: 100%; padding: 20px; border: none; border-radius: 12px; font-size: 26px; font-weight: 900; cursor: pointer; transition: 0.3s; width: 100%; }
+    .submit-btn:hover { background: #ff9d2b; }
 
-    /* המבנה החדש של הפוטר לפי החברה */
-    .rf-agent-footer { background-color: #000; color: white; padding: 40px 20px; text-align: center; border-top: 1px solid #333; }
-    .agent-card { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 20px; }
-    .agent-avatar { width: 120px; height: 120px; border-radius: 50%; border: 3px solid #fff; object-fit: cover; }
-    .agent-name { font-size: 24px; font-weight: bold; margin: 0; }
-    .agent-contact { font-size: 18px; margin: 5px 0; color: #ddd; text-decoration: none; display: block; }
-    .book-me-btn { background: #f0f0f0; color: #000; padding: 10px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-top: 10px; display: inline-block; }
-    .social-links { margin-top: 20px; display: flex; gap: 15px; justify-content: center; }
-    .social-links a { color: white; font-size: 24px; text-decoration: none; }
-    
-    .rf-legal-footer { background-color: #1a1a1a; color: #888; padding: 20px; font-size: 14px; border-top: 1px solid #333; }
-    .rf-legal-footer a { color: #888; text-decoration: none; margin: 0 10px; }
+    /* פוטר סוכן שחור - בדיוק כמו בראפיד */
+    .rf-black-footer { background-color: #000; color: white; padding: 40px 20px; text-align: center; }
+    .agent-info-wrapper { max-width: 600px; margin: 0 auto; }
+    .agent-photo { width: 100px; height: 100px; border-radius: 50%; border: 2px solid white; margin-bottom: 15px; object-fit: cover; }
+    .agent-name-title { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+    .agent-links { margin-bottom: 20px; font-size: 16px; line-height: 1.6; }
+    .agent-links a { color: white; text-decoration: none; display: block; }
+    .book-btn { background: #fff; color: #000; padding: 8px 25px; border-radius: 20px; text-decoration: none; font-weight: bold; display: inline-block; margin-bottom: 20px; }
+    .social-icons { display: flex; justify-content: center; gap: 15px; }
+    .social-icons a { color: white; font-size: 20px; }
+
+    /* פוטר אפור תחתון */
+    .rf-gray-bottom { background-color: #222; color: #888; padding: 20px; text-align: center; font-size: 13px; border-top: 1px solid #333; }
+    .rf-gray-bottom a { color: #888; text-decoration: none; margin: 0 5px; }
   </style>
 </head>
 <body>
 
-  <section class="hero-section">...</section>
-  <div class="content-area">...</div>
-  <section class="footer-bg">...</section>
-
-  <footer class="rf-agent-footer">
-    <div class="agent-card">
-      <img src="https://via.placeholder.com/150" class="agent-avatar" id="agentImage">
-      <h4 class="agent-name" id="agentName">טוען שם...</h4>
-      <div id="agentDetails">
-        <a href="#" class="agent-contact" id="agentEmail"><i class="fas fa-envelope"></i> email@example.com</a>
-        <a href="#" class="agent-contact" id="agentPhone"><i class="fas fa-phone"></i> 050-0000000</a>
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="image-box"><img src="https://my.aimmwrlife.com/images/Happy-Girl.png"></div>
+      <div class="hero-content">
+        <h1>חסכו מאות דולרים<br>בטיול הבא שלכם!</h1>
+        <h2>גלו איך המטיילים החכמים...<br>סוגרים חופשות בחצי מחיר תוך דקות.</h2>
       </div>
-      <a href="#" class="book-me-btn">Book Me</a>
-      <div class="social-links">
+    </div>
+  </section>
+
+  <div class="content-area">
+    <h3 class="wasting-title">
+      למה מטיילים ברוב העולם... כן, כן, גם כמוכם...<br>
+      מבזבזים מאות או אלפי דולרים בכל שנה?
+    </h3>
+    <ul class="wasting-list">
+      <li><strong>חיפוש דילים לוקח שעות</strong> — ועדיין רוב ה"הנחות" מנופחות.</li>
+      <li><strong>הזמנה דרך מספר אתרים</strong> — מובילה לעמלות נסתרות ומחירים גבוהים.</li>
+      <li><strong>פספוס תעריפים למקורבים בלבד</strong> — דילים והטבות שרובכם לא רואים.</li>
+      <li><strong>תשלום יתר על טיסות ומלונות</strong> — כי אין לכם מערכת חכמה שבודקת עבורכם.</li>
+    </ul>
+  </div>
+
+  <section class="footer-bg">
+    <div class="footer-container">
+      <div class="footer-text-column">
+        <div class="footer-text">
+          הצטרפו לאלפי מטיילים<br>
+          שהופכים את הטיולים שלהם<br>
+          לבלתי נשכחים!
+        </div>
+        <div class="arrow-container">
+          <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 10C50 50 120 80 180 85" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M150 65L185 85L155 98" stroke="white" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      
+      <div class="form-box">
+        <h3>מלאו את הפרטים שלכם...</h3>
+        <span class="form-subtitle">כדי לקבל את המדריך בחינם</span>
+        <form id="rfContactForm">
+          <input type="text" id="contactFirstName" placeholder="שם פרטי" required>
+          <input type="text" id="contactLastName" placeholder="שם משפחה" required>
+          <input type="email" id="contactEmail" placeholder="אימייל" required>
+          <input type="tel" id="contactPhone" placeholder="טלפון" required>
+          <button type="submit" class="submit-btn">גם אני רוצה לחסוך כסף - עכשיו!</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="rf-black-footer">
+    <div class="agent-info-wrapper">
+      <img src="https://via.placeholder.com/100" id="rf-agent-img" class="agent-photo">
+      <div class="agent-name-title" id="rf-agent-name">טוען פרטים...</div>
+      <div class="agent-links">
+        <a href="#" id="rf-agent-email">email@example.com</a>
+        <a href="#" id="rf-agent-phone">050-0000000</a>
+      </div>
+      <a href="#" class="book-btn">Book Me</a>
+      <div class="social-icons">
         <a href="#"><i class="fab fa-twitter"></i></a>
         <a href="#"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-tiktok"></i></a>
@@ -87,28 +142,30 @@
     </div>
   </footer>
 
-  <div class="rf-legal-footer">
-    <div>Copyright 2026 | <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a></div>
-    <div style="margin-top: 5px;">Powered by RapidFunnel.</div>
+  <div class="rf-gray-bottom">
+    Copyright 2026 | <a href="#">Terms and Conditions</a> | <a href="#">Privacy Policy</a>
+    <br>Powered by RapidFunnel
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://rapidfunnel.github.io/rf-scripts/v1/userDetails.js"></script>
+  <script src="https://rapidfunnel.github.io/rf-scripts/v1/contactForm.js"></script>
+
   <script>
     const urlParams = new URLSearchParams(window.location.search);
     window.userId = urlParams.get('userId') || '358354'; 
 
     $(document).ready(function() {
-      // כאן אנחנו מחברים את הסקריפט של RapidFunnel כדי שימשוך את הפרטים האמיתיים שלך לתוך הפוטר החדש
+      // פונקציה למשיכת נתוני הסוכן ללא שבירת הדף
       if (typeof getAgentDetails === "function") {
           getAgentDetails(window.userId).then(data => {
               if(data) {
-                  $('#agentName').text(data.firstName + ' ' + data.lastName);
-                  $('#agentEmail').html('<i class="fas fa-envelope"></i> ' + data.email);
-                  $('#agentPhone').html('<i class="fas fa-phone"></i> ' + data.phone);
-                  if(data.profileImage) $('#agentImage').attr('src', data.profileImage);
+                  $('#rf-agent-name').text(data.firstName + ' ' + data.lastName);
+                  $('#rf-agent-email').text(data.email).attr('href', 'mailto:' + data.email);
+                  $('#rf-agent-phone').text(data.phone).attr('href', 'tel:' + data.phone);
+                  if(data.profileImage) $('#rf-agent-img').attr('src', data.profileImage);
               }
-          });
+          }).catch(err => console.log("Agent details error:", err));
       }
     });
   </script>
