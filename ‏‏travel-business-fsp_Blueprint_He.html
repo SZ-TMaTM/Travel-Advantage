@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="he">
+<head>
+  <meta charset="utf-8">
+  <title>המדריך לעסק הדיגיטלי - Travel Advantage</title>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <style>
+    /* איפוס מרווחים כללי */
+    * { box-sizing: border-box; }
+    body, html { margin: 0; padding: 0; font-family: 'Assistant', Arial, sans-serif; background-color: white; overflow-x: hidden; }
+    
+    /* Hero Section - צמצום פדינג למקסימום */
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                  url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+      background-size: cover; padding: 30px 5% 20px 5%; display: flex; justify-content: center; align-items: center;
+    }
+    .hero-container { max-width: 1100px; width: 100%; text-align: center; }
+    .hero-content h1 { font-size: 52px; margin: 0 0 10px 0; color: #ff9d2b; font-weight: 900; line-height: 1.1; }
+    
+    .hero-first-line { 
+      display: inline-block; 
+      color: #ffffff !important; 
+      font-size: 36px; 
+      font-weight: 800;
+      margin-bottom: 5px;
+      animation: yellowGlowPulse 2.8s infinite ease-in-out; 
+    }
+    .hero-content h2 { font-size: 26px; font-weight: 600; line-height: 1.3; color: #ffffff; margin: 0; }
+
+    @keyframes yellowGlowPulse {
+      0% { text-shadow: 0 0 8px rgba(255, 215, 0, 0.3); }
+      50% { text-shadow: 0 0 25px rgba(255, 215, 0, 0.9), 0 0 35px rgba(255, 157, 43, 0.5); }
+      100% { text-shadow: 0 0 8px rgba(255, 215, 0, 0.3); }
+    }
+
+    /* Content Area - מהודק וצמוד ל-Hero */
+    .content-area { 
+      padding: 20px 5% 0 5%; 
+      max-width: 1100px; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 20px; 
+      align-items: flex-start; 
+    }
+    .guide-text { flex: 1.5; min-width: 320px; text-align: right; }
+    .guide-image { flex: 1; min-width: 280px; margin-top: 10px; }
+    .guide-image img { width: 100%; border-radius: 15px; border: 3px solid white; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+
+    .section-title { color: #0056A7; font-size: 32px; font-weight: 900; margin: 0 0 15px 0; line-height: 1.1; }
+    .strategy-list { list-style: none; padding: 0; margin: 0; }
+    .strategy-item { margin-bottom: 12px; padding-right: 15px; border-right: 5px solid #ff9d2b; }
+    .strategy-item h3 { color: #0056A7; font-size: 22px; margin: 0 0 2px 0; font-weight: 800; }
+    .strategy-item p { font-size: 17px; color: #444; margin: 0; line-height: 1.4; }
+
+    /* CTA Section - נצמד לחלוטין לחלק מעליו ללא רווח לבן */
+    .cta-section { 
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                  url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2000&auto=format&fit=crop') no-repeat center center;
+      background-size: cover; padding: 35px 5%; text-align: center; color: white;
+      margin-top: 20px; /* מרווח קטן לנשימה מהטקסט */
+    }
+    .cta-box h2 { color: #ff9d2b; font-size: 38px; font-weight: 900; margin: 0 0 15px 0; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+    
+    .cta-text-line { font-size: 20px; display: block; margin-bottom: 5px; line-height: 1.3; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+    .cta-text-line.bold { font-weight: 700; }
+    
+    .cta-focus-line { 
+      font-size: 28px; 
+      font-weight: 900; 
+      color: #ffffff; 
+      display: block; 
+      margin: 15px 0 5px 0;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+    }
+
+    .cta-main-heading { 
+      font-size: 28px; 
+      font-weight: 900; 
+      display: block; 
+      margin: 15px 0; 
+      color: #ffffff; 
+      line-height: 1.2;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.9);
+    }
+    
+    .highlight-mail { 
+      color: #ff9d2b; 
+      font-weight: 900; 
+      font-size: 36px; 
+      text-decoration: underline; 
+      border-bottom: 4px solid #ff9d2b; 
+      display: inline-block; 
+      margin-top: 10px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 34px; }
+      .hero-first-line { font-size: 26px; }
+      .content-area { padding: 15px 5% 0 5%; gap: 15px; flex-direction: column-reverse; }
+      .cta-box h2 { font-size: 28px; }
+      .cta-focus-line { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <h1>המדריך לעסק הדיגיטלי שלך כאן!</h1>
+        <h2>
+          <span class="hero-first-line">שוק התיירות של 12.5 טריליון דולר רותח.</span><br>
+          פלטפורמת אונליין ואוטומציה שמאפשרות לכם...<br>
+          לשרת לקוחות גלובליים ללא עלות הקמה מטורפת.
+        </h2>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-area">
+    <div class="guide-text">
+      <h2 class="section-title">מפת הדרכים שלך להקמה וצמיחה:</h2>
+      <div class="strategy-list">
+        <div class="strategy-item"><h3>1. בחירת הנישה שלך</h3><p>החליטו למי תרצו לעזור לטייל – משפחות, זוגות, נוודים דיגיטליים או מחפשי הרפתקאות. מיקוד מקל על השיווק ומושך לקוחות מדויקים.</p></div>
+        <div class="strategy-item"><h3>2. שימוש בפלטפורמה מוכנה</h3><p>השתמשו במערכת מבוססת מנויים שנותנת גישה מיידית למחירים סיטונאיים. הפלטפורמה מטפלת בכל הלוגיסטיקה.</p></div>
+        <div class="strategy-item"><h3>3. בניית נוכחות דיגיטלית</h3><p>צרו דפי נחיתה ופרופילים חברתיים המדגישים את הערך שלכם. תוכן מוכן מראש גורם לכם להיראות מקצועיים.</p></div>
+        <div class="strategy-item"><h3>4. אוטומציה של לידים</h3><p>השתמשו בכלים דיגיטליים כדי לאסוף מתעניינים ולבצע מעקב אוטומטי. העסק עובד גם כשאתם אופליין.</p></div>
+        <div class="strategy-item"><h3>5. יצירת הכנסה חוזרת</h3><p>הרוויחו ממנויים ומהזמנות חוזרות. יצירת נאמנות לקוחות בונה הכנסה יציבה ובטוחה.</p></div>
+        <div class="strategy-item"><h3>6. מעקב וניהול פשוט</h3><p>השתמשו בלוח בקרה חכם כדי לראות מי מתעניין ומאיפה מגיעה ההכנסה בזמן אמת, ללא צורך בניסיון קודם.</p></div>
+        <div class="strategy-item"><h3>7. שדרוג וצמיחה (Scale)</h3><p>לאחר שתתבססו, תוכלו לעזור לאחרים להשתמש באותה מערכת ולהגדיל את ההכנסה מעבר לזמן האישי שלכם.</p></div>
+      </div>
+    </div>
+    <div class="guide-image">
+      <img src="https://my.aimmwrlife.com/images/Girl-on-laptop.png" alt="עסק דיגיטלי">
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="cta-box">
+      <h2>רוצים שהחיסכון הזה יקרה גם עבורכם?</h2>
+      <span class="cta-text-line">בעוד ש-7 הצעדים האלו עובדים, הם דורשים זמן, מיקוד ומאמץ רב.</span>
+      <span class="cta-text-line bold">רוב האנשים יתקעו כשנסעו לעשות את זה לבד.</span>
+      <span class="cta-focus-line">כדי לעזור לכם, שלחנו לכם וידאו בלעדי למייל...</span>
+      <span class="cta-text-line">המציג חברה שמוציאה את כל הצעדים האלה מוכנים מראש ליזמים מתחילים.</span>
+      <span class="cta-main-heading">דרך מהירה יותר להשיק את העסק של התיירות הדיגיטלי שלכם!</span>
+      <div class="highlight-mail">בדקו את המייל שלכם עכשיו!</div>
+    </div>
+  </section>
+
+</body>
+</html>
